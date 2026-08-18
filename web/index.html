@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museum Flashcards — Studio Museum in Harlem</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Museum Flashcards</h1>
+  <p class="subtitle">Studio Museum in Harlem collection</p>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="study">Study</button>
+    <button class="tab-btn" data-tab="stats">Stats</button>
+  </nav>
+</header>
+
+<main>
+  <section id="study-tab" class="tab-panel active">
+    <div class="controls">
+      <label>
+        Artist
+        <select id="artist-filter">
+          <option value="">All artists</option>
+        </select>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="missed-only">
+        Review pieces I've missed
+      </label>
+      <button id="new-session-btn">New session</button>
+    </div>
+
+    <div id="deck-empty" class="empty-state hidden">
+      No cards match this filter yet — try a different artist or uncheck "review missed."
+    </div>
+
+    <div id="card-area" class="card-area">
+      <p class="progress" id="progress-label"></p>
+      <div class="flashcard" id="flashcard">
+        <img id="card-image" class="card-image" alt="">
+        <div class="card-answer hidden" id="card-answer">
+          <h2 id="answer-title"></h2>
+          <p id="answer-artist" class="answer-artist"></p>
+          <p id="answer-date"></p>
+          <p id="answer-medium"></p>
+          <p id="answer-dimensions" class="dim"></p>
+          <p id="answer-history" class="history"></p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="show-answer-btn">Show answer <span class="hint">(space)</span></button>
+        <div id="grade-buttons" class="grade-buttons hidden">
+          <button id="wrong-btn" class="grade-btn wrong">Missed it <span class="hint">(1)</span></button>
+          <button id="right-btn" class="grade-btn right">Knew it <span class="hint">(2)</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats-tab" class="tab-panel">
+    <div id="stats-summary" class="stats-summary"></div>
+    <table id="stats-table" class="stats-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th data-sort="title">Title</th>
+          <th data-sort="artist">Artist</th>
+          <th data-sort="right">Right</th>
+          <th data-sort="wrong">Wrong</th>
+          <th data-sort="accuracy">Accuracy</th>
+        </tr>
+      </thead>
+      <tbody id="stats-body"></tbody>
+    </table>
+    <div id="stats-empty" class="empty-state hidden">
+      No cards studied yet — head to the Study tab to get started.
+    </div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
