@@ -171,7 +171,7 @@ main {
   gap: 10px;
 }
 
-#show-answer-btn {
+#next-card-btn {
   background: var(--accent);
   color: #1a1a1a;
   border: none;
@@ -182,25 +182,69 @@ main {
   font-weight: 600;
 }
 
-.grade-buttons {
+#next-card-btn.hidden { display: none; }
+
+.guess-form {
+  text-align: left;
+  margin-top: 16px;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.grade-buttons.hidden { display: none; }
+.guess-form.hidden { display: none; }
 
-.grade-btn {
+.guess-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.guess-field.hidden { display: none; }
+
+.guess-field input,
+.guess-field select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+.guess-field input:disabled,
+.guess-field select:disabled {
+  opacity: 0.75;
+}
+
+.guess-result {
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-height: 1em;
+}
+
+.guess-result.correct { color: var(--right); }
+.guess-result.incorrect { color: var(--wrong); }
+.guess-result.skipped { color: var(--text-dim); font-weight: 400; }
+
+#submit-guess-btn {
+  align-self: flex-start;
+  background: var(--accent);
+  color: #1a1a1a;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   font-size: 0.95rem;
   cursor: pointer;
   font-weight: 600;
-  color: #fff;
 }
 
-.grade-btn.right { background: var(--right); }
-.grade-btn.wrong { background: var(--wrong); }
+#submit-guess-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
 .hint {
   font-weight: 400;
@@ -233,8 +277,13 @@ main {
   font-size: 1.3rem;
 }
 
+.stats-table-wrap {
+  overflow-x: auto;
+}
+
 .stats-table {
   width: 100%;
+  min-width: 560px;
   border-collapse: collapse;
   font-size: 0.85rem;
 }
@@ -262,5 +311,3 @@ main {
   display: block;
 }
 
-.stats-table .right-count { color: var(--right); }
-.stats-table .wrong-count { color: var(--wrong); }

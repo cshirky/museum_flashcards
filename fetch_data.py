@@ -9,6 +9,7 @@ Usage:
 """
 
 import json
+import re
 import time
 import urllib.request
 from pathlib import Path
@@ -79,11 +80,23 @@ def fetch_page(limit: int, offset: int) -> list[dict]:
     return data["entries"]
 
 
+def decade_from_date(date_text: str | None) -> str | None:
+    if not date_text:
+        return None
+    match = re.search(r"\d{4}", date_text)
+    if not match:
+        return None
+    year = int(match.group())
+    return f"{(year // 10) * 10}s"
+
+
 def normalize(entry: dict) -> dict | None:
     media = entry.get("artworkMedia") or []
     artists = entry.get("artists") or []
     if not media or not media[0].get("url") or not artists:
         return None
+
+    date = entry.get("artworkNetxDate") or "Date unknown"
 
     return {
         "id": entry["id"],
@@ -91,7 +104,8 @@ def normalize(entry: dict) -> dict | None:
         "title": entry.get("title") or "Untitled",
         "artist": ", ".join(a["title"] for a in artists if a.get("title")),
         "artistDates": next((a.get("artistDates") for a in artists if a.get("artistDates")), None),
-        "date": entry.get("artworkNetxDate") or "Date unknown",
+        "date": date,
+        "decade": decade_from_date(date),
         "medium": entry.get("artworkNetxMedium") or "Medium not recorded",
         "dimensions": entry.get("artworkNetxDimensions"),
         "image": media[0]["url"],

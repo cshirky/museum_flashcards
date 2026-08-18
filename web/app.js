@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "museumFlashcards.stats.v1";
+  const STORAGE_KEY = "museumFlashcards.stats.v2";
+  const MAX_HISTORY_PER_ARTWORK = 20;
 
   function loadStats() {
     try {
@@ -17,17 +18,130 @@
 
   let stats = loadStats();
 
-  function statFor(id) {
-    return stats[id] || { right: 0, wrong: 0 };
+  function blankFieldStat() {
+    return { right: 0, wrong: 0 };
   }
 
-  function recordGrade(id, isRight) {
+  function statFor(id) {
+    if (!stats[id]) {
+      stats[id] = {
+        artist: blankFieldStat(),
+        title: blankFieldStat(),
+        decade: blankFieldStat(),
+        history: [],
+        lastSeen: null,
+      };
+    }
+    return stats[id];
+  }
+
+  function recordAttempt(id, result) {
     const s = statFor(id);
-    if (isRight) s.right += 1;
-    else s.wrong += 1;
+    ["artist", "title", "decade"].forEach((field) => {
+      if (result[field].graded) {
+        if (result[field].correct) s[field].right += 1;
+        else s[field].wrong += 1;
+      }
+    });
+    s.history.unshift({
+      timestamp: new Date().toISOString(),
+      artistGuess: result.artist.guess,
+      titleGuess: result.title.guess,
+      decadeGuess: result.decade.guess,
+      artistCorrect: result.artist.graded ? result.artist.correct : null,
+      titleCorrect: result.title.graded ? result.title.correct : null,
+      decadeCorrect: result.decade.graded ? result.decade.correct : null,
+    });
+    if (s.history.length > MAX_HISTORY_PER_ARTWORK) {
+      s.history.length = MAX_HISTORY_PER_ARTWORK;
+    }
     s.lastSeen = new Date().toISOString();
-    stats[id] = s;
     saveStats(stats);
+  }
+
+  // ---------- Grading ----------
+
+  function normalize(str) {
+    return (str || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "") // strip accents
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  // Levenshtein distance, used to allow close-but-not-exact guesses.
+  function levenshtein(a, b) {
+    const m = a.length, n = b.length;
+    if (m === 0) return n;
+    if (n === 0) return m;
+    let prev = Array.from({ length: n + 1 }, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      const cur = [i];
+      for (let j = 1; j <= n; j++) {
+        cur[j] = a[i - 1] === b[j - 1]
+          ? prev[j - 1]
+          : 1 + Math.min(prev[j - 1], prev[j], cur[j - 1]);
+      }
+      prev = cur;
+    }
+    return prev[n];
+  }
+
+  function isCloseMatch(a, b) {
+    if (!a || !b) return false;
+    if (a === b) return true;
+    const longer = Math.max(a.length, b.length);
+    if (longer < 3) return false;
+    const distance = levenshtein(a, b);
+    return distance / longer <= 0.25;
+  }
+
+  function gradeFreeText(guessRaw, actualRaw) {
+    const guess = normalize(guessRaw);
+    const actual = normalize(actualRaw);
+    if (!guess) return false;
+    if (guess === actual) return true;
+    if (guess.length >= 3 && (actual.includes(guess) || guess.includes(actual))) return true;
+    return isCloseMatch(guess, actual);
+  }
+
+  function gradeArtist(guessRaw, actualArtistField) {
+    const guess = normalize(guessRaw);
+    if (!guess) return false;
+    // artist field may hold multiple comma-separated names for collaborative works
+    const names = actualArtistField.split(",").map((n) => n.trim());
+    return names.some((full) => {
+      if (gradeFreeText(guess, full)) return true;
+      const words = normalize(full).split(" ").filter(Boolean);
+      const lastName = words[words.length - 1];
+      return words.length > 1 && (guess === lastName || isCloseMatch(guess, lastName));
+    });
+  }
+
+  function gradeCard(card, guesses) {
+    const artistGraded = guesses.artist.trim().length > 0;
+    const titleGraded = guesses.title.trim().length > 0;
+    const decadeGraded = !!card.decade && guesses.decade.trim().length > 0;
+
+    return {
+      artist: {
+        guess: guesses.artist,
+        graded: artistGraded,
+        correct: artistGraded && gradeArtist(guesses.artist, card.artist),
+      },
+      title: {
+        guess: guesses.title,
+        graded: titleGraded,
+        correct: titleGraded && gradeFreeText(guesses.title, card.title),
+      },
+      decade: {
+        guess: guesses.decade,
+        graded: decadeGraded,
+        correct: decadeGraded && guesses.decade === card.decade,
+      },
+    };
   }
 
   // ---------- Tabs ----------
@@ -48,7 +162,7 @@
     });
   });
 
-  // ---------- Artist filter ----------
+  // ---------- Artist filter & decade options ----------
 
   const artistFilter = document.getElementById("artist-filter");
   const artists = Array.from(new Set(ARTWORKS.map((a) => a.artist))).sort((a, b) =>
@@ -59,6 +173,15 @@
     opt.value = name;
     opt.textContent = name;
     artistFilter.appendChild(opt);
+  });
+
+  const guessDecadeSelect = document.getElementById("guess-decade");
+  const decades = Array.from(new Set(ARTWORKS.map((a) => a.decade).filter(Boolean))).sort();
+  decades.forEach((d) => {
+    const opt = document.createElement("option");
+    opt.value = d;
+    opt.textContent = d;
+    guessDecadeSelect.appendChild(opt);
   });
 
   // ---------- Deck / study session ----------
@@ -76,10 +199,14 @@
   const answerMedium = document.getElementById("answer-medium");
   const answerDimensions = document.getElementById("answer-dimensions");
   const answerHistory = document.getElementById("answer-history");
-  const showAnswerBtn = document.getElementById("show-answer-btn");
-  const gradeButtons = document.getElementById("grade-buttons");
-  const rightBtn = document.getElementById("right-btn");
-  const wrongBtn = document.getElementById("wrong-btn");
+  const guessForm = document.getElementById("guess-form");
+  const guessArtistInput = document.getElementById("guess-artist");
+  const guessTitleInput = document.getElementById("guess-title");
+  const decadeField = document.getElementById("decade-field");
+  const resultArtist = document.getElementById("result-artist");
+  const resultTitle = document.getElementById("result-title");
+  const resultDecade = document.getElementById("result-decade");
+  const nextCardBtn = document.getElementById("next-card-btn");
 
   function shuffled(arr) {
     const a = arr.slice();
@@ -88,6 +215,16 @@
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+
+  function isStruggling(id) {
+    const s = stats[id];
+    if (!s) return false;
+    return ["artist", "title", "decade"].some((field) => {
+      const f = s[field];
+      const total = f.right + f.wrong;
+      return total > 0 && f.wrong >= f.right;
+    });
   }
 
   let deck = [];
@@ -100,12 +237,7 @@
 
     let pool = ARTWORKS;
     if (artist) pool = pool.filter((a) => a.artist === artist);
-    if (missedOnly) {
-      pool = pool.filter((a) => {
-        const s = statFor(a.id);
-        return s.wrong > s.right;
-      });
-    }
+    if (missedOnly) pool = pool.filter((a) => isStruggling(a.id));
 
     deck = shuffled(pool);
     position = 0;
@@ -126,12 +258,18 @@
     const card = deck[position];
     progressLabel.textContent = `Card ${position + 1} of ${deck.length}`;
     cardImage.src = card.image;
-    cardImage.alt = card.title;
+    cardImage.alt = "";
 
     answerShown = false;
+    guessForm.reset();
+    guessForm.classList.remove("hidden");
+    decadeField.classList.toggle("hidden", !card.decade);
+    [resultArtist, resultTitle, resultDecade].forEach((el) => {
+      el.textContent = "";
+      el.className = "guess-result";
+    });
     cardAnswer.classList.add("hidden");
-    showAnswerBtn.classList.remove("hidden");
-    gradeButtons.classList.add("hidden");
+    nextCardBtn.classList.add("hidden");
 
     answerTitle.textContent = card.title;
     answerArtist.textContent = card.artistDates
@@ -141,45 +279,74 @@
     answerMedium.textContent = card.medium;
     answerDimensions.textContent = card.dimensions || "";
 
-    const s = statFor(card.id);
+    const s = stats[card.id];
+    const attempts = s ? s.history.length : 0;
     answerHistory.textContent =
-      s.right + s.wrong > 0
-        ? `You've seen this before — ${s.right} right, ${s.wrong} wrong.`
+      attempts > 0
+        ? `You've seen this before — ${attempts} attempt${attempts === 1 ? "" : "s"} logged.`
         : "First time seeing this one.";
+
+    guessArtistInput.focus();
   }
 
-  function revealAnswer() {
+  function markResult(el, graded, correct) {
+    if (!graded) {
+      el.textContent = "not graded";
+      el.className = "guess-result skipped";
+      return;
+    }
+    el.textContent = correct ? "✓ correct" : "✗ incorrect";
+    el.className = "guess-result " + (correct ? "correct" : "incorrect");
+  }
+
+  function submitGuess(e) {
+    e.preventDefault();
     if (deck.length === 0 || answerShown) return;
+
+    const card = deck[position];
+    const guesses = {
+      artist: guessArtistInput.value,
+      title: guessTitleInput.value,
+      decade: guessDecadeSelect.value,
+    };
+    const result = gradeCard(card, guesses);
+    recordAttempt(card.id, result);
+
+    markResult(resultArtist, result.artist.graded, result.artist.correct);
+    markResult(resultTitle, result.title.graded, result.title.correct);
+    if (card.decade) markResult(resultDecade, result.decade.graded, result.decade.correct);
+
     answerShown = true;
+    guessArtistInput.disabled = true;
+    guessTitleInput.disabled = true;
+    guessDecadeSelect.disabled = true;
+    document.getElementById("submit-guess-btn").disabled = true;
     cardAnswer.classList.remove("hidden");
-    showAnswerBtn.classList.add("hidden");
-    gradeButtons.classList.remove("hidden");
+    nextCardBtn.classList.remove("hidden");
+    nextCardBtn.focus();
   }
 
-  function grade(isRight) {
+  function nextCard() {
     if (deck.length === 0 || !answerShown) return;
-    const card = deck[position];
-    recordGrade(card.id, isRight);
+    guessArtistInput.disabled = false;
+    guessTitleInput.disabled = false;
+    guessDecadeSelect.disabled = false;
+    document.getElementById("submit-guess-btn").disabled = false;
     position += 1;
     renderCard();
   }
 
-  showAnswerBtn.addEventListener("click", revealAnswer);
-  rightBtn.addEventListener("click", () => grade(true));
-  wrongBtn.addEventListener("click", () => grade(false));
+  guessForm.addEventListener("submit", submitGuess);
+  nextCardBtn.addEventListener("click", nextCard);
   newSessionBtn.addEventListener("click", buildDeck);
   artistFilter.addEventListener("change", buildDeck);
   missedOnlyCheckbox.addEventListener("change", buildDeck);
 
   document.addEventListener("keydown", (e) => {
     if (!tabPanels.study.classList.contains("active")) return;
-    if (e.code === "Space") {
+    if (answerShown && e.key === "Enter" && document.activeElement !== guessArtistInput) {
       e.preventDefault();
-      if (!answerShown) revealAnswer();
-    } else if (e.key === "1" && answerShown) {
-      grade(false);
-    } else if (e.key === "2" && answerShown) {
-      grade(true);
+      nextCard();
     }
   });
 
@@ -190,11 +357,20 @@
   const statsTable = document.getElementById("stats-table");
   const statsEmpty = document.getElementById("stats-empty");
 
-  let sortKey = "wrong";
-  let sortDir = -1;
+  let sortKey = "overallAcc";
+  let sortDir = 1;
+
+  function pct(f) {
+    const total = f.right + f.wrong;
+    return total > 0 ? f.right / total : null;
+  }
+
+  function fmtPct(p) {
+    return p === null ? "—" : `${Math.round(p * 100)}%`;
+  }
 
   function renderStats() {
-    const studiedIds = Object.keys(stats);
+    const studiedIds = Object.keys(stats).filter((id) => stats[id].history.length > 0);
     if (studiedIds.length === 0) {
       statsTable.classList.add("hidden");
       statsSummary.classList.add("hidden");
@@ -211,31 +387,49 @@
         const art = byId.get(id);
         if (!art) return null;
         const s = stats[id];
-        const total = s.right + s.wrong;
-        const accuracy = total > 0 ? s.right / total : 0;
-        return { art, right: s.right, wrong: s.wrong, accuracy, total };
+        const artistAcc = pct(s.artist);
+        const titleAcc = pct(s.title);
+        const decadeAcc = pct(s.decade);
+        const totalRight = s.artist.right + s.title.right + s.decade.right;
+        const totalAttempts = totalRight + s.artist.wrong + s.title.wrong + s.decade.wrong;
+        const overallAcc = totalAttempts > 0 ? totalRight / totalAttempts : null;
+        return {
+          art,
+          artistAcc,
+          titleAcc,
+          decadeAcc,
+          overallAcc,
+          lastGuesses: s.history[0],
+        };
       })
       .filter(Boolean);
 
-    const totalRight = rows.reduce((sum, r) => sum + r.right, 0);
-    const totalWrong = rows.reduce((sum, r) => sum + r.wrong, 0);
-    const totalAttempts = totalRight + totalWrong;
-    const overallAccuracy = totalAttempts > 0 ? Math.round((totalRight / totalAttempts) * 100) : 0;
+    const totals = { right: 0, wrong: 0 };
+    studiedIds.forEach((id) => {
+      const s = stats[id];
+      ["artist", "title", "decade"].forEach((f) => {
+        totals.right += s[f].right;
+        totals.wrong += s[f].wrong;
+      });
+    });
+    const totalAttempts = totals.right + totals.wrong;
+    const overallAccuracy = totalAttempts > 0 ? Math.round((totals.right / totalAttempts) * 100) : 0;
 
     statsSummary.innerHTML = `
       <div><strong>${rows.length}</strong>pieces studied</div>
-      <div><strong>${totalRight}</strong>right</div>
-      <div><strong>${totalWrong}</strong>wrong</div>
-      <div><strong>${overallAccuracy}%</strong>accuracy</div>
+      <div><strong>${totals.right}</strong>correct guesses</div>
+      <div><strong>${totals.wrong}</strong>incorrect guesses</div>
+      <div><strong>${overallAccuracy}%</strong>overall accuracy</div>
     `;
 
     rows.sort((a, b) => {
       let av, bv;
       if (sortKey === "title") { av = a.art.title; bv = b.art.title; }
-      else if (sortKey === "artist") { av = a.art.artist; bv = b.art.artist; }
-      else if (sortKey === "accuracy") { av = a.accuracy; bv = b.accuracy; }
-      else { av = a[sortKey]; bv = b[sortKey]; }
-
+      else if (sortKey === "artistName") { av = a.art.artist; bv = b.art.artist; }
+      else {
+        av = a[sortKey] === null ? -1 : a[sortKey];
+        bv = b[sortKey] === null ? -1 : b[sortKey];
+      }
       if (typeof av === "string") return sortDir * av.localeCompare(bv);
       return sortDir * (av - bv);
     });
@@ -243,13 +437,18 @@
     statsBody.innerHTML = "";
     rows.forEach((r) => {
       const tr = document.createElement("tr");
+      const guessTitle = r.lastGuesses
+        ? `Last guess — artist: "${r.lastGuesses.artistGuess || "(blank)"}", title: "${r.lastGuesses.titleGuess || "(blank)"}", decade: "${r.lastGuesses.decadeGuess || "(blank)"}"`
+        : "";
+      tr.title = guessTitle;
       tr.innerHTML = `
         <td><img src="${r.art.image}" alt=""></td>
         <td>${r.art.title}</td>
         <td>${r.art.artist}</td>
-        <td class="right-count">${r.right}</td>
-        <td class="wrong-count">${r.wrong}</td>
-        <td>${Math.round(r.accuracy * 100)}%</td>
+        <td>${fmtPct(r.artistAcc)}</td>
+        <td>${fmtPct(r.titleAcc)}</td>
+        <td>${fmtPct(r.decadeAcc)}</td>
+        <td>${fmtPct(r.overallAcc)}</td>
       `;
       statsBody.appendChild(tr);
     });
