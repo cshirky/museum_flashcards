@@ -162,21 +162,43 @@
     });
   });
 
-  // ---------- Artist filter & decade options ----------
+  // ---------- Type / decade filter options ----------
 
-  const artistFilter = document.getElementById("artist-filter");
-  const artists = Array.from(new Set(ARTWORKS.map((a) => a.artist))).sort((a, b) =>
-    a.localeCompare(b)
-  );
-  artists.forEach((name) => {
-    const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name;
-    artistFilter.appendChild(opt);
-  });
+  function countBy(getKeys) {
+    const counts = new Map();
+    ARTWORKS.forEach((a) => {
+      getKeys(a).forEach((k) => {
+        if (!k) return;
+        counts.set(k, (counts.get(k) || 0) + 1);
+      });
+    });
+    return counts;
+  }
+
+  const typeFilter = document.getElementById("type-filter");
+  const typeCounts = countBy((a) => a.types);
+  Array.from(typeCounts.keys())
+    .sort((a, b) => typeCounts.get(b) - typeCounts.get(a))
+    .forEach((type) => {
+      const opt = document.createElement("option");
+      opt.value = type;
+      opt.textContent = `${type} (${typeCounts.get(type)})`;
+      typeFilter.appendChild(opt);
+    });
+
+  const decadeFilter = document.getElementById("decade-filter");
+  const decadeCounts = countBy((a) => [a.decade]);
+  Array.from(decadeCounts.keys())
+    .sort()
+    .forEach((decade) => {
+      const opt = document.createElement("option");
+      opt.value = decade;
+      opt.textContent = `${decade} (${decadeCounts.get(decade)})`;
+      decadeFilter.appendChild(opt);
+    });
 
   const guessDecadeSelect = document.getElementById("guess-decade");
-  const decades = Array.from(new Set(ARTWORKS.map((a) => a.decade).filter(Boolean))).sort();
+  const decades = Array.from(decadeCounts.keys()).sort();
   decades.forEach((d) => {
     const opt = document.createElement("option");
     opt.value = d;
@@ -187,9 +209,11 @@
   // ---------- Deck / study session ----------
 
   const missedOnlyCheckbox = document.getElementById("missed-only");
+  const sessionSizeSelect = document.getElementById("session-size");
   const newSessionBtn = document.getElementById("new-session-btn");
   const deckEmpty = document.getElementById("deck-empty");
   const cardArea = document.getElementById("card-area");
+  const poolCountLabel = document.getElementById("pool-count");
   const progressLabel = document.getElementById("progress-label");
   const cardImage = document.getElementById("card-image");
   const cardAnswer = document.getElementById("card-answer");
@@ -232,15 +256,28 @@
   let answerShown = false;
 
   function buildDeck() {
-    const artist = artistFilter.value;
+    const type = typeFilter.value;
+    const decade = decadeFilter.value;
     const missedOnly = missedOnlyCheckbox.checked;
+    const sessionSize = Number(sessionSizeSelect.value);
 
     let pool = ARTWORKS;
-    if (artist) pool = pool.filter((a) => a.artist === artist);
+    if (type) pool = pool.filter((a) => a.types.includes(type));
+    if (decade) pool = pool.filter((a) => a.decade === decade);
     if (missedOnly) pool = pool.filter((a) => isStruggling(a.id));
 
+    const matched = pool.length;
     deck = shuffled(pool);
+    if (sessionSize > 0) deck = deck.slice(0, sessionSize);
     position = 0;
+
+    poolCountLabel.textContent =
+      matched === 0
+        ? ""
+        : deck.length < matched
+        ? `${matched} pieces match this filter — studying a shuffled set of ${deck.length}.`
+        : `${matched} piece${matched === 1 ? "" : "s"} match this filter.`;
+
     renderCard();
   }
 
@@ -339,7 +376,9 @@
   guessForm.addEventListener("submit", submitGuess);
   nextCardBtn.addEventListener("click", nextCard);
   newSessionBtn.addEventListener("click", buildDeck);
-  artistFilter.addEventListener("change", buildDeck);
+  typeFilter.addEventListener("change", buildDeck);
+  decadeFilter.addEventListener("change", buildDeck);
+  sessionSizeSelect.addEventListener("change", buildDeck);
   missedOnlyCheckbox.addEventListener("change", buildDeck);
 
   document.addEventListener("keydown", (e) => {
@@ -399,6 +438,8 @@
           titleAcc,
           decadeAcc,
           overallAcc,
+          type: art.types.join(", "),
+          decade: art.decade || "—",
           lastGuesses: s.history[0],
         };
       })
@@ -426,6 +467,7 @@
       let av, bv;
       if (sortKey === "title") { av = a.art.title; bv = b.art.title; }
       else if (sortKey === "artistName") { av = a.art.artist; bv = b.art.artist; }
+      else if (sortKey === "type" || sortKey === "decade") { av = a[sortKey]; bv = b[sortKey]; }
       else {
         av = a[sortKey] === null ? -1 : a[sortKey];
         bv = b[sortKey] === null ? -1 : b[sortKey];
@@ -445,6 +487,8 @@
         <td><img src="${r.art.image}" alt=""></td>
         <td>${r.art.title}</td>
         <td>${r.art.artist}</td>
+        <td>${r.type}</td>
+        <td>${r.decade}</td>
         <td>${fmtPct(r.artistAcc)}</td>
         <td>${fmtPct(r.titleAcc)}</td>
         <td>${fmtPct(r.decadeAcc)}</td>

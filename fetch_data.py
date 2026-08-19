@@ -32,6 +32,9 @@ ARTWORK_FIELDS = """
         width
         height
     }
+    artworkType {
+        title
+    }
     artists: artworkArtist {
         ... on allArtists_allArtists_Entry {
             id
@@ -97,6 +100,7 @@ def normalize(entry: dict) -> dict | None:
         return None
 
     date = entry.get("artworkNetxDate") or "Date unknown"
+    types = [t["title"] for t in (entry.get("artworkType") or []) if t.get("title")]
 
     return {
         "id": entry["id"],
@@ -106,6 +110,7 @@ def normalize(entry: dict) -> dict | None:
         "artistDates": next((a.get("artistDates") for a in artists if a.get("artistDates")), None),
         "date": date,
         "decade": decade_from_date(date),
+        "types": types,
         "medium": entry.get("artworkNetxMedium") or "Medium not recorded",
         "dimensions": entry.get("artworkNetxDimensions"),
         "image": media[0]["url"],

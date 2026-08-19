@@ -20,9 +20,24 @@
   <section id="study-tab" class="tab-panel active">
     <div class="controls">
       <label>
-        Artist
-        <select id="artist-filter">
-          <option value="">All artists</option>
+        Type
+        <select id="type-filter">
+          <option value="">All types</option>
+        </select>
+      </label>
+      <label>
+        Decade
+        <select id="decade-filter">
+          <option value="">All decades</option>
+        </select>
+      </label>
+      <label>
+        Session size
+        <select id="session-size">
+          <option value="10">10 cards</option>
+          <option value="20" selected>20 cards</option>
+          <option value="30">30 cards</option>
+          <option value="0">All matching</option>
         </select>
       </label>
       <label class="checkbox-label">
@@ -32,8 +47,10 @@
       <button id="new-session-btn">New session</button>
     </div>
 
+    <p class="pool-count" id="pool-count"></p>
+
     <div id="deck-empty" class="empty-state hidden">
-      No cards match this filter yet — try a different artist or uncheck "review missed."
+      No cards match this filter yet — try a different type or decade, or uncheck "review missed."
     </div>
 
     <div id="card-area" class="card-area">
@@ -87,6 +104,8 @@
           <th></th>
           <th data-sort="title">Title</th>
           <th data-sort="artistName">Artist</th>
+          <th data-sort="type">Type</th>
+          <th data-sort="decade">Decade</th>
           <th data-sort="artistAcc">Artist %</th>
           <th data-sort="titleAcc">Title %</th>
           <th data-sort="decadeAcc">Decade %</th>

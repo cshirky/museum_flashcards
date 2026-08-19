@@ -105,6 +105,13 @@ main {
 
 #new-session-btn:hover { border-color: var(--accent); }
 
+.pool-count {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin: -8px 0 14px;
+}
+
 .progress {
   text-align: center;
   color: var(--text-dim);
@@ -283,7 +290,7 @@ main {
 
 .stats-table {
   width: 100%;
-  min-width: 560px;
+  min-width: 760px;
   border-collapse: collapse;
   font-size: 0.85rem;
 }
