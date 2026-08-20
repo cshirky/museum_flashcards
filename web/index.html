@@ -10,116 +10,178 @@
 <header class="app-header">
   <h1>Museum Flashcards</h1>
   <p class="subtitle">Studio Museum in Harlem collection</p>
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="study">Study</button>
-    <button class="tab-btn" data-tab="stats">Stats</button>
-  </nav>
 </header>
 
-<main>
-  <section id="study-tab" class="tab-panel active">
-    <div class="controls">
-      <label>
-        Type
-        <select id="type-filter">
-          <option value="">All types</option>
-        </select>
-      </label>
-      <label>
-        Decade
-        <select id="decade-filter">
-          <option value="">All decades</option>
-        </select>
-      </label>
-      <label>
-        Session size
-        <select id="session-size">
-          <option value="10">10 cards</option>
-          <option value="20" selected>20 cards</option>
-          <option value="30">30 cards</option>
-          <option value="0">All matching</option>
-        </select>
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox" id="missed-only">
-        Review pieces I've missed
-      </label>
-      <button id="new-session-btn">New session</button>
-    </div>
+<div class="app-shell">
+  <nav class="side-nav">
+    <button class="nav-btn active" data-tab="quiz">Quiz</button>
+    <button class="nav-btn" data-tab="mix">Mix &amp; Match</button>
+    <button class="nav-btn" data-tab="browse">Study</button>
+    <button class="nav-btn" data-tab="stats">Stats</button>
+  </nav>
 
-    <p class="pool-count" id="pool-count"></p>
+  <main>
+    <section id="quiz-tab" class="tab-panel active">
+      <div class="controls">
+        <label>
+          Medium
+          <select id="type-filter">
+            <option value="">All mediums</option>
+          </select>
+        </label>
+        <label>
+          Decade
+          <select id="decade-filter">
+            <option value="">All decades</option>
+          </select>
+        </label>
+        <label>
+          Session size
+          <select id="session-size">
+            <option value="10">10 cards</option>
+            <option value="20" selected>20 cards</option>
+            <option value="30">30 cards</option>
+            <option value="0">All matching</option>
+          </select>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="missed-only">
+          Review pieces I've missed
+        </label>
+        <button id="new-session-btn">New session</button>
+      </div>
 
-    <div id="deck-empty" class="empty-state hidden">
-      No cards match this filter yet — try a different type or decade, or uncheck "review missed."
-    </div>
+      <p class="pool-count" id="pool-count"></p>
 
-    <div id="card-area" class="card-area">
-      <p class="progress" id="progress-label"></p>
-      <div class="flashcard" id="flashcard">
-        <img id="card-image" class="card-image" alt="">
+      <div id="deck-empty" class="empty-state hidden">
+        No cards match this filter yet — try a different medium or decade, or uncheck "review missed."
+      </div>
 
-        <form id="guess-form" class="guess-form">
-          <label class="guess-field">
-            Artist
-            <input type="text" id="guess-artist" autocomplete="off">
-            <span class="guess-result" id="result-artist"></span>
-          </label>
-          <label class="guess-field">
-            Title of the work
-            <input type="text" id="guess-title" autocomplete="off">
-            <span class="guess-result" id="result-title"></span>
-          </label>
-          <label class="guess-field" id="decade-field">
-            Decade created
-            <select id="guess-decade">
-              <option value="">Choose a decade…</option>
-            </select>
-            <span class="guess-result" id="result-decade"></span>
-          </label>
-          <button type="submit" id="submit-guess-btn">Submit guess</button>
-        </form>
+      <div id="card-area" class="card-area">
+        <p class="progress" id="progress-label"></p>
+        <div class="flashcard" id="flashcard">
+          <img id="card-image" class="card-image" alt="">
 
-        <div class="card-answer hidden" id="card-answer">
-          <h2 id="answer-title"></h2>
-          <p id="answer-artist" class="answer-artist"></p>
-          <p id="answer-date"></p>
-          <p id="answer-medium"></p>
-          <p id="answer-dimensions" class="dim"></p>
-          <p id="answer-history" class="history"></p>
+          <form id="guess-form" class="guess-form">
+            <label class="guess-field">
+              Artist
+              <input type="text" id="guess-artist" autocomplete="off">
+              <span class="guess-result" id="result-artist"></span>
+            </label>
+            <label class="guess-field">
+              Title of the work
+              <input type="text" id="guess-title" autocomplete="off">
+              <span class="guess-result" id="result-title"></span>
+            </label>
+            <label class="guess-field" id="decade-field">
+              Decade created
+              <select id="guess-decade">
+                <option value="">Choose a decade…</option>
+              </select>
+              <span class="guess-result" id="result-decade"></span>
+            </label>
+            <button type="submit" id="submit-guess-btn">Submit guess</button>
+          </form>
+
+          <div class="card-answer hidden" id="card-answer">
+            <h2 id="answer-title"></h2>
+            <p id="answer-artist" class="answer-artist"></p>
+            <p id="answer-date"></p>
+            <p id="answer-medium"></p>
+            <p id="answer-dimensions" class="dim"></p>
+            <p id="answer-history" class="history"></p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="next-card-btn" class="hidden">Next card <span class="hint">(enter)</span></button>
         </div>
       </div>
+    </section>
+
+    <section id="mix-tab" class="tab-panel">
+      <div class="controls">
+        <label>
+          Medium
+          <select id="mm-type-filter">
+            <option value="">All mediums</option>
+          </select>
+        </label>
+        <label>
+          Decade
+          <select id="mm-decade-filter">
+            <option value="">All decades</option>
+          </select>
+        </label>
+        <button id="mm-new-set-btn">New set</button>
+      </div>
+
+      <p class="pool-count" id="mm-pool-count"></p>
+
+      <div id="mm-empty" class="empty-state hidden">
+        Not enough matching works for a set of 8 — try a broader medium or decade filter.
+      </div>
+
+      <div id="mm-grid" class="mm-grid"></div>
 
       <div class="actions">
-        <button id="next-card-btn" class="hidden">Next card <span class="hint">(enter)</span></button>
+        <button id="mm-submit-btn">Check answers</button>
       </div>
-    </div>
-  </section>
+      <p id="mm-score" class="mm-score"></p>
+    </section>
 
-  <section id="stats-tab" class="tab-panel">
-    <div id="stats-summary" class="stats-summary"></div>
-    <div class="stats-table-wrap">
-    <table id="stats-table" class="stats-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th data-sort="title">Title</th>
-          <th data-sort="artistName">Artist</th>
-          <th data-sort="type">Type</th>
-          <th data-sort="decade">Decade</th>
-          <th data-sort="artistAcc">Artist %</th>
-          <th data-sort="titleAcc">Title %</th>
-          <th data-sort="decadeAcc">Decade %</th>
-          <th data-sort="overallAcc">Overall %</th>
-        </tr>
-      </thead>
-      <tbody id="stats-body"></tbody>
-    </table>
-    </div>
-    <div id="stats-empty" class="empty-state hidden">
-      No cards studied yet — head to the Study tab to get started.
-    </div>
-  </section>
-</main>
+    <section id="browse-tab" class="tab-panel">
+      <div class="controls">
+        <label>
+          Medium
+          <select id="browse-type-filter">
+            <option value="">All mediums</option>
+          </select>
+        </label>
+        <label>
+          Decade
+          <select id="browse-decade-filter">
+            <option value="">All decades</option>
+          </select>
+        </label>
+        <button id="browse-new-set-btn">Shuffle new set</button>
+      </div>
+
+      <p class="pool-count" id="browse-pool-count"></p>
+
+      <div id="browse-empty" class="empty-state hidden">
+        No works match this filter.
+      </div>
+
+      <div id="browse-grid" class="browse-grid"></div>
+    </section>
+
+    <section id="stats-tab" class="tab-panel">
+      <div id="stats-summary" class="stats-summary"></div>
+      <div class="stats-table-wrap">
+      <table id="stats-table" class="stats-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th data-sort="title">Title</th>
+            <th data-sort="artistName">Artist</th>
+            <th data-sort="type">Type</th>
+            <th data-sort="decade">Decade</th>
+            <th data-sort="artistAcc">Artist %</th>
+            <th data-sort="titleAcc">Title %</th>
+            <th data-sort="decadeAcc">Decade %</th>
+            <th data-sort="overallAcc">Overall %</th>
+          </tr>
+        </thead>
+        <tbody id="stats-body"></tbody>
+      </table>
+      </div>
+      <div id="stats-empty" class="empty-state hidden">
+        No cards studied yet — head to the Quiz or Mix &amp; Match tab to get started.
+      </div>
+    </section>
+  </main>
+</div>
 
 <script src="data.js"></script>
 <script src="app.js"></script>

@@ -146,15 +146,17 @@
 
   // ---------- Tabs ----------
 
-  const tabButtons = document.querySelectorAll(".tab-btn");
+  const navButtons = document.querySelectorAll(".nav-btn");
   const tabPanels = {
-    study: document.getElementById("study-tab"),
+    quiz: document.getElementById("quiz-tab"),
+    mix: document.getElementById("mix-tab"),
+    browse: document.getElementById("browse-tab"),
     stats: document.getElementById("stats-tab"),
   };
 
-  tabButtons.forEach((btn) => {
+  navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      tabButtons.forEach((b) => b.classList.remove("active"));
+      navButtons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
       Object.values(tabPanels).forEach((p) => p.classList.remove("active"));
       tabPanels[btn.dataset.tab].classList.add("active");
@@ -175,27 +177,37 @@
     return counts;
   }
 
-  const typeFilter = document.getElementById("type-filter");
   const typeCounts = countBy((a) => a.types);
-  Array.from(typeCounts.keys())
-    .sort((a, b) => typeCounts.get(b) - typeCounts.get(a))
-    .forEach((type) => {
-      const opt = document.createElement("option");
-      opt.value = type;
-      opt.textContent = `${type} (${typeCounts.get(type)})`;
-      typeFilter.appendChild(opt);
-    });
-
-  const decadeFilter = document.getElementById("decade-filter");
   const decadeCounts = countBy((a) => [a.decade]);
-  Array.from(decadeCounts.keys())
-    .sort()
-    .forEach((decade) => {
-      const opt = document.createElement("option");
-      opt.value = decade;
-      opt.textContent = `${decade} (${decadeCounts.get(decade)})`;
-      decadeFilter.appendChild(opt);
-    });
+
+  function populateFilter(selectEl, counts, sortFn) {
+    Array.from(counts.keys())
+      .sort(sortFn)
+      .forEach((key) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = `${key} (${counts.get(key)})`;
+        selectEl.appendChild(opt);
+      });
+  }
+
+  const byCountDesc = (counts) => (a, b) => counts.get(b) - counts.get(a);
+  const alphabetically = (a, b) => a.localeCompare(b);
+
+  const typeFilter = document.getElementById("type-filter");
+  const decadeFilter = document.getElementById("decade-filter");
+  populateFilter(typeFilter, typeCounts, byCountDesc(typeCounts));
+  populateFilter(decadeFilter, decadeCounts, alphabetically);
+
+  const mmTypeFilter = document.getElementById("mm-type-filter");
+  const mmDecadeFilter = document.getElementById("mm-decade-filter");
+  populateFilter(mmTypeFilter, typeCounts, byCountDesc(typeCounts));
+  populateFilter(mmDecadeFilter, decadeCounts, alphabetically);
+
+  const browseTypeFilter = document.getElementById("browse-type-filter");
+  const browseDecadeFilter = document.getElementById("browse-decade-filter");
+  populateFilter(browseTypeFilter, typeCounts, byCountDesc(typeCounts));
+  populateFilter(browseDecadeFilter, decadeCounts, alphabetically);
 
   const guessDecadeSelect = document.getElementById("guess-decade");
   const decades = Array.from(decadeCounts.keys()).sort();
@@ -205,6 +217,15 @@
     opt.textContent = d;
     guessDecadeSelect.appendChild(opt);
   });
+
+  function shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
 
   // ---------- Deck / study session ----------
 
@@ -231,15 +252,6 @@
   const resultTitle = document.getElementById("result-title");
   const resultDecade = document.getElementById("result-decade");
   const nextCardBtn = document.getElementById("next-card-btn");
-
-  function shuffled(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
 
   function isStruggling(id) {
     const s = stats[id];
@@ -382,12 +394,208 @@
   missedOnlyCheckbox.addEventListener("change", buildDeck);
 
   document.addEventListener("keydown", (e) => {
-    if (!tabPanels.study.classList.contains("active")) return;
+    if (!tabPanels.quiz.classList.contains("active")) return;
     if (answerShown && e.key === "Enter" && document.activeElement !== guessArtistInput) {
       e.preventDefault();
       nextCard();
     }
   });
+
+  // ---------- Mix & Match tab ----------
+
+  const MIX_SET_SIZE = 8;
+
+  const mmPoolCount = document.getElementById("mm-pool-count");
+  const mmEmpty = document.getElementById("mm-empty");
+  const mmGrid = document.getElementById("mm-grid");
+  const mmSubmitBtn = document.getElementById("mm-submit-btn");
+  const mmNewSetBtn = document.getElementById("mm-new-set-btn");
+  const mmScore = document.getElementById("mm-score");
+
+  let mmBatch = [];
+  let mmSubmitted = false;
+
+  function buildMixPool() {
+    const type = mmTypeFilter.value;
+    const decade = mmDecadeFilter.value;
+    // decade is required per-card so the matching game has a full set of options
+    let pool = ARTWORKS.filter((a) => a.decade);
+    if (type) pool = pool.filter((a) => a.types.includes(type));
+    if (decade) pool = pool.filter((a) => a.decade === decade);
+    return pool;
+  }
+
+  function makeMixField(container, label, field, idx, options) {
+    const wrap = document.createElement("label");
+    wrap.className = "mm-field";
+    wrap.append(label);
+
+    const select = document.createElement("select");
+    select.className = "mm-select";
+    select.dataset.field = field;
+    select.dataset.idx = String(idx);
+    select.appendChild(new Option("Choose…", ""));
+    options.forEach((v) => select.appendChild(new Option(v, v)));
+    wrap.appendChild(select);
+
+    const result = document.createElement("span");
+    result.className = "guess-result";
+    result.id = `mm-result-${field}-${idx}`;
+    wrap.appendChild(result);
+
+    container.appendChild(wrap);
+  }
+
+  function renderMixGrid() {
+    const artistOptions = shuffled(mmBatch.map((c) => c.artist));
+    const titleOptions = shuffled(mmBatch.map((c) => c.title));
+    const decadeOptions = shuffled(mmBatch.map((c) => c.decade));
+
+    mmGrid.innerHTML = "";
+    mmBatch.forEach((card, idx) => {
+      const div = document.createElement("div");
+      div.className = "mm-card";
+
+      const img = document.createElement("img");
+      img.src = card.image;
+      img.alt = "";
+      div.appendChild(img);
+
+      makeMixField(div, "Artist", "artist", idx, artistOptions);
+      makeMixField(div, "Title", "title", idx, titleOptions);
+      makeMixField(div, "Decade", "decade", idx, decadeOptions);
+
+      mmGrid.appendChild(div);
+    });
+  }
+
+  function newMixSet() {
+    const pool = buildMixPool();
+    mmScore.textContent = "";
+    mmSubmitted = false;
+
+    if (pool.length < MIX_SET_SIZE) {
+      mmGrid.innerHTML = "";
+      mmGrid.classList.add("hidden");
+      mmSubmitBtn.classList.add("hidden");
+      mmEmpty.classList.remove("hidden");
+      mmPoolCount.textContent =
+        pool.length > 0 ? `Only ${pool.length} matching works — need at least ${MIX_SET_SIZE}.` : "";
+      return;
+    }
+
+    mmEmpty.classList.add("hidden");
+    mmGrid.classList.remove("hidden");
+    mmSubmitBtn.classList.remove("hidden");
+    mmSubmitBtn.disabled = false;
+    mmPoolCount.textContent = `${pool.length} works match this filter.`;
+
+    mmBatch = shuffled(pool).slice(0, MIX_SET_SIZE);
+    renderMixGrid();
+  }
+
+  function submitMix() {
+    if (mmSubmitted || mmBatch.length === 0) return;
+
+    const allSelects = Array.from(mmGrid.querySelectorAll(".mm-select"));
+    const anySelected = allSelects.some((s) => s.value.length > 0);
+    if (!anySelected) {
+      mmScore.textContent = "Choose some answers first.";
+      return;
+    }
+
+    mmSubmitted = true;
+    let rightTotal = 0;
+    let gradedTotal = 0;
+
+    mmBatch.forEach((card, idx) => {
+      const result = {};
+      ["artist", "title", "decade"].forEach((field) => {
+        const select = mmGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
+        const guess = select.value;
+        const graded = guess.length > 0;
+        const correct = graded && guess === card[field];
+        result[field] = { guess, graded, correct };
+        if (graded) {
+          gradedTotal += 1;
+          if (correct) rightTotal += 1;
+        }
+        markResult(document.getElementById(`mm-result-${field}-${idx}`), graded, correct);
+        select.disabled = true;
+      });
+      recordAttempt(card.id, result);
+    });
+
+    mmScore.textContent = `${rightTotal} / ${gradedTotal} correct.`;
+    mmSubmitBtn.disabled = true;
+  }
+
+  mmNewSetBtn.addEventListener("click", newMixSet);
+  mmSubmitBtn.addEventListener("click", submitMix);
+  mmTypeFilter.addEventListener("change", newMixSet);
+  mmDecadeFilter.addEventListener("change", newMixSet);
+
+  // ---------- Study (browse) tab ----------
+
+  const BROWSE_SET_SIZE = 8;
+
+  const browsePoolCount = document.getElementById("browse-pool-count");
+  const browseEmpty = document.getElementById("browse-empty");
+  const browseGrid = document.getElementById("browse-grid");
+  const browseNewSetBtn = document.getElementById("browse-new-set-btn");
+
+  function newBrowseSet() {
+    const type = browseTypeFilter.value;
+    const decade = browseDecadeFilter.value;
+
+    let pool = ARTWORKS;
+    if (type) pool = pool.filter((a) => a.types.includes(type));
+    if (decade) pool = pool.filter((a) => a.decade === decade);
+
+    if (pool.length === 0) {
+      browseGrid.innerHTML = "";
+      browseGrid.classList.add("hidden");
+      browseEmpty.classList.remove("hidden");
+      browsePoolCount.textContent = "";
+      return;
+    }
+
+    browseEmpty.classList.add("hidden");
+    browseGrid.classList.remove("hidden");
+
+    const batch = shuffled(pool).slice(0, BROWSE_SET_SIZE);
+    browsePoolCount.textContent = `${pool.length} work${pool.length === 1 ? "" : "s"} match this filter — showing ${batch.length}.`;
+
+    browseGrid.innerHTML = "";
+    batch.forEach((card) => {
+      const div = document.createElement("div");
+      div.className = "browse-card";
+
+      const img = document.createElement("img");
+      img.src = card.image;
+      img.alt = "";
+      div.appendChild(img);
+
+      const title = document.createElement("h3");
+      title.textContent = card.title;
+      div.appendChild(title);
+
+      const artist = document.createElement("p");
+      artist.className = "browse-artist";
+      artist.textContent = card.artistDates ? `${card.artist} (${card.artistDates})` : card.artist;
+      div.appendChild(artist);
+
+      const decadeLine = document.createElement("p");
+      decadeLine.textContent = card.decade ? `${card.decade} (${card.date})` : card.date;
+      div.appendChild(decadeLine);
+
+      browseGrid.appendChild(div);
+    });
+  }
+
+  browseNewSetBtn.addEventListener("click", newBrowseSet);
+  browseTypeFilter.addEventListener("change", newBrowseSet);
+  browseDecadeFilter.addEventListener("change", newBrowseSet);
 
   // ---------- Stats tab ----------
 
@@ -510,4 +718,6 @@
   // ---------- Init ----------
 
   buildDeck();
+  newMixSet();
+  newBrowseSet();
 })();
