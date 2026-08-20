@@ -81,7 +81,7 @@ body {
 main {
   flex: 1;
   min-width: 0;
-  max-width: 780px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px 16px 60px;
 }
@@ -358,7 +358,7 @@ main {
 
 .mm-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -366,6 +366,7 @@ main {
 .mm-grid.hidden { display: none; }
 
 .mm-card {
+  min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -377,11 +378,12 @@ main {
 
 .mm-card img {
   width: 100%;
-  max-height: 220px;
+  max-height: 160px;
   object-fit: contain;
   background: #0c0d10;
   border-radius: 6px;
   margin-bottom: 4px;
+  cursor: zoom-in;
 }
 
 .mm-field {
@@ -393,6 +395,8 @@ main {
 }
 
 .mm-select {
+  width: 100%;
+  min-width: 0;
   background: var(--panel-2);
   color: var(--text);
   border: 1px solid var(--border);
@@ -471,6 +475,32 @@ main {
   margin: 2px 0;
   font-size: 0.85rem;
   color: var(--text-dim);
+}
+
+.image-preview {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: #0c0d10;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 4px;
+}
+
+.image-preview.hidden { display: none; }
+
+.image-preview img {
+  display: block;
+  max-width: 55vw;
+  max-height: 60vh;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .mm-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 560px) {

@@ -401,9 +401,55 @@
     }
   });
 
+  // ---------- Hover image preview ----------
+
+  const imagePreview = document.getElementById("image-preview");
+  const imagePreviewImg = document.getElementById("image-preview-img");
+
+  // Matches .image-preview img's CSS max-width/max-height (55vw / 60vh) plus the
+  // preview box's own padding + border, so the clamp math can't overflow the viewport.
+  function positionPreview(clientX, clientY) {
+    const margin = 20;
+    const previewWidth = window.innerWidth * 0.55 + 12;
+    const previewHeight = window.innerHeight * 0.6 + 12;
+
+    let left = clientX + margin;
+    if (left + previewWidth > window.innerWidth) {
+      left = clientX - previewWidth - margin;
+    }
+    left = Math.max(8, Math.min(left, window.innerWidth - previewWidth - 8));
+
+    let top = clientY - previewHeight / 2;
+    top = Math.max(8, Math.min(top, window.innerHeight - previewHeight - 8));
+
+    imagePreview.style.left = `${left}px`;
+    imagePreview.style.top = `${top}px`;
+  }
+
+  function initHoverPreview(container) {
+    container.addEventListener("mouseover", (e) => {
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      imagePreviewImg.src = img.src;
+      imagePreview.classList.remove("hidden");
+      positionPreview(e.clientX, e.clientY);
+    });
+    container.addEventListener("mousemove", (e) => {
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      positionPreview(e.clientX, e.clientY);
+    });
+    container.addEventListener("mouseout", (e) => {
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      if (e.relatedTarget && img.contains(e.relatedTarget)) return;
+      imagePreview.classList.add("hidden");
+    });
+  }
+
   // ---------- Mix & Match tab ----------
 
-  const MIX_SET_SIZE = 8;
+  const MIX_SET_SIZE = 9;
 
   const mmPoolCount = document.getElementById("mm-pool-count");
   const mmEmpty = document.getElementById("mm-empty");
@@ -534,6 +580,7 @@
   mmSubmitBtn.addEventListener("click", submitMix);
   mmTypeFilter.addEventListener("change", newMixSet);
   mmDecadeFilter.addEventListener("change", newMixSet);
+  initHoverPreview(mmGrid);
 
   // ---------- Study (browse) tab ----------
 
