@@ -437,13 +437,14 @@ main {
 
 .browse-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .browse-grid.hidden { display: none; }
 
 .browse-card {
+  min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -452,11 +453,12 @@ main {
 
 .browse-card img {
   width: 100%;
-  max-height: 220px;
+  max-height: 160px;
   object-fit: contain;
   background: #0c0d10;
   border-radius: 6px;
   margin-bottom: 10px;
+  cursor: zoom-in;
 }
 
 .browse-card h3 {
@@ -479,6 +481,9 @@ main {
 
 .image-preview {
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 50;
   pointer-events: none;
   border: 2px solid var(--accent);
@@ -498,7 +503,8 @@ main {
 }
 
 @media (max-width: 900px) {
-  .mm-grid {
+  .mm-grid,
+  .browse-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

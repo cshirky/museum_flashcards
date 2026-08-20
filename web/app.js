@@ -402,29 +402,11 @@
   });
 
   // ---------- Hover image preview ----------
+  // Fixed, centered in the viewport via CSS — deliberately ignores cursor
+  // position so it doesn't jitter while the mouse moves within the same image.
 
   const imagePreview = document.getElementById("image-preview");
   const imagePreviewImg = document.getElementById("image-preview-img");
-
-  // Matches .image-preview img's CSS max-width/max-height (55vw / 60vh) plus the
-  // preview box's own padding + border, so the clamp math can't overflow the viewport.
-  function positionPreview(clientX, clientY) {
-    const margin = 20;
-    const previewWidth = window.innerWidth * 0.55 + 12;
-    const previewHeight = window.innerHeight * 0.6 + 12;
-
-    let left = clientX + margin;
-    if (left + previewWidth > window.innerWidth) {
-      left = clientX - previewWidth - margin;
-    }
-    left = Math.max(8, Math.min(left, window.innerWidth - previewWidth - 8));
-
-    let top = clientY - previewHeight / 2;
-    top = Math.max(8, Math.min(top, window.innerHeight - previewHeight - 8));
-
-    imagePreview.style.left = `${left}px`;
-    imagePreview.style.top = `${top}px`;
-  }
 
   function initHoverPreview(container) {
     container.addEventListener("mouseover", (e) => {
@@ -432,12 +414,6 @@
       if (!img || !container.contains(img)) return;
       imagePreviewImg.src = img.src;
       imagePreview.classList.remove("hidden");
-      positionPreview(e.clientX, e.clientY);
-    });
-    container.addEventListener("mousemove", (e) => {
-      const img = e.target.closest("img");
-      if (!img || !container.contains(img)) return;
-      positionPreview(e.clientX, e.clientY);
     });
     container.addEventListener("mouseout", (e) => {
       const img = e.target.closest("img");
@@ -461,6 +437,13 @@
   let mmBatch = [];
   let mmSubmitted = false;
 
+  // Per-field multiset of the batch's true values (e.g. 9 decades, possibly with
+  // duplicates) and the current selections, keyed by card index. Options already
+  // picked in one card's dropdown are removed from the others of the same field —
+  // computed fresh from these two each time, so re-selecting/clearing stays correct.
+  let mmPools = { artist: [], title: [], decade: [] };
+  let mmSelections = { artist: {}, title: {}, decade: {} };
+
   function buildMixPool() {
     const type = mmTypeFilter.value;
     const decade = mmDecadeFilter.value;
@@ -471,7 +454,32 @@
     return pool;
   }
 
-  function makeMixField(container, label, field, idx, options) {
+  function availableOptions(field, forIdx) {
+    const remaining = mmPools[field].slice();
+    Object.keys(mmSelections[field]).forEach((idxStr) => {
+      const idx = Number(idxStr);
+      if (idx === forIdx) return;
+      const val = mmSelections[field][idx];
+      if (!val) return;
+      const pos = remaining.indexOf(val);
+      if (pos !== -1) remaining.splice(pos, 1);
+    });
+    return remaining;
+  }
+
+  function refreshFieldSelects(field) {
+    mmBatch.forEach((card, idx) => {
+      const select = mmGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
+      if (!select) return;
+      const currentVal = select.value;
+      select.innerHTML = "";
+      select.appendChild(new Option("Choose…", ""));
+      availableOptions(field, idx).forEach((v) => select.appendChild(new Option(v, v)));
+      select.value = currentVal;
+    });
+  }
+
+  function makeMixField(container, label, field, idx) {
     const wrap = document.createElement("label");
     wrap.className = "mm-field";
     wrap.append(label);
@@ -481,7 +489,6 @@
     select.dataset.field = field;
     select.dataset.idx = String(idx);
     select.appendChild(new Option("Choose…", ""));
-    options.forEach((v) => select.appendChild(new Option(v, v)));
     wrap.appendChild(select);
 
     const result = document.createElement("span");
@@ -493,9 +500,12 @@
   }
 
   function renderMixGrid() {
-    const artistOptions = shuffled(mmBatch.map((c) => c.artist));
-    const titleOptions = shuffled(mmBatch.map((c) => c.title));
-    const decadeOptions = shuffled(mmBatch.map((c) => c.decade));
+    mmPools = {
+      artist: shuffled(mmBatch.map((c) => c.artist)),
+      title: shuffled(mmBatch.map((c) => c.title)),
+      decade: mmBatch.map((c) => c.decade).sort(),
+    };
+    mmSelections = { artist: {}, title: {}, decade: {} };
 
     mmGrid.innerHTML = "";
     mmBatch.forEach((card, idx) => {
@@ -507,13 +517,24 @@
       img.alt = "";
       div.appendChild(img);
 
-      makeMixField(div, "Artist", "artist", idx, artistOptions);
-      makeMixField(div, "Title", "title", idx, titleOptions);
-      makeMixField(div, "Decade", "decade", idx, decadeOptions);
+      makeMixField(div, "Artist", "artist", idx);
+      makeMixField(div, "Title", "title", idx);
+      makeMixField(div, "Decade", "decade", idx);
 
       mmGrid.appendChild(div);
     });
+
+    ["artist", "title", "decade"].forEach(refreshFieldSelects);
   }
+
+  mmGrid.addEventListener("change", (e) => {
+    const select = e.target.closest(".mm-select");
+    if (!select) return;
+    const field = select.dataset.field;
+    const idx = Number(select.dataset.idx);
+    mmSelections[field][idx] = select.value;
+    refreshFieldSelects(field);
+  });
 
   function newMixSet() {
     const pool = buildMixPool();
@@ -584,7 +605,7 @@
 
   // ---------- Study (browse) tab ----------
 
-  const BROWSE_SET_SIZE = 8;
+  const BROWSE_SET_SIZE = 9;
 
   const browsePoolCount = document.getElementById("browse-pool-count");
   const browseEmpty = document.getElementById("browse-empty");
@@ -643,6 +664,7 @@
   browseNewSetBtn.addEventListener("click", newBrowseSet);
   browseTypeFilter.addEventListener("change", newBrowseSet);
   browseDecadeFilter.addEventListener("change", newBrowseSet);
+  initHoverPreview(browseGrid);
 
   // ---------- Stats tab ----------
 
