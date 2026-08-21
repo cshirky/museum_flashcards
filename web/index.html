@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Identical copies of this file live at /mix_match/, /study/, /favorites/,
+<!-- Identical copies of this file live at /study/, /quiz/, /favorites/,
      and /stats/ so each route works on direct load/refresh with a plain
      static file server. Keep them in sync when editing this file. -->
 <html lang="en">
@@ -17,14 +17,41 @@
 
 <div class="app-shell">
   <nav class="side-nav">
-    <button class="nav-btn active" data-tab="mix">Mix &amp; Match</button>
-    <button class="nav-btn" data-tab="browse">Study</button>
+    <button class="nav-btn active" data-tab="browse">Study</button>
+    <button class="nav-btn" data-tab="mix">Quiz</button>
     <button class="nav-btn" data-tab="favorites">Favorites</button>
     <button class="nav-btn" data-tab="stats">Stats</button>
   </nav>
 
   <main>
-    <section id="mix-tab" class="tab-panel active">
+    <section id="browse-tab" class="tab-panel active">
+      <div class="controls">
+        <label>
+          Medium
+          <select id="browse-type-filter">
+            <option value="">All mediums</option>
+          </select>
+        </label>
+        <label>
+          Decade
+          <select id="browse-decade-filter">
+            <option value="">All decades</option>
+          </select>
+        </label>
+        <button id="browse-new-set-btn">Shuffle new set</button>
+        <button id="browse-to-mix-btn">Quiz these</button>
+      </div>
+
+      <p class="pool-count" id="browse-pool-count"></p>
+
+      <div id="browse-empty" class="empty-state hidden">
+        No works match this filter.
+      </div>
+
+      <div id="browse-grid" class="browse-grid"></div>
+    </section>
+
+    <section id="mix-tab" class="tab-panel">
       <div class="controls">
         <label>
           Medium
@@ -56,36 +83,9 @@
       <p id="mm-score" class="mm-score"></p>
     </section>
 
-    <section id="browse-tab" class="tab-panel">
-      <div class="controls">
-        <label>
-          Medium
-          <select id="browse-type-filter">
-            <option value="">All mediums</option>
-          </select>
-        </label>
-        <label>
-          Decade
-          <select id="browse-decade-filter">
-            <option value="">All decades</option>
-          </select>
-        </label>
-        <button id="browse-new-set-btn">Shuffle new set</button>
-        <button id="browse-to-mix-btn">Mix &amp; Match these</button>
-      </div>
-
-      <p class="pool-count" id="browse-pool-count"></p>
-
-      <div id="browse-empty" class="empty-state hidden">
-        No works match this filter.
-      </div>
-
-      <div id="browse-grid" class="browse-grid"></div>
-    </section>
-
     <section id="favorites-tab" class="tab-panel">
       <div id="favorites-empty" class="empty-state hidden">
-        No favorites yet — click the star on any work in Study or Mix &amp; Match to save it here.
+        No favorites yet — click the star on any work in Study or Quiz to save it here.
       </div>
       <div id="favorites-grid" class="browse-grid"></div>
     </section>
@@ -111,7 +111,7 @@
       </table>
       </div>
       <div id="stats-empty" class="empty-state hidden">
-        No cards studied yet — head to the Mix &amp; Match tab to get started.
+        No cards studied yet — head to the Quiz tab to get started.
       </div>
     </section>
   </main>

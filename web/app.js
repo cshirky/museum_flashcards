@@ -128,17 +128,17 @@
   }
 
   // ---------- Tabs / routing ----------
-  // Each tab has a matching URL path (e.g. /mix_match/) backed by an identical
+  // Each tab has a matching URL path (e.g. /quiz/) backed by an identical
   // index.html copy in that directory, so direct navigation and refresh work
   // with a plain static file server — no server-side rewrite rules needed.
   // In-app nav clicks use the History API so switching tabs doesn't reload.
 
-  const TAB_SLUGS = { mix: "mix_match", browse: "study", favorites: "favorites", stats: "stats" };
-  const SLUG_TABS = { mix_match: "mix", study: "browse", favorites: "favorites", stats: "stats" };
+  const TAB_SLUGS = { mix: "quiz", browse: "study", favorites: "favorites", stats: "stats" };
+  const SLUG_TABS = { quiz: "mix", study: "browse", favorites: "favorites", stats: "stats" };
 
   function tabFromPath(pathname) {
     const slug = pathname.replace(/^\/|\/$/g, "");
-    return SLUG_TABS[slug] || "mix";
+    return SLUG_TABS[slug] || "browse";
   }
 
   const navButtons = document.querySelectorAll(".nav-btn");
@@ -243,7 +243,7 @@
     });
   }
 
-  // ---------- Mix & Match tab ----------
+  // ---------- Quiz tab ----------
 
   const MIX_SET_SIZE = 9;
 
@@ -431,7 +431,7 @@
   mmDecadeFilter.addEventListener("change", newMixSet);
   mmToBrowseBtn.addEventListener("click", () => {
     if (mmBatch.length === 0) return;
-    loadBrowseBatch(mmBatch.slice(), `Showing the ${mmBatch.length} works from Mix & Match.`);
+    loadBrowseBatch(mmBatch.slice(), `Showing the ${mmBatch.length} works from Quiz.`);
     activateTab("browse");
   });
   initHoverPreview(mmGrid);
@@ -491,7 +491,7 @@
     const type = browseTypeFilter.value;
     const decade = browseDecadeFilter.value;
 
-    // decade is required per-card so a set can always convert into Mix & Match
+    // decade is required per-card so a set can always convert into Quiz
     let pool = ARTWORKS.filter((a) => a.decade);
     if (type) pool = pool.filter((a) => a.types.includes(type));
     if (decade) pool = pool.filter((a) => a.decade === decade);
