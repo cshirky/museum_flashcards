@@ -123,6 +123,18 @@ main {
   padding: 5px 8px;
 }
 
+.controls button {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.controls button:hover { border-color: var(--accent); }
+
 .pool-count {
   text-align: center;
   color: var(--text-dim);
@@ -218,6 +230,7 @@ main {
 .mm-grid.hidden { display: none; }
 
 .mm-card {
+  position: relative;
   min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -296,6 +309,7 @@ main {
 .browse-grid.hidden { display: none; }
 
 .browse-card {
+  position: relative;
   min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -329,6 +343,35 @@ main {
   margin: 2px 0;
   font-size: 0.85rem;
   color: var(--text-dim);
+}
+
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 13, 16, 0.75);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.fav-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fav-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .image-preview {

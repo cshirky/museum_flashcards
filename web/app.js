@@ -59,14 +59,72 @@
     saveStats(stats);
   }
 
-  function markResult(el, graded, correct) {
+  // correctValue is only shown when the guess was graded and wrong.
+  function markResult(el, graded, correct, correctValue) {
     if (!graded) {
       el.textContent = "not graded";
       el.className = "guess-result skipped";
       return;
     }
-    el.textContent = correct ? "✓ correct" : "✗ incorrect";
-    el.className = "guess-result " + (correct ? "correct" : "incorrect");
+    if (correct) {
+      el.textContent = "✓ correct";
+      el.className = "guess-result correct";
+    } else {
+      el.textContent = correctValue ? `✗ incorrect — ${correctValue}` : "✗ incorrect";
+      el.className = "guess-result incorrect";
+    }
+  }
+
+  // ---------- Favorites ----------
+
+  const FAVORITES_KEY = "museumFlashcards.favorites.v1";
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveFavorites() {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  }
+
+  let favorites = loadFavorites();
+
+  function isFavorite(id) {
+    return !!favorites[id];
+  }
+
+  function updateFavButtons(id) {
+    const fav = isFavorite(id);
+    document.querySelectorAll(`.fav-btn[data-id="${id}"]`).forEach((btn) => {
+      btn.textContent = fav ? "★" : "☆";
+      btn.classList.toggle("active", fav);
+    });
+  }
+
+  function toggleFavorite(id) {
+    if (favorites[id]) delete favorites[id];
+    else favorites[id] = true;
+    saveFavorites();
+    updateFavButtons(id);
+    if (tabPanels.favorites.classList.contains("active")) renderFavorites();
+  }
+
+  function makeFavButton(id) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "fav-btn" + (isFavorite(id) ? " active" : "");
+    btn.dataset.id = id;
+    btn.textContent = isFavorite(id) ? "★" : "☆";
+    btn.setAttribute("aria-label", "Toggle favorite");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite(id);
+    });
+    return btn;
   }
 
   // ---------- Tabs ----------
@@ -75,17 +133,19 @@
   const tabPanels = {
     mix: document.getElementById("mix-tab"),
     browse: document.getElementById("browse-tab"),
+    favorites: document.getElementById("favorites-tab"),
     stats: document.getElementById("stats-tab"),
   };
 
+  function activateTab(name) {
+    navButtons.forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
+    Object.entries(tabPanels).forEach(([key, panel]) => panel.classList.toggle("active", key === name));
+    if (name === "stats") renderStats();
+    if (name === "favorites") renderFavorites();
+  }
+
   navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      navButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      Object.values(tabPanels).forEach((p) => p.classList.remove("active"));
-      tabPanels[btn.dataset.tab].classList.add("active");
-      if (btn.dataset.tab === "stats") renderStats();
-    });
+    btn.addEventListener("click", () => activateTab(btn.dataset.tab));
   });
 
   // ---------- Type / decade filter options ----------
@@ -168,6 +228,7 @@
   const mmGrid = document.getElementById("mm-grid");
   const mmSubmitBtn = document.getElementById("mm-submit-btn");
   const mmNewSetBtn = document.getElementById("mm-new-set-btn");
+  const mmToBrowseBtn = document.getElementById("mm-to-browse-btn");
   const mmScore = document.getElementById("mm-score");
 
   let mmBatch = [];
@@ -252,6 +313,7 @@
       img.src = card.image;
       img.alt = "";
       div.appendChild(img);
+      div.appendChild(makeFavButton(card.id));
 
       makeMixField(div, "Artist", "artist", idx);
       makeMixField(div, "Title", "title", idx);
@@ -272,12 +334,25 @@
     refreshFieldSelects(field);
   });
 
-  function newMixSet() {
-    const pool = buildMixPool();
+  function loadMixBatch(batch, sourceLabel) {
+    mmBatch = batch;
     mmScore.textContent = "";
     mmSubmitted = false;
+    mmEmpty.classList.add("hidden");
+    mmGrid.classList.remove("hidden");
+    mmSubmitBtn.classList.remove("hidden");
+    mmSubmitBtn.disabled = false;
+    mmPoolCount.textContent = sourceLabel || `${batch.length} works match this filter.`;
+    renderMixGrid();
+  }
+
+  function newMixSet() {
+    const pool = buildMixPool();
 
     if (pool.length < MIX_SET_SIZE) {
+      mmBatch = [];
+      mmScore.textContent = "";
+      mmSubmitted = false;
       mmGrid.innerHTML = "";
       mmGrid.classList.add("hidden");
       mmSubmitBtn.classList.add("hidden");
@@ -287,14 +362,7 @@
       return;
     }
 
-    mmEmpty.classList.add("hidden");
-    mmGrid.classList.remove("hidden");
-    mmSubmitBtn.classList.remove("hidden");
-    mmSubmitBtn.disabled = false;
-    mmPoolCount.textContent = `${pool.length} works match this filter.`;
-
-    mmBatch = shuffled(pool).slice(0, MIX_SET_SIZE);
-    renderMixGrid();
+    loadMixBatch(shuffled(pool).slice(0, MIX_SET_SIZE), `${pool.length} works match this filter.`);
   }
 
   function submitMix() {
@@ -323,7 +391,7 @@
           gradedTotal += 1;
           if (correct) rightTotal += 1;
         }
-        markResult(document.getElementById(`mm-result-${field}-${idx}`), graded, correct);
+        markResult(document.getElementById(`mm-result-${field}-${idx}`), graded, correct, card[field]);
         select.disabled = true;
       });
       recordAttempt(card.id, result);
@@ -337,6 +405,11 @@
   mmSubmitBtn.addEventListener("click", submitMix);
   mmTypeFilter.addEventListener("change", newMixSet);
   mmDecadeFilter.addEventListener("change", newMixSet);
+  mmToBrowseBtn.addEventListener("click", () => {
+    if (mmBatch.length === 0) return;
+    loadBrowseBatch(mmBatch.slice(), `Showing the ${mmBatch.length} works from Mix & Match.`);
+    activateTab("browse");
+  });
   initHoverPreview(mmGrid);
 
   // ---------- Study (browse) tab ----------
@@ -347,16 +420,60 @@
   const browseEmpty = document.getElementById("browse-empty");
   const browseGrid = document.getElementById("browse-grid");
   const browseNewSetBtn = document.getElementById("browse-new-set-btn");
+  const browseToMixBtn = document.getElementById("browse-to-mix-btn");
+
+  let browseBatch = [];
+
+  function buildDisplayCard(card) {
+    const div = document.createElement("div");
+    div.className = "browse-card";
+
+    const img = document.createElement("img");
+    img.src = card.image;
+    img.alt = "";
+    div.appendChild(img);
+    div.appendChild(makeFavButton(card.id));
+
+    const title = document.createElement("h3");
+    title.textContent = card.title;
+    div.appendChild(title);
+
+    const artist = document.createElement("p");
+    artist.className = "browse-artist";
+    artist.textContent = card.artistDates ? `${card.artist} (${card.artistDates})` : card.artist;
+    div.appendChild(artist);
+
+    const decadeLine = document.createElement("p");
+    decadeLine.textContent = card.decade ? `${card.decade} (${card.date})` : card.date;
+    div.appendChild(decadeLine);
+
+    return div;
+  }
+
+  function renderBrowseGrid() {
+    browseGrid.innerHTML = "";
+    browseBatch.forEach((card) => browseGrid.appendChild(buildDisplayCard(card)));
+  }
+
+  function loadBrowseBatch(batch, sourceLabel) {
+    browseBatch = batch;
+    browseEmpty.classList.add("hidden");
+    browseGrid.classList.remove("hidden");
+    browsePoolCount.textContent = sourceLabel;
+    renderBrowseGrid();
+  }
 
   function newBrowseSet() {
     const type = browseTypeFilter.value;
     const decade = browseDecadeFilter.value;
 
-    let pool = ARTWORKS;
+    // decade is required per-card so a set can always convert into Mix & Match
+    let pool = ARTWORKS.filter((a) => a.decade);
     if (type) pool = pool.filter((a) => a.types.includes(type));
     if (decade) pool = pool.filter((a) => a.decade === decade);
 
     if (pool.length === 0) {
+      browseBatch = [];
       browseGrid.innerHTML = "";
       browseGrid.classList.add("hidden");
       browseEmpty.classList.remove("hidden");
@@ -364,43 +481,49 @@
       return;
     }
 
-    browseEmpty.classList.add("hidden");
-    browseGrid.classList.remove("hidden");
-
     const batch = shuffled(pool).slice(0, BROWSE_SET_SIZE);
-    browsePoolCount.textContent = `${pool.length} work${pool.length === 1 ? "" : "s"} match this filter — showing ${batch.length}.`;
-
-    browseGrid.innerHTML = "";
-    batch.forEach((card) => {
-      const div = document.createElement("div");
-      div.className = "browse-card";
-
-      const img = document.createElement("img");
-      img.src = card.image;
-      img.alt = "";
-      div.appendChild(img);
-
-      const title = document.createElement("h3");
-      title.textContent = card.title;
-      div.appendChild(title);
-
-      const artist = document.createElement("p");
-      artist.className = "browse-artist";
-      artist.textContent = card.artistDates ? `${card.artist} (${card.artistDates})` : card.artist;
-      div.appendChild(artist);
-
-      const decadeLine = document.createElement("p");
-      decadeLine.textContent = card.decade ? `${card.decade} (${card.date})` : card.date;
-      div.appendChild(decadeLine);
-
-      browseGrid.appendChild(div);
-    });
+    loadBrowseBatch(
+      batch,
+      `${pool.length} work${pool.length === 1 ? "" : "s"} match this filter — showing ${batch.length}.`
+    );
   }
 
   browseNewSetBtn.addEventListener("click", newBrowseSet);
   browseTypeFilter.addEventListener("change", newBrowseSet);
   browseDecadeFilter.addEventListener("change", newBrowseSet);
+  browseToMixBtn.addEventListener("click", () => {
+    if (browseBatch.length === 0) return;
+    loadMixBatch(browseBatch.slice(), `Showing the ${browseBatch.length} works from Study.`);
+    activateTab("mix");
+  });
   initHoverPreview(browseGrid);
+
+  // ---------- Favorites tab ----------
+
+  const favoritesGrid = document.getElementById("favorites-grid");
+  const favoritesEmpty = document.getElementById("favorites-empty");
+
+  function renderFavorites() {
+    const byId = new Map(ARTWORKS.map((a) => [a.id, a]));
+    const items = Object.keys(favorites)
+      .map((id) => byId.get(id))
+      .filter(Boolean)
+      .sort((a, b) => a.title.localeCompare(b.title));
+
+    if (items.length === 0) {
+      favoritesGrid.innerHTML = "";
+      favoritesGrid.classList.add("hidden");
+      favoritesEmpty.classList.remove("hidden");
+      return;
+    }
+
+    favoritesEmpty.classList.add("hidden");
+    favoritesGrid.classList.remove("hidden");
+    favoritesGrid.innerHTML = "";
+    items.forEach((card) => favoritesGrid.appendChild(buildDisplayCard(card)));
+  }
+
+  initHoverPreview(favoritesGrid);
 
   // ---------- Stats tab ----------
 

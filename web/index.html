@@ -16,6 +16,7 @@
   <nav class="side-nav">
     <button class="nav-btn active" data-tab="mix">Mix &amp; Match</button>
     <button class="nav-btn" data-tab="browse">Study</button>
+    <button class="nav-btn" data-tab="favorites">Favorites</button>
     <button class="nav-btn" data-tab="stats">Stats</button>
   </nav>
 
@@ -35,6 +36,7 @@
           </select>
         </label>
         <button id="mm-new-set-btn">New set</button>
+        <button id="mm-to-browse-btn">Study these</button>
       </div>
 
       <p class="pool-count" id="mm-pool-count"></p>
@@ -66,6 +68,7 @@
           </select>
         </label>
         <button id="browse-new-set-btn">Shuffle new set</button>
+        <button id="browse-to-mix-btn">Mix &amp; Match these</button>
       </div>
 
       <p class="pool-count" id="browse-pool-count"></p>
@@ -75,6 +78,13 @@
       </div>
 
       <div id="browse-grid" class="browse-grid"></div>
+    </section>
+
+    <section id="favorites-tab" class="tab-panel">
+      <div id="favorites-empty" class="empty-state hidden">
+        No favorites yet — click the star on any work in Study or Mix &amp; Match to save it here.
+      </div>
+      <div id="favorites-grid" class="browse-grid"></div>
     </section>
 
     <section id="stats-tab" class="tab-panel">
