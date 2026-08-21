@@ -127,7 +127,19 @@
     return btn;
   }
 
-  // ---------- Tabs ----------
+  // ---------- Tabs / routing ----------
+  // Each tab has a matching URL path (e.g. /mix_match/) backed by an identical
+  // index.html copy in that directory, so direct navigation and refresh work
+  // with a plain static file server — no server-side rewrite rules needed.
+  // In-app nav clicks use the History API so switching tabs doesn't reload.
+
+  const TAB_SLUGS = { mix: "mix_match", browse: "study", favorites: "favorites", stats: "stats" };
+  const SLUG_TABS = { mix_match: "mix", study: "browse", favorites: "favorites", stats: "stats" };
+
+  function tabFromPath(pathname) {
+    const slug = pathname.replace(/^\/|\/$/g, "");
+    return SLUG_TABS[slug] || "mix";
+  }
 
   const navButtons = document.querySelectorAll(".nav-btn");
   const tabPanels = {
@@ -137,15 +149,27 @@
     stats: document.getElementById("stats-tab"),
   };
 
-  function activateTab(name) {
+  function activateTab(name, opts) {
+    opts = opts || {};
     navButtons.forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
     Object.entries(tabPanels).forEach(([key, panel]) => panel.classList.toggle("active", key === name));
     if (name === "stats") renderStats();
     if (name === "favorites") renderFavorites();
+
+    const path = `/${TAB_SLUGS[name]}/`;
+    if (opts.replaceHistory) {
+      history.replaceState(null, "", path);
+    } else if (!opts.skipHistory && window.location.pathname !== path) {
+      history.pushState(null, "", path);
+    }
   }
 
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+  });
+
+  window.addEventListener("popstate", () => {
+    activateTab(tabFromPath(window.location.pathname), { skipHistory: true });
   });
 
   // ---------- Type / decade filter options ----------
@@ -647,4 +671,5 @@
 
   newMixSet();
   newBrowseSet();
+  activateTab(tabFromPath(window.location.pathname), { replaceHistory: true });
 })();
