@@ -17,7 +17,7 @@ from pathlib import Path
 API_URL = "https://admin.studiomuseum.org/api"
 PAGE_SIZE = 100
 REQUEST_DELAY_SECONDS = 0.3
-OUTPUT_JS = Path(__file__).parent / "web" / "data.js"
+OUTPUT_JS = Path(__file__).parent / "docs" / "data.js"
 OUTPUT_JSON = Path(__file__).parent / "data" / "artworks.json"
 
 ARTWORK_FIELDS = """

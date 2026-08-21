@@ -128,17 +128,33 @@
   }
 
   // ---------- Tabs / routing ----------
-  // Each tab has a matching URL path (e.g. /quiz/) backed by an identical
+  // Each tab has a matching URL path (e.g. .../quiz/) backed by an identical
   // index.html copy in that directory, so direct navigation and refresh work
   // with a plain static file server — no server-side rewrite rules needed.
   // In-app nav clicks use the History API so switching tabs doesn't reload.
+  //
+  // The site's base path is computed at load time instead of assumed to be
+  // "/", so this works unmodified whether served from a domain root (e.g.
+  // `python -m http.server` from this folder) or a subpath (e.g. GitHub
+  // Pages project sites at /reponame/).
 
   const TAB_SLUGS = { mix: "quiz", browse: "study", favorites: "favorites", stats: "stats" };
   const SLUG_TABS = { quiz: "mix", study: "browse", favorites: "favorites", stats: "stats" };
 
+  function computeBasePath() {
+    const segments = window.location.pathname.split("/").filter(Boolean);
+    if (segments.length && SLUG_TABS[segments[segments.length - 1]]) {
+      segments.pop();
+    }
+    return segments.length ? `/${segments.join("/")}/` : "/";
+  }
+
+  const BASE_PATH = computeBasePath();
+
   function tabFromPath(pathname) {
-    const slug = pathname.replace(/^\/|\/$/g, "");
-    return SLUG_TABS[slug] || "browse";
+    const segments = pathname.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1];
+    return SLUG_TABS[lastSegment] || "browse";
   }
 
   const navButtons = document.querySelectorAll(".nav-btn");
@@ -156,7 +172,7 @@
     if (name === "stats") renderStats();
     if (name === "favorites") renderFavorites();
 
-    const path = `/${TAB_SLUGS[name]}/`;
+    const path = `${BASE_PATH}${TAB_SLUGS[name]}/`;
     if (opts.replaceHistory) {
       history.replaceState(null, "", path);
     } else if (!opts.skipHistory && window.location.pathname !== path) {

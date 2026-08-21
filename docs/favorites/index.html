@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<!-- Identical copies of this file live at /study/, /quiz/, /favorites/,
-     and /stats/ so each route works on direct load/refresh with a plain
-     static file server. Keep them in sync when editing this file. -->
+<!-- Identical copies of this file live in study/, quiz/, favorites/, and
+     stats/ so each route works on direct load/refresh with a plain static
+     file server, at any deployment base path (site root or a subpath like
+     GitHub Pages' /reponame/). Asset paths below are relative (one level
+     up) on purpose — do not make them absolute. The root index.html is a
+     separate, minimal redirect stub, not a copy of this file.
+     Keep these four in sync when editing. -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Museum Flashcards — Studio Museum in Harlem</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="app-header">
@@ -121,7 +125,7 @@
   <img id="image-preview-img" alt="">
 </div>
 
-<script src="/data.js"></script>
-<script src="/app.js"></script>
+<script src="../data.js"></script>
+<script src="../app.js"></script>
 </body>
 </html>
