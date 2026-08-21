@@ -59,96 +59,20 @@
     saveStats(stats);
   }
 
-  // ---------- Grading ----------
-
-  function normalize(str) {
-    return (str || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "") // strip accents
-      .replace(/[^a-z0-9\s]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  // Levenshtein distance, used to allow close-but-not-exact guesses.
-  function levenshtein(a, b) {
-    const m = a.length, n = b.length;
-    if (m === 0) return n;
-    if (n === 0) return m;
-    let prev = Array.from({ length: n + 1 }, (_, j) => j);
-    for (let i = 1; i <= m; i++) {
-      const cur = [i];
-      for (let j = 1; j <= n; j++) {
-        cur[j] = a[i - 1] === b[j - 1]
-          ? prev[j - 1]
-          : 1 + Math.min(prev[j - 1], prev[j], cur[j - 1]);
-      }
-      prev = cur;
+  function markResult(el, graded, correct) {
+    if (!graded) {
+      el.textContent = "not graded";
+      el.className = "guess-result skipped";
+      return;
     }
-    return prev[n];
-  }
-
-  function isCloseMatch(a, b) {
-    if (!a || !b) return false;
-    if (a === b) return true;
-    const longer = Math.max(a.length, b.length);
-    if (longer < 3) return false;
-    const distance = levenshtein(a, b);
-    return distance / longer <= 0.25;
-  }
-
-  function gradeFreeText(guessRaw, actualRaw) {
-    const guess = normalize(guessRaw);
-    const actual = normalize(actualRaw);
-    if (!guess) return false;
-    if (guess === actual) return true;
-    if (guess.length >= 3 && (actual.includes(guess) || guess.includes(actual))) return true;
-    return isCloseMatch(guess, actual);
-  }
-
-  function gradeArtist(guessRaw, actualArtistField) {
-    const guess = normalize(guessRaw);
-    if (!guess) return false;
-    // artist field may hold multiple comma-separated names for collaborative works
-    const names = actualArtistField.split(",").map((n) => n.trim());
-    return names.some((full) => {
-      if (gradeFreeText(guess, full)) return true;
-      const words = normalize(full).split(" ").filter(Boolean);
-      const lastName = words[words.length - 1];
-      return words.length > 1 && (guess === lastName || isCloseMatch(guess, lastName));
-    });
-  }
-
-  function gradeCard(card, guesses) {
-    const artistGraded = guesses.artist.trim().length > 0;
-    const titleGraded = guesses.title.trim().length > 0;
-    const decadeGraded = !!card.decade && guesses.decade.trim().length > 0;
-
-    return {
-      artist: {
-        guess: guesses.artist,
-        graded: artistGraded,
-        correct: artistGraded && gradeArtist(guesses.artist, card.artist),
-      },
-      title: {
-        guess: guesses.title,
-        graded: titleGraded,
-        correct: titleGraded && gradeFreeText(guesses.title, card.title),
-      },
-      decade: {
-        guess: guesses.decade,
-        graded: decadeGraded,
-        correct: decadeGraded && guesses.decade === card.decade,
-      },
-    };
+    el.textContent = correct ? "✓ correct" : "✗ incorrect";
+    el.className = "guess-result " + (correct ? "correct" : "incorrect");
   }
 
   // ---------- Tabs ----------
 
   const navButtons = document.querySelectorAll(".nav-btn");
   const tabPanels = {
-    quiz: document.getElementById("quiz-tab"),
     mix: document.getElementById("mix-tab"),
     browse: document.getElementById("browse-tab"),
     stats: document.getElementById("stats-tab"),
@@ -194,11 +118,6 @@
   const byCountDesc = (counts) => (a, b) => counts.get(b) - counts.get(a);
   const alphabetically = (a, b) => a.localeCompare(b);
 
-  const typeFilter = document.getElementById("type-filter");
-  const decadeFilter = document.getElementById("decade-filter");
-  populateFilter(typeFilter, typeCounts, byCountDesc(typeCounts));
-  populateFilter(decadeFilter, decadeCounts, alphabetically);
-
   const mmTypeFilter = document.getElementById("mm-type-filter");
   const mmDecadeFilter = document.getElementById("mm-decade-filter");
   populateFilter(mmTypeFilter, typeCounts, byCountDesc(typeCounts));
@@ -209,15 +128,6 @@
   populateFilter(browseTypeFilter, typeCounts, byCountDesc(typeCounts));
   populateFilter(browseDecadeFilter, decadeCounts, alphabetically);
 
-  const guessDecadeSelect = document.getElementById("guess-decade");
-  const decades = Array.from(decadeCounts.keys()).sort();
-  decades.forEach((d) => {
-    const opt = document.createElement("option");
-    opt.value = d;
-    opt.textContent = d;
-    guessDecadeSelect.appendChild(opt);
-  });
-
   function shuffled(arr) {
     const a = arr.slice();
     for (let i = a.length - 1; i > 0; i--) {
@@ -226,180 +136,6 @@
     }
     return a;
   }
-
-  // ---------- Deck / study session ----------
-
-  const missedOnlyCheckbox = document.getElementById("missed-only");
-  const sessionSizeSelect = document.getElementById("session-size");
-  const newSessionBtn = document.getElementById("new-session-btn");
-  const deckEmpty = document.getElementById("deck-empty");
-  const cardArea = document.getElementById("card-area");
-  const poolCountLabel = document.getElementById("pool-count");
-  const progressLabel = document.getElementById("progress-label");
-  const cardImage = document.getElementById("card-image");
-  const cardAnswer = document.getElementById("card-answer");
-  const answerTitle = document.getElementById("answer-title");
-  const answerArtist = document.getElementById("answer-artist");
-  const answerDate = document.getElementById("answer-date");
-  const answerMedium = document.getElementById("answer-medium");
-  const answerDimensions = document.getElementById("answer-dimensions");
-  const answerHistory = document.getElementById("answer-history");
-  const guessForm = document.getElementById("guess-form");
-  const guessArtistInput = document.getElementById("guess-artist");
-  const guessTitleInput = document.getElementById("guess-title");
-  const decadeField = document.getElementById("decade-field");
-  const resultArtist = document.getElementById("result-artist");
-  const resultTitle = document.getElementById("result-title");
-  const resultDecade = document.getElementById("result-decade");
-  const nextCardBtn = document.getElementById("next-card-btn");
-
-  function isStruggling(id) {
-    const s = stats[id];
-    if (!s) return false;
-    return ["artist", "title", "decade"].some((field) => {
-      const f = s[field];
-      const total = f.right + f.wrong;
-      return total > 0 && f.wrong >= f.right;
-    });
-  }
-
-  let deck = [];
-  let position = 0;
-  let answerShown = false;
-
-  function buildDeck() {
-    const type = typeFilter.value;
-    const decade = decadeFilter.value;
-    const missedOnly = missedOnlyCheckbox.checked;
-    const sessionSize = Number(sessionSizeSelect.value);
-
-    let pool = ARTWORKS;
-    if (type) pool = pool.filter((a) => a.types.includes(type));
-    if (decade) pool = pool.filter((a) => a.decade === decade);
-    if (missedOnly) pool = pool.filter((a) => isStruggling(a.id));
-
-    const matched = pool.length;
-    deck = shuffled(pool);
-    if (sessionSize > 0) deck = deck.slice(0, sessionSize);
-    position = 0;
-
-    poolCountLabel.textContent =
-      matched === 0
-        ? ""
-        : deck.length < matched
-        ? `${matched} pieces match this filter — studying a shuffled set of ${deck.length}.`
-        : `${matched} piece${matched === 1 ? "" : "s"} match this filter.`;
-
-    renderCard();
-  }
-
-  function renderCard() {
-    if (deck.length === 0) {
-      cardArea.classList.add("hidden");
-      deckEmpty.classList.remove("hidden");
-      return;
-    }
-    cardArea.classList.remove("hidden");
-    deckEmpty.classList.add("hidden");
-
-    if (position >= deck.length) position = 0;
-
-    const card = deck[position];
-    progressLabel.textContent = `Card ${position + 1} of ${deck.length}`;
-    cardImage.src = card.image;
-    cardImage.alt = "";
-
-    answerShown = false;
-    guessForm.reset();
-    guessForm.classList.remove("hidden");
-    decadeField.classList.toggle("hidden", !card.decade);
-    [resultArtist, resultTitle, resultDecade].forEach((el) => {
-      el.textContent = "";
-      el.className = "guess-result";
-    });
-    cardAnswer.classList.add("hidden");
-    nextCardBtn.classList.add("hidden");
-
-    answerTitle.textContent = card.title;
-    answerArtist.textContent = card.artistDates
-      ? `${card.artist} (${card.artistDates})`
-      : card.artist;
-    answerDate.textContent = card.date;
-    answerMedium.textContent = card.medium;
-    answerDimensions.textContent = card.dimensions || "";
-
-    const s = stats[card.id];
-    const attempts = s ? s.history.length : 0;
-    answerHistory.textContent =
-      attempts > 0
-        ? `You've seen this before — ${attempts} attempt${attempts === 1 ? "" : "s"} logged.`
-        : "First time seeing this one.";
-
-    guessArtistInput.focus();
-  }
-
-  function markResult(el, graded, correct) {
-    if (!graded) {
-      el.textContent = "not graded";
-      el.className = "guess-result skipped";
-      return;
-    }
-    el.textContent = correct ? "✓ correct" : "✗ incorrect";
-    el.className = "guess-result " + (correct ? "correct" : "incorrect");
-  }
-
-  function submitGuess(e) {
-    e.preventDefault();
-    if (deck.length === 0 || answerShown) return;
-
-    const card = deck[position];
-    const guesses = {
-      artist: guessArtistInput.value,
-      title: guessTitleInput.value,
-      decade: guessDecadeSelect.value,
-    };
-    const result = gradeCard(card, guesses);
-    recordAttempt(card.id, result);
-
-    markResult(resultArtist, result.artist.graded, result.artist.correct);
-    markResult(resultTitle, result.title.graded, result.title.correct);
-    if (card.decade) markResult(resultDecade, result.decade.graded, result.decade.correct);
-
-    answerShown = true;
-    guessArtistInput.disabled = true;
-    guessTitleInput.disabled = true;
-    guessDecadeSelect.disabled = true;
-    document.getElementById("submit-guess-btn").disabled = true;
-    cardAnswer.classList.remove("hidden");
-    nextCardBtn.classList.remove("hidden");
-    nextCardBtn.focus();
-  }
-
-  function nextCard() {
-    if (deck.length === 0 || !answerShown) return;
-    guessArtistInput.disabled = false;
-    guessTitleInput.disabled = false;
-    guessDecadeSelect.disabled = false;
-    document.getElementById("submit-guess-btn").disabled = false;
-    position += 1;
-    renderCard();
-  }
-
-  guessForm.addEventListener("submit", submitGuess);
-  nextCardBtn.addEventListener("click", nextCard);
-  newSessionBtn.addEventListener("click", buildDeck);
-  typeFilter.addEventListener("change", buildDeck);
-  decadeFilter.addEventListener("change", buildDeck);
-  sessionSizeSelect.addEventListener("change", buildDeck);
-  missedOnlyCheckbox.addEventListener("change", buildDeck);
-
-  document.addEventListener("keydown", (e) => {
-    if (!tabPanels.quiz.classList.contains("active")) return;
-    if (answerShown && e.key === "Enter" && document.activeElement !== guessArtistInput) {
-      e.preventDefault();
-      nextCard();
-    }
-  });
 
   // ---------- Hover image preview ----------
   // Fixed, centered in the viewport via CSS — deliberately ignores cursor
@@ -786,7 +522,6 @@
 
   // ---------- Init ----------
 
-  buildDeck();
   newMixSet();
   newBrowseSet();
 })();

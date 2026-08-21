@@ -14,92 +14,13 @@
 
 <div class="app-shell">
   <nav class="side-nav">
-    <button class="nav-btn active" data-tab="quiz">Quiz</button>
-    <button class="nav-btn" data-tab="mix">Mix &amp; Match</button>
+    <button class="nav-btn active" data-tab="mix">Mix &amp; Match</button>
     <button class="nav-btn" data-tab="browse">Study</button>
     <button class="nav-btn" data-tab="stats">Stats</button>
   </nav>
 
   <main>
-    <section id="quiz-tab" class="tab-panel active">
-      <div class="controls">
-        <label>
-          Medium
-          <select id="type-filter">
-            <option value="">All mediums</option>
-          </select>
-        </label>
-        <label>
-          Decade
-          <select id="decade-filter">
-            <option value="">All decades</option>
-          </select>
-        </label>
-        <label>
-          Session size
-          <select id="session-size">
-            <option value="10">10 cards</option>
-            <option value="20" selected>20 cards</option>
-            <option value="30">30 cards</option>
-            <option value="0">All matching</option>
-          </select>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" id="missed-only">
-          Review pieces I've missed
-        </label>
-        <button id="new-session-btn">New session</button>
-      </div>
-
-      <p class="pool-count" id="pool-count"></p>
-
-      <div id="deck-empty" class="empty-state hidden">
-        No cards match this filter yet — try a different medium or decade, or uncheck "review missed."
-      </div>
-
-      <div id="card-area" class="card-area">
-        <p class="progress" id="progress-label"></p>
-        <div class="flashcard" id="flashcard">
-          <img id="card-image" class="card-image" alt="">
-
-          <form id="guess-form" class="guess-form">
-            <label class="guess-field">
-              Artist
-              <input type="text" id="guess-artist" autocomplete="off">
-              <span class="guess-result" id="result-artist"></span>
-            </label>
-            <label class="guess-field">
-              Title of the work
-              <input type="text" id="guess-title" autocomplete="off">
-              <span class="guess-result" id="result-title"></span>
-            </label>
-            <label class="guess-field" id="decade-field">
-              Decade created
-              <select id="guess-decade">
-                <option value="">Choose a decade…</option>
-              </select>
-              <span class="guess-result" id="result-decade"></span>
-            </label>
-            <button type="submit" id="submit-guess-btn">Submit guess</button>
-          </form>
-
-          <div class="card-answer hidden" id="card-answer">
-            <h2 id="answer-title"></h2>
-            <p id="answer-artist" class="answer-artist"></p>
-            <p id="answer-date"></p>
-            <p id="answer-medium"></p>
-            <p id="answer-dimensions" class="dim"></p>
-            <p id="answer-history" class="history"></p>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button id="next-card-btn" class="hidden">Next card <span class="hint">(enter)</span></button>
-        </div>
-      </div>
-    </section>
-
-    <section id="mix-tab" class="tab-panel">
+    <section id="mix-tab" class="tab-panel active">
       <div class="controls">
         <label>
           Medium
@@ -177,7 +98,7 @@
       </table>
       </div>
       <div id="stats-empty" class="empty-state hidden">
-        No cards studied yet — head to the Quiz or Mix &amp; Match tab to get started.
+        No cards studied yet — head to the Mix &amp; Match tab to get started.
       </div>
     </section>
   </main>
