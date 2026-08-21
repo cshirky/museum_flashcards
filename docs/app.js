@@ -483,9 +483,9 @@
     artist.textContent = card.artistDates ? `${card.artist} (${card.artistDates})` : card.artist;
     div.appendChild(artist);
 
-    const decadeLine = document.createElement("p");
-    decadeLine.textContent = card.decade ? `${card.decade} (${card.date})` : card.date;
-    div.appendChild(decadeLine);
+    const dateLine = document.createElement("p");
+    dateLine.textContent = card.date;
+    div.appendChild(dateLine);
 
     return div;
   }
