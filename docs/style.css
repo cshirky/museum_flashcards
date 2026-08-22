@@ -339,6 +339,19 @@ main {
   font-size: 0.88rem;
 }
 
+.artist-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  cursor: help;
+}
+
+.artist-link:hover {
+  color: var(--accent);
+}
+
 .browse-card p {
   margin: 2px 0;
   font-size: 0.85rem;
@@ -374,21 +387,32 @@ main {
   border-color: var(--accent);
 }
 
+/* Full-screen click-catching backdrop: while shown, it sits above
+   everything and intercepts all pointer events, so nothing underneath can
+   receive a stray hover/click. Clicking the backdrop itself (not the
+   image) closes it; a fresh mouseover on a thumbnail afterward is what
+   opens the next one — see initHoverPreview in app.js. */
 .image-preview {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   z-index: 50;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 7, 9, 0.72);
+  cursor: zoom-out;
+}
+
+.image-preview.hidden { display: none; }
+
+.image-preview-inner {
   border: 2px solid var(--accent);
   border-radius: 8px;
   background: #0c0d10;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   padding: 4px;
+  cursor: default;
 }
-
-.image-preview.hidden { display: none; }
 
 .image-preview img {
   display: block;
@@ -396,6 +420,23 @@ main {
   max-height: 85vh;
   border-radius: 4px;
 }
+
+.wiki-preview {
+  position: fixed;
+  z-index: 60;
+  max-width: 320px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.wiki-preview.hidden { display: none; }
 
 @media (max-width: 900px) {
   .mm-grid,

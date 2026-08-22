@@ -59,8 +59,10 @@
     saveStats(stats);
   }
 
-  // correctValue is only shown when the guess was graded and wrong.
-  function markResult(el, graded, correct, correctValue) {
+  // correctValue/correctValueHtml are only shown when the guess was graded
+  // and wrong. correctValueHtml (already-safe markup, e.g. artist links)
+  // takes priority over the plain-text correctValue when both are given.
+  function markResult(el, graded, correct, correctValue, correctValueHtml) {
     if (!graded) {
       el.textContent = "not graded";
       el.className = "guess-result skipped";
@@ -69,10 +71,44 @@
     if (correct) {
       el.textContent = "✓ correct";
       el.className = "guess-result correct";
+    } else if (correctValueHtml) {
+      el.innerHTML = `✗ incorrect — ${correctValueHtml}`;
+      el.className = "guess-result incorrect";
     } else {
       el.textContent = correctValue ? `✗ incorrect — ${correctValue}` : "✗ incorrect";
       el.className = "guess-result incorrect";
     }
+  }
+
+  // ---------- Artist Wikipedia links ----------
+  // ARTIST_WIKI (from artists.js) maps each known artist name to
+  // {url, extract}. Names with no confident Wikipedia match still get a
+  // link (to a Wikipedia search results page) but no hover extract.
+
+  const WIKI = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function splitArtistNames(field) {
+    return (field || "").split(",").map((n) => n.trim()).filter(Boolean);
+  }
+
+  function artistLinksHtml(field) {
+    const names = splitArtistNames(field);
+    if (names.length === 0) return escapeHtml(field || "");
+    return names
+      .map((name) => {
+        const wiki = WIKI[name];
+        const url = wiki ? wiki.url : `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
+        return `<a class="artist-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(name)}</a>`;
+      })
+      .join(", ");
   }
 
   // ---------- Favorites ----------
@@ -238,8 +274,17 @@
   }
 
   // ---------- Hover image preview ----------
-  // Fixed, centered in the viewport via CSS — deliberately ignores cursor
-  // position so it doesn't jitter while the mouse moves within the same image.
+  // Mouseover a thumbnail opens a full-screen backdrop with the image
+  // enlarged and centered (CSS flex-centers it — no cursor-relative math).
+  // While shown, the backdrop covers the whole viewport and intercepts
+  // every pointer event, so nothing underneath it can receive a stray
+  // mouseover — that's what used to let the preview silently swap to a
+  // different image as the cursor crossed the (previously click-through)
+  // overlay. The only way to dismiss it is a click on the backdrop itself,
+  // not the image (checked via e.target === imagePreview, since clicks on
+  // the inner wrapper/img report those elements as the target instead).
+  // That returns to the default state with nothing expanded; a fresh
+  // mouseover on a thumbnail is what opens the next one.
 
   const imagePreview = document.getElementById("image-preview");
   const imagePreviewImg = document.getElementById("image-preview-img");
@@ -251,13 +296,55 @@
       imagePreviewImg.src = img.src;
       imagePreview.classList.remove("hidden");
     });
-    container.addEventListener("mouseout", (e) => {
-      const img = e.target.closest("img");
-      if (!img || !container.contains(img)) return;
-      if (e.relatedTarget && img.contains(e.relatedTarget)) return;
-      imagePreview.classList.add("hidden");
-    });
   }
+
+  imagePreview.addEventListener("click", (e) => {
+    if (e.target === imagePreview) {
+      imagePreview.classList.add("hidden");
+    }
+  });
+
+  // ---------- Wikipedia artist hover preview ----------
+  // Single shared tooltip, positioned near whichever .artist-link is
+  // hovered (event delegation on body, since links are created dynamically
+  // across several grids/tables). Only links with a known extract show
+  // anything; unmatched artists' links are still clickable, just silent.
+
+  const wikiPreview = document.getElementById("wiki-preview");
+
+  function positionWikiPreview(linkEl) {
+    const rect = linkEl.getBoundingClientRect();
+    const margin = 8;
+    const pw = wikiPreview.offsetWidth;
+    const ph = wikiPreview.offsetHeight;
+
+    let left = Math.min(rect.left, window.innerWidth - pw - 8);
+    left = Math.max(8, left);
+
+    let top = rect.bottom + margin;
+    if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
+    top = Math.max(8, top);
+
+    wikiPreview.style.left = `${left}px`;
+    wikiPreview.style.top = `${top}px`;
+  }
+
+  document.body.addEventListener("mouseover", (e) => {
+    const link = e.target.closest(".artist-link");
+    if (!link) return;
+    const wiki = WIKI[link.dataset.artist];
+    if (!wiki || !wiki.extract) return;
+    wikiPreview.textContent = wiki.extract;
+    wikiPreview.classList.remove("hidden");
+    positionWikiPreview(link);
+  });
+
+  document.body.addEventListener("mouseout", (e) => {
+    const link = e.target.closest(".artist-link");
+    if (!link) return;
+    if (e.relatedTarget && link.contains(e.relatedTarget)) return;
+    wikiPreview.classList.add("hidden");
+  });
 
   // ---------- Quiz tab ----------
 
@@ -431,7 +518,14 @@
           gradedTotal += 1;
           if (correct) rightTotal += 1;
         }
-        markResult(document.getElementById(`mm-result-${field}-${idx}`), graded, correct, card[field]);
+        const correctValueHtml = field === "artist" ? artistLinksHtml(card.artist) : undefined;
+        markResult(
+          document.getElementById(`mm-result-${field}-${idx}`),
+          graded,
+          correct,
+          card[field],
+          correctValueHtml
+        );
         select.disabled = true;
       });
       recordAttempt(card.id, result);
@@ -480,7 +574,9 @@
 
     const artist = document.createElement("p");
     artist.className = "browse-artist";
-    artist.textContent = card.artistDates ? `${card.artist} (${card.artistDates})` : card.artist;
+    artist.innerHTML = card.artistDates
+      ? `${artistLinksHtml(card.artist)} (${escapeHtml(card.artistDates)})`
+      : artistLinksHtml(card.artist);
     div.appendChild(artist);
 
     const dateLine = document.createElement("p");
@@ -662,7 +758,7 @@
       tr.innerHTML = `
         <td><img src="${r.art.image}" alt=""></td>
         <td>${r.art.title}</td>
-        <td>${r.art.artist}</td>
+        <td>${artistLinksHtml(r.art.artist)}</td>
         <td>${r.type}</td>
         <td>${r.decade}</td>
         <td>${fmtPct(r.artistAcc)}</td>
