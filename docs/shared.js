@@ -22,6 +22,30 @@ window.MuseumShared = (function () {
     return (field || "").split(",").map((n) => n.trim()).filter(Boolean);
   }
 
+  function wikipediaSearchUrl(name) {
+    return `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
+  }
+
+  // The single place that builds a Wikipedia <a> tag for an artist, used by
+  // artistLinksHtml below, the All Artists table, and each artist's own
+  // detail page — those three used to each build this markup separately,
+  // which is how "red link" styling ended up silently broken everywhere at
+  // once (see artist-link-missing below).
+  //
+  // wikiInfo is a {url, extract} pair — from ARTIST_WIKI[name] or an
+  // ARTISTS_INDEX record's {wikipediaUrl, wikipediaExtract} (renamed by the
+  // caller to match). extract is the real "confident match" signal: every
+  // known artist has a wikiInfo entry, even unmatched ones (whose url
+  // already points to a Wikipedia search page instead of an article), so
+  // mere presence of wikiInfo doesn't mean a real match was found.
+  function wikiLinkHtml(name, wikiInfo, linkText) {
+    const matched = !!(wikiInfo && wikiInfo.extract);
+    const url = (wikiInfo && wikiInfo.url) || wikipediaSearchUrl(name);
+    const cls = matched ? "artist-link" : "artist-link artist-link-missing";
+    const text = linkText == null ? name : linkText;
+    return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(text)}</a>`;
+  }
+
   // Unmatched artists (no confident Wikipedia article) still get a link —
   // to a Wikipedia search page — but styled as a "red link" (Wikipedia's
   // own term for a link to a page that doesn't exist yet) so it's visually
@@ -29,19 +53,7 @@ window.MuseumShared = (function () {
   function artistLinksHtml(field) {
     const names = splitArtistNames(field);
     if (names.length === 0) return escapeHtml(field || "");
-    return names
-      .map((name) => {
-        const wiki = WIKI[name];
-        // Every known artist has a WIKI entry, even unmatched ones (whose
-        // url already points to a Wikipedia search page instead of an
-        // article) — extract is the real "did we find a confident match"
-        // signal, not mere presence in the lookup.
-        const matched = !!(wiki && wiki.extract);
-        const url = wiki ? wiki.url : `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
-        const cls = matched ? "artist-link" : "artist-link artist-link-missing";
-        return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(name)}</a>`;
-      })
-      .join(", ");
+    return names.map((name) => wikiLinkHtml(name, WIKI[name])).join(", ");
   }
 
   // ---------- Favorites ----------
@@ -112,6 +124,29 @@ window.MuseumShared = (function () {
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+
+  // Shared by Quiz and Study, which both filter ARTWORKS by the same
+  // Medium/Decade pair. requireDecade excludes artworks with no known
+  // decade — both tabs need this so a batch can always convert into the
+  // other one's format.
+  function filterArtworksPool(opts) {
+    opts = opts || {};
+    let pool = opts.requireDecade ? ARTWORKS.filter((a) => a.decade) : ARTWORKS.slice();
+    if (opts.type) pool = pool.filter((a) => a.types.includes(opts.type));
+    if (opts.decade) pool = pool.filter((a) => a.decade === opts.decade);
+    return pool;
+  }
+
+  function showEmptyState(gridEl, emptyEl) {
+    gridEl.innerHTML = "";
+    gridEl.classList.add("hidden");
+    emptyEl.classList.remove("hidden");
+  }
+
+  function hideEmptyState(gridEl, emptyEl) {
+    emptyEl.classList.add("hidden");
+    gridEl.classList.remove("hidden");
   }
 
   // ---------- Hover image preview (click-outside-to-close lightbox) ----------
@@ -228,6 +263,8 @@ window.MuseumShared = (function () {
   return {
     escapeHtml,
     splitArtistNames,
+    wikipediaSearchUrl,
+    wikiLinkHtml,
     artistLinksHtml,
     isFavorite,
     getFavoriteIds,
@@ -235,6 +272,9 @@ window.MuseumShared = (function () {
     toggleFavorite,
     makeFavButton,
     shuffled,
+    filterArtworksPool,
+    showEmptyState,
+    hideEmptyState,
     initHoverPreview,
     buildDisplayCard,
   };

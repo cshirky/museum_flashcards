@@ -4,9 +4,13 @@
   const {
     escapeHtml,
     artistLinksHtml,
+    wikiLinkHtml,
     makeFavButton,
     getFavoriteIds,
     shuffled,
+    filterArtworksPool,
+    showEmptyState,
+    hideEmptyState,
     initHoverPreview,
     buildDisplayCard,
   } = window.MuseumShared;
@@ -230,13 +234,8 @@
   let mmSelections = { artist: {}, title: {}, decade: {} };
 
   function buildMixPool() {
-    const type = mmTypeFilter.value;
-    const decade = mmDecadeFilter.value;
     // decade is required per-card so the matching game has a full set of options
-    let pool = ARTWORKS.filter((a) => a.decade);
-    if (type) pool = pool.filter((a) => a.types.includes(type));
-    if (decade) pool = pool.filter((a) => a.decade === decade);
-    return pool;
+    return filterArtworksPool({ type: mmTypeFilter.value, decade: mmDecadeFilter.value, requireDecade: true });
   }
 
   function availableOptions(field, forIdx) {
@@ -326,8 +325,7 @@
     mmBatch = batch;
     mmScore.textContent = "";
     mmSubmitted = false;
-    mmEmpty.classList.add("hidden");
-    mmGrid.classList.remove("hidden");
+    hideEmptyState(mmGrid, mmEmpty);
     mmSubmitBtn.classList.remove("hidden");
     mmSubmitBtn.disabled = false;
     mmPoolCount.textContent = sourceLabel || `${batch.length} works match this filter.`;
@@ -341,10 +339,8 @@
       mmBatch = [];
       mmScore.textContent = "";
       mmSubmitted = false;
-      mmGrid.innerHTML = "";
-      mmGrid.classList.add("hidden");
+      showEmptyState(mmGrid, mmEmpty);
       mmSubmitBtn.classList.add("hidden");
-      mmEmpty.classList.remove("hidden");
       mmPoolCount.textContent =
         pool.length > 0 ? `Only ${pool.length} matching works — need at least ${MIX_SET_SIZE}.` : "";
       return;
@@ -426,26 +422,22 @@
 
   function loadBrowseBatch(batch, sourceLabel) {
     browseBatch = batch;
-    browseEmpty.classList.add("hidden");
-    browseGrid.classList.remove("hidden");
+    hideEmptyState(browseGrid, browseEmpty);
     browsePoolCount.textContent = sourceLabel;
     renderBrowseGrid();
   }
 
   function newBrowseSet() {
-    const type = browseTypeFilter.value;
-    const decade = browseDecadeFilter.value;
-
     // decade is required per-card so a set can always convert into Quiz
-    let pool = ARTWORKS.filter((a) => a.decade);
-    if (type) pool = pool.filter((a) => a.types.includes(type));
-    if (decade) pool = pool.filter((a) => a.decade === decade);
+    const pool = filterArtworksPool({
+      type: browseTypeFilter.value,
+      decade: browseDecadeFilter.value,
+      requireDecade: true,
+    });
 
     if (pool.length === 0) {
       browseBatch = [];
-      browseGrid.innerHTML = "";
-      browseGrid.classList.add("hidden");
-      browseEmpty.classList.remove("hidden");
+      showEmptyState(browseGrid, browseEmpty);
       browsePoolCount.textContent = "";
       return;
     }
@@ -671,11 +663,11 @@
     records.forEach((rec) => {
       const tr = document.createElement("tr");
       const img = firstImageBySlug.get(rec.slug);
-      // rec.wikipediaUrl is always populated (a search-page fallback for
-      // unmatched artists) — wikipediaExtract is the real "matched" signal.
-      const wikiMatched = !!rec.wikipediaExtract;
-      const wikiUrl = rec.wikipediaUrl || `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(rec.name)}`;
-      const wikiCell = `<a class="artist-link${wikiMatched ? "" : " artist-link-missing"}" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noopener noreferrer">Wikipedia</a>`;
+      const wikiCell = wikiLinkHtml(
+        rec.name,
+        { url: rec.wikipediaUrl, extract: rec.wikipediaExtract },
+        "Wikipedia"
+      );
       tr.innerHTML = `
         <td>${img ? `<img src="${escapeHtml(img)}" alt="">` : ""}</td>
         <td><a href="${escapeHtml(artistDetailHref(rec.slug))}">${escapeHtml(rec.name)}</a></td>

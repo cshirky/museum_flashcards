@@ -143,6 +143,27 @@ main {
 
 .controls button:hover { border-color: var(--accent); }
 
+/* Reusable primary/accent button — currently just the Quiz submit button,
+   but a class (rather than an ID-specific rule) so any future primary
+   call-to-action can reuse it instead of duplicating these rules. */
+.btn-primary {
+  background: var(--accent);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary.hidden { display: none; }
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .pool-count {
   text-align: center;
   color: var(--text-dim);
@@ -260,38 +281,49 @@ main {
   display: block;
 }
 
-/* Quiz */
+/* Work-card grid, shared by Quiz (.mm-*) and Study/Favorites/artist-detail
+   (.browse-*) — grouped so the properties both actually need are declared
+   once, with only the real differences (margin-bottom on the grid/image,
+   Quiz's extra flex layout for its dropdown fields) split out below. */
 
-.mm-grid {
+.mm-grid, .browse-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 16px;
 }
 
-.mm-grid.hidden { display: none; }
+.mm-grid.hidden, .browse-grid.hidden { display: none; }
 
-.mm-card {
+.mm-grid { margin-bottom: 16px; }
+
+.mm-card, .browse-card {
   position: relative;
   min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px;
+}
+
+.mm-card {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.mm-card img {
+.mm-card img, .browse-card img {
   width: 100%;
   max-height: 160px;
   object-fit: contain;
   background: #0c0d10;
   border-radius: 6px;
-  margin-bottom: 4px;
   cursor: zoom-in;
 }
+
+.mm-card img { margin-bottom: 4px; }
+.browse-card img { margin-bottom: 10px; }
+
+/* Quiz */
 
 .mm-field {
   display: flex;
@@ -316,24 +348,6 @@ main {
   opacity: 0.75;
 }
 
-#mm-submit-btn {
-  background: var(--accent);
-  color: #1a1a1a;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 22px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-#mm-submit-btn.hidden { display: none; }
-
-#mm-submit-btn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
 .mm-score {
   text-align: center;
   font-weight: 600;
@@ -341,33 +355,6 @@ main {
 }
 
 /* Study (browse) */
-
-.browse-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.browse-grid.hidden { display: none; }
-
-.browse-card {
-  position: relative;
-  min-width: 0;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px;
-}
-
-.browse-card img {
-  width: 100%;
-  max-height: 160px;
-  object-fit: contain;
-  background: #0c0d10;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  cursor: zoom-in;
-}
 
 .browse-card h3 {
   margin: 0 0 4px;

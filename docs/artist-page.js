@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  const { escapeHtml, initHoverPreview, buildDisplayCard } = window.MuseumShared;
+  const { escapeHtml, wikiLinkHtml, initHoverPreview, buildDisplayCard } = window.MuseumShared;
 
   const slug = typeof CURRENT_ARTIST_SLUG !== "undefined" ? CURRENT_ARTIST_SLUG : null;
   const index = typeof ARTISTS_INDEX !== "undefined" ? ARTISTS_INDEX : {};
@@ -19,9 +19,11 @@
   } else {
     document.title = `${record.name} — Museum Flashcards`;
 
-    const wikiMatched = !!record.wikipediaExtract;
-    const wikiUrl =
-      record.wikipediaUrl || `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(record.name)}`;
+    const wikiLink = wikiLinkHtml(
+      record.name,
+      { url: record.wikipediaUrl, extract: record.wikipediaExtract },
+      "Wikipedia"
+    );
     const datesText = record.birthYear
       ? record.deathYear
         ? `${record.birthYear}–${record.deathYear}`
@@ -31,9 +33,7 @@
     headerEl.innerHTML = `
       <h1>${escapeHtml(record.name)}</h1>
       <p class="artist-meta">
-        ${datesText ? `${escapeHtml(datesText)} &middot; ` : ""}<a class="artist-link${
-      wikiMatched ? "" : " artist-link-missing"
-    }" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noopener noreferrer">Wikipedia</a>
+        ${datesText ? `${escapeHtml(datesText)} &middot; ` : ""}${wikiLink}
       </p>
       ${record.wikipediaExtract ? `<p class="artist-bio">${escapeHtml(record.wikipediaExtract)}</p>` : ""}
     `;
