@@ -1,0 +1,241 @@
+// Shared across every page (the core Study/Quiz/Favorites/Stats/All Artists
+// app shell AND the per-artist detail leaf pages), exposed as
+// window.MuseumShared so plain <script> tags can use it without a bundler.
+// Depends on ARTWORKS (data.js) and ARTIST_WIKI (artists.js) being loaded
+// first as bare globals; expects #image-preview/#image-preview-img and
+// #wiki-preview to exist in the page's HTML.
+
+window.MuseumShared = (function () {
+  "use strict";
+
+  const WIKI = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function splitArtistNames(field) {
+    return (field || "").split(",").map((n) => n.trim()).filter(Boolean);
+  }
+
+  // Unmatched artists (no confident Wikipedia article) still get a link —
+  // to a Wikipedia search page — but styled as a "red link" (Wikipedia's
+  // own term for a link to a page that doesn't exist yet) so it's visually
+  // obvious there's nothing to preview before you even hover it.
+  function artistLinksHtml(field) {
+    const names = splitArtistNames(field);
+    if (names.length === 0) return escapeHtml(field || "");
+    return names
+      .map((name) => {
+        const wiki = WIKI[name];
+        // Every known artist has a WIKI entry, even unmatched ones (whose
+        // url already points to a Wikipedia search page instead of an
+        // article) — extract is the real "did we find a confident match"
+        // signal, not mere presence in the lookup.
+        const matched = !!(wiki && wiki.extract);
+        const url = wiki ? wiki.url : `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
+        const cls = matched ? "artist-link" : "artist-link artist-link-missing";
+        return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(name)}</a>`;
+      })
+      .join(", ");
+  }
+
+  // ---------- Favorites ----------
+
+  const FAVORITES_KEY = "museumFlashcards.favorites.v1";
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveFavorites() {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  }
+
+  let favorites = loadFavorites();
+
+  function isFavorite(id) {
+    return !!favorites[id];
+  }
+
+  function getFavoriteIds() {
+    return Object.keys(favorites);
+  }
+
+  function updateFavButtons(id) {
+    const fav = isFavorite(id);
+    document.querySelectorAll(`.fav-btn[data-id="${id}"]`).forEach((btn) => {
+      btn.textContent = fav ? "★" : "☆";
+      btn.classList.toggle("active", fav);
+    });
+  }
+
+  // Pages that care about favorites changing (e.g. the Favorites tab
+  // re-rendering itself) listen for this instead of shared.js knowing
+  // anything about which tab/page is currently showing.
+  function toggleFavorite(id) {
+    if (favorites[id]) delete favorites[id];
+    else favorites[id] = true;
+    saveFavorites();
+    updateFavButtons(id);
+    document.dispatchEvent(new CustomEvent("museum:favoritechange", { detail: { id } }));
+  }
+
+  function makeFavButton(id) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "fav-btn" + (isFavorite(id) ? " active" : "");
+    btn.dataset.id = id;
+    btn.textContent = isFavorite(id) ? "★" : "☆";
+    btn.setAttribute("aria-label", "Toggle favorite");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite(id);
+    });
+    return btn;
+  }
+
+  // ---------- Misc ----------
+
+  function shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // ---------- Hover image preview (click-outside-to-close lightbox) ----------
+  // Mouseover a thumbnail opens a full-screen backdrop with the image
+  // enlarged and centered (CSS flex-centers it — no cursor-relative math).
+  // While shown, the backdrop covers the whole viewport and intercepts
+  // every pointer event, so nothing underneath it can receive a stray
+  // mouseover — that's what used to let the preview silently swap to a
+  // different image as the cursor crossed the (previously click-through)
+  // overlay. The only way to dismiss it is a click on the backdrop itself,
+  // not the image (checked via e.target === imagePreview, since clicks on
+  // the inner wrapper/img report those elements as the target instead).
+
+  const imagePreview = document.getElementById("image-preview");
+  const imagePreviewImg = document.getElementById("image-preview-img");
+
+  function initHoverPreview(container) {
+    if (!imagePreview || !imagePreviewImg) return;
+    container.addEventListener("mouseover", (e) => {
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      imagePreviewImg.src = img.src;
+      imagePreview.classList.remove("hidden");
+    });
+  }
+
+  if (imagePreview) {
+    imagePreview.addEventListener("click", (e) => {
+      if (e.target === imagePreview) imagePreview.classList.add("hidden");
+    });
+  }
+
+  // ---------- Wikipedia artist hover preview ----------
+  // Single shared tooltip, positioned near whichever .artist-link is
+  // hovered (event delegation on body, since links are created dynamically
+  // across several grids/tables/pages). Only links with a known extract
+  // show anything; unmatched (red-link) artists are still clickable, just
+  // silent on hover.
+
+  const wikiPreview = document.getElementById("wiki-preview");
+
+  function positionWikiPreview(linkEl) {
+    const rect = linkEl.getBoundingClientRect();
+    const margin = 8;
+    const pw = wikiPreview.offsetWidth;
+    const ph = wikiPreview.offsetHeight;
+
+    let left = Math.min(rect.left, window.innerWidth - pw - 8);
+    left = Math.max(8, left);
+
+    let top = rect.bottom + margin;
+    if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
+    top = Math.max(8, top);
+
+    wikiPreview.style.left = `${left}px`;
+    wikiPreview.style.top = `${top}px`;
+  }
+
+  if (wikiPreview) {
+    document.body.addEventListener("mouseover", (e) => {
+      const link = e.target.closest(".artist-link");
+      if (!link) return;
+      const wiki = WIKI[link.dataset.artist];
+      if (!wiki || !wiki.extract) return;
+      wikiPreview.textContent = wiki.extract;
+      wikiPreview.classList.remove("hidden");
+      positionWikiPreview(link);
+    });
+
+    document.body.addEventListener("mouseout", (e) => {
+      const link = e.target.closest(".artist-link");
+      if (!link) return;
+      if (e.relatedTarget && link.contains(e.relatedTarget)) return;
+      wikiPreview.classList.add("hidden");
+    });
+  }
+
+  // ---------- Shared display-card builder ----------
+  // Used by Study, Favorites, and each artist's own detail page. opts.hideArtist
+  // skips the artist name/dates line — redundant on a page that's already
+  // dedicated to that one artist.
+
+  function buildDisplayCard(card, opts) {
+    opts = opts || {};
+    const div = document.createElement("div");
+    div.className = "browse-card";
+
+    const img = document.createElement("img");
+    img.src = card.image;
+    img.alt = "";
+    div.appendChild(img);
+    div.appendChild(makeFavButton(card.id));
+
+    const title = document.createElement("h3");
+    title.textContent = card.title;
+    div.appendChild(title);
+
+    if (!opts.hideArtist) {
+      const artist = document.createElement("p");
+      artist.className = "browse-artist";
+      artist.innerHTML = card.artistDates
+        ? `${artistLinksHtml(card.artist)} (${escapeHtml(card.artistDates)})`
+        : artistLinksHtml(card.artist);
+      div.appendChild(artist);
+    }
+
+    const dateLine = document.createElement("p");
+    dateLine.textContent = card.date;
+    div.appendChild(dateLine);
+
+    return div;
+  }
+
+  return {
+    escapeHtml,
+    splitArtistNames,
+    artistLinksHtml,
+    isFavorite,
+    getFavoriteIds,
+    updateFavButtons,
+    toggleFavorite,
+    makeFavButton,
+    shuffled,
+    initHoverPreview,
+    buildDisplayCard,
+  };
+})();

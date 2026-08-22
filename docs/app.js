@@ -1,6 +1,16 @@
 (function () {
   "use strict";
 
+  const {
+    escapeHtml,
+    artistLinksHtml,
+    makeFavButton,
+    getFavoriteIds,
+    shuffled,
+    initHoverPreview,
+    buildDisplayCard,
+  } = window.MuseumShared;
+
   const STORAGE_KEY = "museumFlashcards.stats.v2";
   const MAX_HISTORY_PER_ARTWORK = 20;
 
@@ -80,88 +90,13 @@
     }
   }
 
-  // ---------- Artist Wikipedia links ----------
-  // ARTIST_WIKI (from artists.js) maps each known artist name to
-  // {url, extract}. Names with no confident Wikipedia match still get a
-  // link (to a Wikipedia search results page) but no hover extract.
-
-  const WIKI = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
-
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  function splitArtistNames(field) {
-    return (field || "").split(",").map((n) => n.trim()).filter(Boolean);
-  }
-
-  function artistLinksHtml(field) {
-    const names = splitArtistNames(field);
-    if (names.length === 0) return escapeHtml(field || "");
-    return names
-      .map((name) => {
-        const wiki = WIKI[name];
-        const url = wiki ? wiki.url : `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
-        return `<a class="artist-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(name)}</a>`;
-      })
-      .join(", ");
-  }
-
-  // ---------- Favorites ----------
-
-  const FAVORITES_KEY = "museumFlashcards.favorites.v1";
-
-  function loadFavorites() {
-    try {
-      return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {};
-    } catch (e) {
-      return {};
-    }
-  }
-
-  function saveFavorites() {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-  }
-
-  let favorites = loadFavorites();
-
-  function isFavorite(id) {
-    return !!favorites[id];
-  }
-
-  function updateFavButtons(id) {
-    const fav = isFavorite(id);
-    document.querySelectorAll(`.fav-btn[data-id="${id}"]`).forEach((btn) => {
-      btn.textContent = fav ? "★" : "☆";
-      btn.classList.toggle("active", fav);
-    });
-  }
-
-  function toggleFavorite(id) {
-    if (favorites[id]) delete favorites[id];
-    else favorites[id] = true;
-    saveFavorites();
-    updateFavButtons(id);
+  // Favorites storage/toggling now lives in shared.js (window.MuseumShared)
+  // since the per-artist detail pages need it too. This page just reacts
+  // when a favorite changes anywhere, to keep the Favorites tab in sync if
+  // it's the one currently showing.
+  document.addEventListener("museum:favoritechange", () => {
     if (tabPanels.favorites.classList.contains("active")) renderFavorites();
-  }
-
-  function makeFavButton(id) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "fav-btn" + (isFavorite(id) ? " active" : "");
-    btn.dataset.id = id;
-    btn.textContent = isFavorite(id) ? "★" : "☆";
-    btn.setAttribute("aria-label", "Toggle favorite");
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      toggleFavorite(id);
-    });
-    return btn;
-  }
+  });
 
   // ---------- Tabs / routing ----------
   // Each tab has a matching URL path (e.g. .../quiz/) backed by an identical
@@ -174,8 +109,8 @@
   // `python -m http.server` from this folder) or a subpath (e.g. GitHub
   // Pages project sites at /reponame/).
 
-  const TAB_SLUGS = { mix: "quiz", browse: "study", favorites: "favorites", stats: "stats" };
-  const SLUG_TABS = { quiz: "mix", study: "browse", favorites: "favorites", stats: "stats" };
+  const TAB_SLUGS = { mix: "quiz", browse: "study", favorites: "favorites", stats: "stats", artists: "artists" };
+  const SLUG_TABS = { quiz: "mix", study: "browse", favorites: "favorites", stats: "stats", artists: "artists" };
 
   function computeBasePath() {
     const segments = window.location.pathname.split("/").filter(Boolean);
@@ -199,6 +134,7 @@
     browse: document.getElementById("browse-tab"),
     favorites: document.getElementById("favorites-tab"),
     stats: document.getElementById("stats-tab"),
+    artists: document.getElementById("artists-tab"),
   };
 
   function activateTab(name, opts) {
@@ -207,6 +143,7 @@
     Object.entries(tabPanels).forEach(([key, panel]) => panel.classList.toggle("active", key === name));
     if (name === "stats") renderStats();
     if (name === "favorites") renderFavorites();
+    if (name === "artists") renderAllArtists();
 
     const path = `${BASE_PATH}${TAB_SLUGS[name]}/`;
     if (opts.replaceHistory) {
@@ -264,87 +201,11 @@
   populateFilter(browseTypeFilter, typeCounts, byCountDesc(typeCounts));
   populateFilter(browseDecadeFilter, decadeCounts, alphabetically);
 
-  function shuffled(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
-  // ---------- Hover image preview ----------
-  // Mouseover a thumbnail opens a full-screen backdrop with the image
-  // enlarged and centered (CSS flex-centers it — no cursor-relative math).
-  // While shown, the backdrop covers the whole viewport and intercepts
-  // every pointer event, so nothing underneath it can receive a stray
-  // mouseover — that's what used to let the preview silently swap to a
-  // different image as the cursor crossed the (previously click-through)
-  // overlay. The only way to dismiss it is a click on the backdrop itself,
-  // not the image (checked via e.target === imagePreview, since clicks on
-  // the inner wrapper/img report those elements as the target instead).
-  // That returns to the default state with nothing expanded; a fresh
-  // mouseover on a thumbnail is what opens the next one.
-
-  const imagePreview = document.getElementById("image-preview");
-  const imagePreviewImg = document.getElementById("image-preview-img");
-
-  function initHoverPreview(container) {
-    container.addEventListener("mouseover", (e) => {
-      const img = e.target.closest("img");
-      if (!img || !container.contains(img)) return;
-      imagePreviewImg.src = img.src;
-      imagePreview.classList.remove("hidden");
-    });
-  }
-
-  imagePreview.addEventListener("click", (e) => {
-    if (e.target === imagePreview) {
-      imagePreview.classList.add("hidden");
-    }
-  });
-
-  // ---------- Wikipedia artist hover preview ----------
-  // Single shared tooltip, positioned near whichever .artist-link is
-  // hovered (event delegation on body, since links are created dynamically
-  // across several grids/tables). Only links with a known extract show
-  // anything; unmatched artists' links are still clickable, just silent.
-
-  const wikiPreview = document.getElementById("wiki-preview");
-
-  function positionWikiPreview(linkEl) {
-    const rect = linkEl.getBoundingClientRect();
-    const margin = 8;
-    const pw = wikiPreview.offsetWidth;
-    const ph = wikiPreview.offsetHeight;
-
-    let left = Math.min(rect.left, window.innerWidth - pw - 8);
-    left = Math.max(8, left);
-
-    let top = rect.bottom + margin;
-    if (top + ph > window.innerHeight - 8) top = rect.top - ph - margin;
-    top = Math.max(8, top);
-
-    wikiPreview.style.left = `${left}px`;
-    wikiPreview.style.top = `${top}px`;
-  }
-
-  document.body.addEventListener("mouseover", (e) => {
-    const link = e.target.closest(".artist-link");
-    if (!link) return;
-    const wiki = WIKI[link.dataset.artist];
-    if (!wiki || !wiki.extract) return;
-    wikiPreview.textContent = wiki.extract;
-    wikiPreview.classList.remove("hidden");
-    positionWikiPreview(link);
-  });
-
-  document.body.addEventListener("mouseout", (e) => {
-    const link = e.target.closest(".artist-link");
-    if (!link) return;
-    if (e.relatedTarget && link.contains(e.relatedTarget)) return;
-    wikiPreview.classList.add("hidden");
-  });
+  // shuffled, initHoverPreview, and the Wikipedia hover tooltip now live in
+  // shared.js — the tooltip and the image lightbox wire themselves up
+  // automatically there (as long as #image-preview/#wiki-preview exist in
+  // this page's HTML), so there's nothing to initialize here beyond
+  // calling initHoverPreview(container) per grid, same as before.
 
   // ---------- Quiz tab ----------
 
@@ -558,34 +419,6 @@
 
   let browseBatch = [];
 
-  function buildDisplayCard(card) {
-    const div = document.createElement("div");
-    div.className = "browse-card";
-
-    const img = document.createElement("img");
-    img.src = card.image;
-    img.alt = "";
-    div.appendChild(img);
-    div.appendChild(makeFavButton(card.id));
-
-    const title = document.createElement("h3");
-    title.textContent = card.title;
-    div.appendChild(title);
-
-    const artist = document.createElement("p");
-    artist.className = "browse-artist";
-    artist.innerHTML = card.artistDates
-      ? `${artistLinksHtml(card.artist)} (${escapeHtml(card.artistDates)})`
-      : artistLinksHtml(card.artist);
-    div.appendChild(artist);
-
-    const dateLine = document.createElement("p");
-    dateLine.textContent = card.date;
-    div.appendChild(dateLine);
-
-    return div;
-  }
-
   function renderBrowseGrid() {
     browseGrid.innerHTML = "";
     browseBatch.forEach((card) => browseGrid.appendChild(buildDisplayCard(card)));
@@ -641,7 +474,7 @@
 
   function renderFavorites() {
     const byId = new Map(ARTWORKS.map((a) => [a.id, a]));
-    const items = Object.keys(favorites)
+    const items = getFavoriteIds()
       .map((id) => byId.get(id))
       .filter(Boolean)
       .sort((a, b) => a.title.localeCompare(b.title));
@@ -778,6 +611,81 @@
       renderStats();
     });
   });
+
+  // ---------- All Artists tab ----------
+
+  const artistsCount = document.getElementById("artists-count");
+  const allArtistsBody = document.getElementById("all-artists-body");
+
+  // "Dana C. Chandler Jr." should sort under "Chandler", not "Jr." — strip
+  // trailing suffix tokens before taking the last word as the sort key.
+  // Single-word/mononym names (e.g. "Rozeal.", "Embah") just sort on
+  // themselves, which is the only reasonable fallback without a real
+  // "family name" field in the source data.
+  const NAME_SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
+
+  function lastNameKey(fullName) {
+    const words = fullName.trim().split(/\s+/);
+    let idx = words.length - 1;
+    while (idx > 0 && NAME_SUFFIXES.has(words[idx].toLowerCase().replace(/\.$/, ""))) {
+      idx -= 1;
+    }
+    return (words[idx] || fullName).toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+  }
+
+  function formatArtistDates(birthYear, deathYear) {
+    if (!birthYear) return "—";
+    return deathYear ? `${birthYear}–${deathYear}` : `b. ${birthYear}`;
+  }
+
+  function formatGenres(genres) {
+    return Object.entries(genres || {})
+      .sort((a, b) => b[1] - a[1])
+      .map(([type, count]) => `${escapeHtml(type)} (${count})`)
+      .join(", ");
+  }
+
+  function artistDetailHref(slug) {
+    return `${BASE_PATH}artist/${slug}/`;
+  }
+
+  function renderAllArtists() {
+    const index = typeof ARTISTS_INDEX !== "undefined" ? ARTISTS_INDEX : {};
+
+    const firstImageBySlug = new Map();
+    ARTWORKS.forEach((a) => {
+      (a.artistSlugs || []).forEach((slug) => {
+        if (!firstImageBySlug.has(slug)) firstImageBySlug.set(slug, a.image);
+      });
+    });
+
+    const records = Object.values(index).sort((a, b) => {
+      const ka = lastNameKey(a.name);
+      const kb = lastNameKey(b.name);
+      return ka.localeCompare(kb) || a.name.localeCompare(b.name);
+    });
+
+    artistsCount.textContent = `${records.length} artists.`;
+
+    allArtistsBody.innerHTML = "";
+    records.forEach((rec) => {
+      const tr = document.createElement("tr");
+      const img = firstImageBySlug.get(rec.slug);
+      // rec.wikipediaUrl is always populated (a search-page fallback for
+      // unmatched artists) — wikipediaExtract is the real "matched" signal.
+      const wikiMatched = !!rec.wikipediaExtract;
+      const wikiUrl = rec.wikipediaUrl || `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(rec.name)}`;
+      const wikiCell = `<a class="artist-link${wikiMatched ? "" : " artist-link-missing"}" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noopener noreferrer">Wikipedia</a>`;
+      tr.innerHTML = `
+        <td>${img ? `<img src="${escapeHtml(img)}" alt="">` : ""}</td>
+        <td><a href="${escapeHtml(artistDetailHref(rec.slug))}">${escapeHtml(rec.name)}</a></td>
+        <td>${wikiCell}</td>
+        <td>${formatArtistDates(rec.birthYear, rec.deathYear)}</td>
+        <td>${formatGenres(rec.genres)}</td>
+      `;
+      allArtistsBody.appendChild(tr);
+    });
+  }
 
   // ---------- Init ----------
 

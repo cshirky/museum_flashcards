@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- One of ~630 generated per-artist pages (see fetch_data.py's
+     generate_artist_pages). Only the CURRENT_ARTIST_SLUG line differs
+     between them — everything else is rendered by artist-page.js from
+     shared data, so this file stays tiny. Do not hand-edit; re-run
+     fetch_data.py instead. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museum Flashcards — Studio Museum in Harlem</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Museum Flashcards</h1>
+  <p class="subtitle">Studio Museum in Harlem collection</p>
+</header>
+
+<div class="app-shell">
+  <nav class="side-nav">
+    <a class="nav-btn" href="../../study/">Study</a>
+    <a class="nav-btn" href="../../quiz/">Quiz</a>
+    <a class="nav-btn" href="../../favorites/">Favorites</a>
+    <a class="nav-btn" href="../../stats/">Stats</a>
+    <a class="nav-btn active" href="../../artists/">All Artists</a>
+  </nav>
+
+  <main>
+    <a class="back-link" href="../../artists/">&larr; All Artists</a>
+    <div id="artist-header" class="artist-header"></div>
+    <div id="artist-grid" class="browse-grid"></div>
+  </main>
+</div>
+
+<div id="image-preview" class="image-preview hidden">
+  <div class="image-preview-inner">
+    <img id="image-preview-img" alt="">
+  </div>
+</div>
+
+<div id="wiki-preview" class="wiki-preview hidden"></div>
+
+<script>const CURRENT_ARTIST_SLUG = "edgar-arceneaux";</script>
+<script src="../../data.js"></script>
+<script src="../../artists.js"></script>
+<script src="../../artists_index.js"></script>
+<script src="../../shared.js"></script>
+<script src="../../artist-page.js"></script>
+</body>
+</html>

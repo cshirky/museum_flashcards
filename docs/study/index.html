@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<!-- Identical copies of this file live in study/, quiz/, favorites/, and
-     stats/ so each route works on direct load/refresh with a plain static
-     file server, at any deployment base path (site root or a subpath like
-     GitHub Pages' /reponame/). Asset paths below are relative (one level
-     up) on purpose — do not make them absolute. The root index.html is a
-     separate, minimal redirect stub, not a copy of this file.
-     Keep these four in sync when editing. -->
+<!-- Identical copies of this file live in study/, quiz/, favorites/,
+     stats/, and artists/ so each route works on direct load/refresh with a
+     plain static file server, at any deployment base path (site root or a
+     subpath like GitHub Pages' /reponame/). Asset paths below are relative
+     (one level up) on purpose — do not make them absolute. The root
+     index.html is a separate, minimal redirect stub, not a copy of this
+     file. Per-artist detail pages (artist/<slug>/) are a separate, simpler
+     template — see docs/artist-page.js.
+     Keep these five in sync when editing. -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,6 +27,7 @@
     <button class="nav-btn" data-tab="mix">Quiz</button>
     <button class="nav-btn" data-tab="favorites">Favorites</button>
     <button class="nav-btn" data-tab="stats">Stats</button>
+    <button class="nav-btn" data-tab="artists">All Artists</button>
   </nav>
 
   <main>
@@ -118,6 +121,24 @@
         No cards studied yet — head to the Quiz tab to get started.
       </div>
     </section>
+
+    <section id="artists-tab" class="tab-panel">
+      <p class="pool-count" id="artists-count"></p>
+      <div class="stats-table-wrap">
+      <table id="all-artists-table" class="stats-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Artist</th>
+            <th>Wikipedia</th>
+            <th>Dates</th>
+            <th>Genres</th>
+          </tr>
+        </thead>
+        <tbody id="all-artists-body"></tbody>
+      </table>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -131,6 +152,8 @@
 
 <script src="../data.js"></script>
 <script src="../artists.js"></script>
+<script src="../artists_index.js"></script>
+<script src="../shared.js"></script>
 <script src="../app.js"></script>
 </body>
 </html>

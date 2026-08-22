@@ -35,6 +35,10 @@ WIKI_REQUEST_DELAY_SECONDS = 0.4
 OUTPUT_ARTISTS_JS = Path(__file__).parent / "docs" / "artists.js"
 OUTPUT_ARTISTS_JSON = Path(__file__).parent / "data" / "artists_wiki.json"
 
+OUTPUT_ARTISTS_INDEX_JS = Path(__file__).parent / "docs" / "artists_index.js"
+OUTPUT_ARTISTS_INDEX_JSON = Path(__file__).parent / "data" / "artists_index.json"
+ARTIST_PAGES_DIR = Path(__file__).parent / "docs" / "artist"
+
 ARTWORK_FIELDS = """
     id
     slug
@@ -122,6 +126,7 @@ def normalize(entry: dict) -> dict | None:
         "slug": entry["slug"],
         "title": entry.get("title") or "Untitled",
         "artist": ", ".join(a["title"] for a in artists if a.get("title")),
+        "artistSlugs": [a["slug"] for a in artists if a.get("slug")],
         "artistDates": next((a.get("artistDates") for a in artists if a.get("artistDates")), None),
         "date": date,
         "decade": decade_from_date(date),
@@ -166,6 +171,49 @@ def collect_artist_birth_years(raw_entries: list[dict]) -> dict[str, str]:
             if name and dates and name not in birth_years:
                 birth_years[name] = dates
     return birth_years
+
+
+def parse_birth_death(artist_dates: str | None) -> tuple[int | None, int | None]:
+    """Handles every format seen in this dataset: "b. 1960" (birth only),
+    "1920-2003" / "1920–2003" (en-dash or hyphen, optionally spaced),
+    "1886/87-1988" (ambiguous birth year), "c. 1765-after 1825"
+    (approximate). Just grabbing every 4-digit number and taking the first
+    as birth / last as death (when a second one exists) covers all of it."""
+    if not artist_dates:
+        return None, None
+    years = [int(y) for y in re.findall(r"\d{4}", artist_dates)]
+    if not years:
+        return None, None
+    if len(years) == 1:
+        return years[0], None
+    return years[0], years[-1]
+
+
+def collect_artist_records(raw_entries: list[dict]) -> dict[str, dict]:
+    """One record per artist slug, aggregated across every artwork they're
+    credited on: display name, raw date string, per-genre (artwork type)
+    work counts, and total artwork count. Genre counts count occurrences,
+    not distinct works — a work with two types (e.g. "Work on Paper" and
+    "Print") adds one to each of that artist's genre counts, matching how
+    the existing medium filter elsewhere in the app already counts."""
+    records: dict[str, dict] = {}
+    for entry in raw_entries:
+        types = [t["title"] for t in (entry.get("artworkType") or []) if t.get("title")]
+        for a in entry.get("artists") or []:
+            slug = a.get("slug")
+            name = a.get("title")
+            if not slug or not name:
+                continue
+            rec = records.setdefault(
+                slug,
+                {"name": name, "slug": slug, "artistDates": None, "genres": {}, "artworkCount": 0},
+            )
+            if not rec["artistDates"] and a.get("artistDates"):
+                rec["artistDates"] = a.get("artistDates")
+            rec["artworkCount"] += 1
+            for t in types:
+                rec["genres"][t] = rec["genres"].get(t, 0) + 1
+    return records
 
 
 def parse_birth_year(artist_dates: str | None) -> int | None:
@@ -356,6 +404,114 @@ def build_artist_wiki_lookup(artist_names: set[str], birth_years: dict[str, str]
     return lookup
 
 
+def build_artists_index(artist_records: dict[str, dict], artist_wiki: dict[str, dict]) -> dict[str, dict]:
+    """Combines the per-artist aggregates with the already-computed
+    Wikipedia lookup (keyed by name) into one slug-keyed index for the All
+    Artists page and each artist's detail page."""
+    index: dict[str, dict] = {}
+    for slug, rec in artist_records.items():
+        birth_year, death_year = parse_birth_death(rec["artistDates"])
+        wiki = artist_wiki.get(rec["name"]) or {}
+        index[slug] = {
+            "name": rec["name"],
+            "slug": slug,
+            "birthYear": birth_year,
+            "deathYear": death_year,
+            "genres": rec["genres"],
+            "artworkCount": rec["artworkCount"],
+            "wikipediaUrl": wiki.get("url"),
+            "wikipediaExtract": wiki.get("extract"),
+        }
+    return index
+
+
+# Every generated file is identical apart from the CURRENT_ARTIST_SLUG line
+# — all real rendering (bio header, work grid) happens client-side in
+# artist-page.js from shared ARTWORKS/ARTISTS_INDEX data. Uses a __SLUG__
+# placeholder + str.replace rather than str.format/f-string, since the
+# inline <script> and CSS-adjacent markup below is full of literal braces
+# that would otherwise need escaping.
+ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
+<!-- One of ~630 generated per-artist pages (see fetch_data.py's
+     generate_artist_pages). Only the CURRENT_ARTIST_SLUG line differs
+     between them — everything else is rendered by artist-page.js from
+     shared data, so this file stays tiny. Do not hand-edit; re-run
+     fetch_data.py instead. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museum Flashcards — Studio Museum in Harlem</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Museum Flashcards</h1>
+  <p class="subtitle">Studio Museum in Harlem collection</p>
+</header>
+
+<div class="app-shell">
+  <nav class="side-nav">
+    <a class="nav-btn" href="../../study/">Study</a>
+    <a class="nav-btn" href="../../quiz/">Quiz</a>
+    <a class="nav-btn" href="../../favorites/">Favorites</a>
+    <a class="nav-btn" href="../../stats/">Stats</a>
+    <a class="nav-btn active" href="../../artists/">All Artists</a>
+  </nav>
+
+  <main>
+    <a class="back-link" href="../../artists/">&larr; All Artists</a>
+    <div id="artist-header" class="artist-header"></div>
+    <div id="artist-grid" class="browse-grid"></div>
+  </main>
+</div>
+
+<div id="image-preview" class="image-preview hidden">
+  <div class="image-preview-inner">
+    <img id="image-preview-img" alt="">
+  </div>
+</div>
+
+<div id="wiki-preview" class="wiki-preview hidden"></div>
+
+<script>const CURRENT_ARTIST_SLUG = "__SLUG__";</script>
+<script src="../../data.js"></script>
+<script src="../../artists.js"></script>
+<script src="../../artists_index.js"></script>
+<script src="../../shared.js"></script>
+<script src="../../artist-page.js"></script>
+</body>
+</html>
+"""
+
+
+def generate_artist_pages(artists_index: dict[str, dict]) -> None:
+    ARTIST_PAGES_DIR.mkdir(parents=True, exist_ok=True)
+    existing_dirs = {p.name for p in ARTIST_PAGES_DIR.iterdir() if p.is_dir()}
+    current_slugs = set(artists_index.keys())
+
+    for slug in current_slugs:
+        page_dir = ARTIST_PAGES_DIR / slug
+        page_dir.mkdir(parents=True, exist_ok=True)
+        # JSON-escape the slug for safety inside the inline <script> even
+        # though museum slugs are already clean lowercase-hyphenated ASCII.
+        html = ARTIST_PAGE_TEMPLATE.replace("__SLUG__", json.dumps(slug)[1:-1])
+        (page_dir / "index.html").write_text(html, encoding="utf-8")
+
+    # Artists dropped from the collection since the last run leave behind a
+    # stale page otherwise — remove any directory that's no longer current.
+    stale = existing_dirs - current_slugs
+    for slug in stale:
+        stale_dir = ARTIST_PAGES_DIR / slug
+        (stale_dir / "index.html").unlink(missing_ok=True)
+        try:
+            stale_dir.rmdir()
+        except OSError:
+            pass
+
+    print(f"Generated {len(current_slugs)} artist pages ({len(stale)} stale ones removed).")
+
+
 def main() -> None:
     total = fetch_total_count()
     print(f"Studio Museum collection reports {total} artworks. Fetching...")
@@ -397,6 +553,24 @@ def main() -> None:
     OUTPUT_ARTISTS_JS.write_text(artists_js_content, encoding="utf-8")
 
     print(f"Wrote {OUTPUT_ARTISTS_JSON} and {OUTPUT_ARTISTS_JS}")
+
+    artist_records = collect_artist_records(raw_entries)
+    artists_index = build_artists_index(artist_records, artist_wiki)
+
+    OUTPUT_ARTISTS_INDEX_JSON.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_ARTISTS_INDEX_JSON.write_text(
+        json.dumps(artists_index, indent=2, sort_keys=True), encoding="utf-8"
+    )
+
+    OUTPUT_ARTISTS_INDEX_JS.parent.mkdir(parents=True, exist_ok=True)
+    index_js_content = "// Generated by fetch_data.py — do not edit by hand.\n"
+    index_js_content += f"const ARTISTS_INDEX = {json.dumps(artists_index, sort_keys=True)};\n"
+    OUTPUT_ARTISTS_INDEX_JS.write_text(index_js_content, encoding="utf-8")
+
+    print(f"Wrote {OUTPUT_ARTISTS_INDEX_JSON} and {OUTPUT_ARTISTS_INDEX_JS}")
+    print(f"{len(artists_index)} artist records built.")
+
+    generate_artist_pages(artists_index)
 
 
 if __name__ == "__main__":
