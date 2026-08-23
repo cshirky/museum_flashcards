@@ -12,89 +12,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Museum Flashcards — Studio Museum in Harlem</title>
+<title>Museum Flashcards — Studio Museum of Harlem</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header class="app-header">
   <h1>Museum Flashcards</h1>
-  <p class="subtitle">Studio Museum in Harlem collection</p>
+  <p class="subtitle">Studio Museum of Harlem collection</p>
 </header>
 
 <div class="app-shell">
   <nav class="side-nav">
-    <button class="nav-btn active" data-tab="browse">Study</button>
-    <button class="nav-btn" data-tab="mix">Quiz</button>
+    <button class="nav-btn active" data-tab="study">Study</button>
+    <button class="nav-btn" data-tab="quiz">Quiz</button>
     <button class="nav-btn" data-tab="favorites">Favorites</button>
-    <button class="nav-btn" data-tab="stats">Stats</button>
     <button class="nav-btn" data-tab="artists">All Artists</button>
+    <button class="nav-btn" data-tab="stats">Stats</button>
   </nav>
 
   <main>
-    <section id="browse-tab" class="tab-panel active">
+    <section id="study-tab" class="tab-panel active">
       <div class="controls">
         <label>
           Medium
-          <select id="browse-type-filter">
+          <select id="study-type-filter">
             <option value="">All mediums</option>
           </select>
         </label>
         <label>
           Decade
-          <select id="browse-decade-filter">
+          <select id="study-decade-filter">
             <option value="">All decades</option>
           </select>
         </label>
-        <button id="browse-new-set-btn">Shuffle new set</button>
-        <button id="browse-to-mix-btn">Quiz these</button>
+        <button id="study-new-set-btn">Shuffle new set</button>
+        <button id="study-to-quiz-btn">Quiz these</button>
       </div>
 
-      <p class="pool-count" id="browse-pool-count"></p>
+      <p class="pool-count" id="study-pool-count"></p>
 
-      <div id="browse-empty" class="empty-state hidden">
+      <div id="study-empty" class="empty-state hidden">
         No works match this filter.
       </div>
 
-      <div id="browse-grid" class="browse-grid"></div>
+      <div id="study-grid" class="work-grid"></div>
     </section>
 
-    <section id="mix-tab" class="tab-panel">
+    <section id="quiz-tab" class="tab-panel">
       <div class="controls">
         <label>
           Medium
-          <select id="mm-type-filter">
+          <select id="quiz-type-filter">
             <option value="">All mediums</option>
           </select>
         </label>
         <label>
           Decade
-          <select id="mm-decade-filter">
+          <select id="quiz-decade-filter">
             <option value="">All decades</option>
           </select>
         </label>
-        <button id="mm-new-set-btn">New set</button>
-        <button id="mm-to-browse-btn">Study these</button>
+        <button id="quiz-new-set-btn">New set</button>
+        <button id="quiz-to-study-btn">Study these</button>
       </div>
 
-      <p class="pool-count" id="mm-pool-count"></p>
+      <p class="pool-count" id="quiz-pool-count"></p>
 
-      <div id="mm-empty" class="empty-state hidden">
+      <div id="quiz-empty" class="empty-state hidden">
         Not enough matching works for a set of 9 — try a broader medium or decade filter.
       </div>
 
-      <div id="mm-grid" class="mm-grid"></div>
+      <div id="quiz-grid" class="quiz-grid"></div>
 
       <div class="actions">
-        <button id="mm-submit-btn" class="btn-primary">Check answers</button>
+        <button id="quiz-submit-btn" class="btn-primary">Check answers</button>
       </div>
-      <p id="mm-score" class="mm-score"></p>
+      <p id="quiz-score" class="quiz-score"></p>
     </section>
 
     <section id="favorites-tab" class="tab-panel">
       <div id="favorites-empty" class="empty-state hidden">
         No favorites yet — click the star on any work in Study or Quiz to save it here.
       </div>
-      <div id="favorites-grid" class="browse-grid"></div>
+      <div id="favorites-grid" class="work-grid"></div>
+    </section>
+
+    <section id="artists-tab" class="tab-panel">
+      <p class="pool-count" id="artists-count"></p>
+      <div class="stats-table-wrap">
+      <table id="all-artists-table" class="stats-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Artist</th>
+            <th>Wikipedia</th>
+            <th>Dates</th>
+            <th>Works</th>
+            <th>Genres</th>
+          </tr>
+        </thead>
+        <tbody id="all-artists-body"></tbody>
+      </table>
+      </div>
     </section>
 
     <section id="stats-tab" class="tab-panel">
@@ -121,24 +140,6 @@
         No cards studied yet — head to the Quiz tab to get started.
       </div>
     </section>
-
-    <section id="artists-tab" class="tab-panel">
-      <p class="pool-count" id="artists-count"></p>
-      <div class="stats-table-wrap">
-      <table id="all-artists-table" class="stats-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Artist</th>
-            <th>Wikipedia</th>
-            <th>Dates</th>
-            <th>Genres</th>
-          </tr>
-        </thead>
-        <tbody id="all-artists-body"></tbody>
-      </table>
-      </div>
-    </section>
   </main>
 </div>
 
@@ -151,7 +152,7 @@
 <div id="wiki-preview" class="wiki-preview hidden"></div>
 
 <script src="../data.js"></script>
-<script src="../artists.js"></script>
+<script src="../artist-wiki.js"></script>
 <script src="../artists_index.js"></script>
 <script src="../shared.js"></script>
 <script src="../app.js"></script>

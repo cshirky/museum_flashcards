@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  const { escapeHtml, wikiLinkHtml, initHoverPreview, buildDisplayCard } = window.MuseumShared;
+  const { escapeHtml, wikiLinkHtml, initHoverPreview, buildArtworkCard } = window.MuseumShared;
 
   const slug = typeof CURRENT_ARTIST_SLUG !== "undefined" ? CURRENT_ARTIST_SLUG : null;
   const index = typeof ARTISTS_INDEX !== "undefined" ? ARTISTS_INDEX : {};
@@ -45,7 +45,7 @@
     if (works.length === 0) {
       gridEl.innerHTML = '<p class="empty-state">No works currently on view for this artist.</p>';
     } else {
-      works.forEach((card) => gridEl.appendChild(buildDisplayCard(card, { hideArtist: true })));
+      works.forEach((card) => gridEl.appendChild(buildArtworkCard(card, { hideArtist: true })));
     }
   }
 

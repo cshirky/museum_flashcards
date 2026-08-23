@@ -12,11 +12,10 @@
     showEmptyState,
     hideEmptyState,
     initHoverPreview,
-    buildDisplayCard,
+    buildArtworkCard,
   } = window.MuseumShared;
 
-  const STORAGE_KEY = "museumFlashcards.stats.v2";
-  const MAX_HISTORY_PER_ARTWORK = 20;
+  const STORAGE_KEY = "museumFlashcards.stats.v3";
 
   function loadStats() {
     try {
@@ -42,7 +41,7 @@
         artist: blankFieldStat(),
         title: blankFieldStat(),
         decade: blankFieldStat(),
-        history: [],
+        lastAttempt: null,
         lastSeen: null,
       };
     }
@@ -57,18 +56,11 @@
         else s[field].wrong += 1;
       }
     });
-    s.history.unshift({
-      timestamp: new Date().toISOString(),
+    s.lastAttempt = {
       artistGuess: result.artist.guess,
       titleGuess: result.title.guess,
       decadeGuess: result.decade.guess,
-      artistCorrect: result.artist.graded ? result.artist.correct : null,
-      titleCorrect: result.title.graded ? result.title.correct : null,
-      decadeCorrect: result.decade.graded ? result.decade.correct : null,
-    });
-    if (s.history.length > MAX_HISTORY_PER_ARTWORK) {
-      s.history.length = MAX_HISTORY_PER_ARTWORK;
-    }
+    };
     s.lastSeen = new Date().toISOString();
     saveStats(stats);
   }
@@ -113,8 +105,8 @@
   // `python -m http.server` from this folder) or a subpath (e.g. GitHub
   // Pages project sites at /reponame/).
 
-  const TAB_SLUGS = { mix: "quiz", browse: "study", favorites: "favorites", stats: "stats", artists: "artists" };
-  const SLUG_TABS = { quiz: "mix", study: "browse", favorites: "favorites", stats: "stats", artists: "artists" };
+  const TAB_SLUGS = { quiz: "quiz", study: "study", favorites: "favorites", stats: "stats", artists: "artists" };
+  const SLUG_TABS = { quiz: "quiz", study: "study", favorites: "favorites", stats: "stats", artists: "artists" };
 
   function computeBasePath() {
     const segments = window.location.pathname.split("/").filter(Boolean);
@@ -129,13 +121,13 @@
   function tabFromPath(pathname) {
     const segments = pathname.split("/").filter(Boolean);
     const lastSegment = segments[segments.length - 1];
-    return SLUG_TABS[lastSegment] || "browse";
+    return SLUG_TABS[lastSegment] || "study";
   }
 
   const navButtons = document.querySelectorAll(".nav-btn");
   const tabPanels = {
-    mix: document.getElementById("mix-tab"),
-    browse: document.getElementById("browse-tab"),
+    quiz: document.getElementById("quiz-tab"),
+    study: document.getElementById("study-tab"),
     favorites: document.getElementById("favorites-tab"),
     stats: document.getElementById("stats-tab"),
     artists: document.getElementById("artists-tab"),
@@ -195,15 +187,15 @@
   const byCountDesc = (counts) => (a, b) => counts.get(b) - counts.get(a);
   const alphabetically = (a, b) => a.localeCompare(b);
 
-  const mmTypeFilter = document.getElementById("mm-type-filter");
-  const mmDecadeFilter = document.getElementById("mm-decade-filter");
-  populateFilter(mmTypeFilter, typeCounts, byCountDesc(typeCounts));
-  populateFilter(mmDecadeFilter, decadeCounts, alphabetically);
+  const quizTypeFilter = document.getElementById("quiz-type-filter");
+  const quizDecadeFilter = document.getElementById("quiz-decade-filter");
+  populateFilter(quizTypeFilter, typeCounts, byCountDesc(typeCounts));
+  populateFilter(quizDecadeFilter, decadeCounts, alphabetically);
 
-  const browseTypeFilter = document.getElementById("browse-type-filter");
-  const browseDecadeFilter = document.getElementById("browse-decade-filter");
-  populateFilter(browseTypeFilter, typeCounts, byCountDesc(typeCounts));
-  populateFilter(browseDecadeFilter, decadeCounts, alphabetically);
+  const studyTypeFilter = document.getElementById("study-type-filter");
+  const studyDecadeFilter = document.getElementById("study-decade-filter");
+  populateFilter(studyTypeFilter, typeCounts, byCountDesc(typeCounts));
+  populateFilter(studyDecadeFilter, decadeCounts, alphabetically);
 
   // shuffled, initHoverPreview, and the Wikipedia hover tooltip now live in
   // shared.js — the tooltip and the image lightbox wire themselves up
@@ -213,37 +205,37 @@
 
   // ---------- Quiz tab ----------
 
-  const MIX_SET_SIZE = 9;
+  const QUIZ_SET_SIZE = 9;
 
-  const mmPoolCount = document.getElementById("mm-pool-count");
-  const mmEmpty = document.getElementById("mm-empty");
-  const mmGrid = document.getElementById("mm-grid");
-  const mmSubmitBtn = document.getElementById("mm-submit-btn");
-  const mmNewSetBtn = document.getElementById("mm-new-set-btn");
-  const mmToBrowseBtn = document.getElementById("mm-to-browse-btn");
-  const mmScore = document.getElementById("mm-score");
+  const quizPoolCount = document.getElementById("quiz-pool-count");
+  const quizEmpty = document.getElementById("quiz-empty");
+  const quizGrid = document.getElementById("quiz-grid");
+  const quizSubmitBtn = document.getElementById("quiz-submit-btn");
+  const quizNewSetBtn = document.getElementById("quiz-new-set-btn");
+  const quizToStudyBtn = document.getElementById("quiz-to-study-btn");
+  const quizScore = document.getElementById("quiz-score");
 
-  let mmBatch = [];
-  let mmSubmitted = false;
+  let quizBatch = [];
+  let quizSubmitted = false;
 
   // Per-field multiset of the batch's true values (e.g. 9 decades, possibly with
   // duplicates) and the current selections, keyed by card index. Options already
   // picked in one card's dropdown are removed from the others of the same field —
   // computed fresh from these two each time, so re-selecting/clearing stays correct.
-  let mmPools = { artist: [], title: [], decade: [] };
-  let mmSelections = { artist: {}, title: {}, decade: {} };
+  let quizPools = { artist: [], title: [], decade: [] };
+  let quizSelections = { artist: {}, title: {}, decade: {} };
 
-  function buildMixPool() {
+  function buildQuizPool() {
     // decade is required per-card so the matching game has a full set of options
-    return filterArtworksPool({ type: mmTypeFilter.value, decade: mmDecadeFilter.value, requireDecade: true });
+    return filterArtworksPool({ type: quizTypeFilter.value, decade: quizDecadeFilter.value, requireDecade: true });
   }
 
   function availableOptions(field, forIdx) {
-    const remaining = mmPools[field].slice();
-    Object.keys(mmSelections[field]).forEach((idxStr) => {
+    const remaining = quizPools[field].slice();
+    Object.keys(quizSelections[field]).forEach((idxStr) => {
       const idx = Number(idxStr);
       if (idx === forIdx) return;
-      const val = mmSelections[field][idx];
+      const val = quizSelections[field][idx];
       if (!val) return;
       const pos = remaining.indexOf(val);
       if (pos !== -1) remaining.splice(pos, 1);
@@ -252,8 +244,8 @@
   }
 
   function refreshFieldSelects(field) {
-    mmBatch.forEach((card, idx) => {
-      const select = mmGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
+    quizBatch.forEach((card, idx) => {
+      const select = quizGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
       if (!select) return;
       const currentVal = select.value;
       select.innerHTML = "";
@@ -263,13 +255,13 @@
     });
   }
 
-  function makeMixField(container, label, field, idx) {
+  function makeQuizField(container, label, field, idx) {
     const wrap = document.createElement("label");
-    wrap.className = "mm-field";
+    wrap.className = "quiz-field";
     wrap.append(label);
 
     const select = document.createElement("select");
-    select.className = "mm-select";
+    select.className = "quiz-select";
     select.dataset.field = field;
     select.dataset.idx = String(idx);
     select.appendChild(new Option("Choose…", ""));
@@ -277,24 +269,24 @@
 
     const result = document.createElement("span");
     result.className = "guess-result";
-    result.id = `mm-result-${field}-${idx}`;
+    result.id = `quiz-result-${field}-${idx}`;
     wrap.appendChild(result);
 
     container.appendChild(wrap);
   }
 
-  function renderMixGrid() {
-    mmPools = {
-      artist: shuffled(mmBatch.map((c) => c.artist)),
-      title: shuffled(mmBatch.map((c) => c.title)),
-      decade: mmBatch.map((c) => c.decade).sort(),
+  function renderQuizGrid() {
+    quizPools = {
+      artist: shuffled(quizBatch.map((c) => c.artist)),
+      title: shuffled(quizBatch.map((c) => c.title)),
+      decade: quizBatch.map((c) => c.decade).sort(),
     };
-    mmSelections = { artist: {}, title: {}, decade: {} };
+    quizSelections = { artist: {}, title: {}, decade: {} };
 
-    mmGrid.innerHTML = "";
-    mmBatch.forEach((card, idx) => {
+    quizGrid.innerHTML = "";
+    quizBatch.forEach((card, idx) => {
       const div = document.createElement("div");
-      div.className = "mm-card";
+      div.className = "quiz-card";
 
       const img = document.createElement("img");
       img.src = card.image;
@@ -302,71 +294,71 @@
       div.appendChild(img);
       div.appendChild(makeFavButton(card.id));
 
-      makeMixField(div, "Artist", "artist", idx);
-      makeMixField(div, "Title", "title", idx);
-      makeMixField(div, "Decade", "decade", idx);
+      makeQuizField(div, "Artist", "artist", idx);
+      makeQuizField(div, "Title", "title", idx);
+      makeQuizField(div, "Decade", "decade", idx);
 
-      mmGrid.appendChild(div);
+      quizGrid.appendChild(div);
     });
 
     ["artist", "title", "decade"].forEach(refreshFieldSelects);
   }
 
-  mmGrid.addEventListener("change", (e) => {
-    const select = e.target.closest(".mm-select");
+  quizGrid.addEventListener("change", (e) => {
+    const select = e.target.closest(".quiz-select");
     if (!select) return;
     const field = select.dataset.field;
     const idx = Number(select.dataset.idx);
-    mmSelections[field][idx] = select.value;
+    quizSelections[field][idx] = select.value;
     refreshFieldSelects(field);
   });
 
-  function loadMixBatch(batch, sourceLabel) {
-    mmBatch = batch;
-    mmScore.textContent = "";
-    mmSubmitted = false;
-    hideEmptyState(mmGrid, mmEmpty);
-    mmSubmitBtn.classList.remove("hidden");
-    mmSubmitBtn.disabled = false;
-    mmPoolCount.textContent = sourceLabel || `${batch.length} works match this filter.`;
-    renderMixGrid();
+  function loadQuizBatch(batch, sourceLabel) {
+    quizBatch = batch;
+    quizScore.textContent = "";
+    quizSubmitted = false;
+    hideEmptyState(quizGrid, quizEmpty);
+    quizSubmitBtn.classList.remove("hidden");
+    quizSubmitBtn.disabled = false;
+    quizPoolCount.textContent = sourceLabel;
+    renderQuizGrid();
   }
 
-  function newMixSet() {
-    const pool = buildMixPool();
+  function newQuizSet() {
+    const pool = buildQuizPool();
 
-    if (pool.length < MIX_SET_SIZE) {
-      mmBatch = [];
-      mmScore.textContent = "";
-      mmSubmitted = false;
-      showEmptyState(mmGrid, mmEmpty);
-      mmSubmitBtn.classList.add("hidden");
-      mmPoolCount.textContent =
-        pool.length > 0 ? `Only ${pool.length} matching works — need at least ${MIX_SET_SIZE}.` : "";
+    if (pool.length < QUIZ_SET_SIZE) {
+      quizBatch = [];
+      quizScore.textContent = "";
+      quizSubmitted = false;
+      showEmptyState(quizGrid, quizEmpty);
+      quizSubmitBtn.classList.add("hidden");
+      quizPoolCount.textContent =
+        pool.length > 0 ? `Only ${pool.length} matching works — need at least ${QUIZ_SET_SIZE}.` : "";
       return;
     }
 
-    loadMixBatch(shuffled(pool).slice(0, MIX_SET_SIZE), `${pool.length} works match this filter.`);
+    loadQuizBatch(shuffled(pool).slice(0, QUIZ_SET_SIZE), `${pool.length} works match this filter.`);
   }
 
-  function submitMix() {
-    if (mmSubmitted || mmBatch.length === 0) return;
+  function submitQuiz() {
+    if (quizSubmitted || quizBatch.length === 0) return;
 
-    const allSelects = Array.from(mmGrid.querySelectorAll(".mm-select"));
+    const allSelects = Array.from(quizGrid.querySelectorAll(".quiz-select"));
     const anySelected = allSelects.some((s) => s.value.length > 0);
     if (!anySelected) {
-      mmScore.textContent = "Choose some answers first.";
+      quizScore.textContent = "Choose some answers first.";
       return;
     }
 
-    mmSubmitted = true;
+    quizSubmitted = true;
     let rightTotal = 0;
     let gradedTotal = 0;
 
-    mmBatch.forEach((card, idx) => {
+    quizBatch.forEach((card, idx) => {
       const result = {};
       ["artist", "title", "decade"].forEach((field) => {
-        const select = mmGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
+        const select = quizGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
         const guess = select.value;
         const graded = guess.length > 0;
         const correct = graded && guess === card[field];
@@ -377,7 +369,7 @@
         }
         const correctValueHtml = field === "artist" ? artistLinksHtml(card.artist) : undefined;
         markResult(
-          document.getElementById(`mm-result-${field}-${idx}`),
+          document.getElementById(`quiz-result-${field}-${idx}`),
           graded,
           correct,
           card[field],
@@ -388,76 +380,76 @@
       recordAttempt(card.id, result);
     });
 
-    mmScore.textContent = `${rightTotal} / ${gradedTotal} correct.`;
-    mmSubmitBtn.disabled = true;
+    quizScore.textContent = `${rightTotal} / ${gradedTotal} correct.`;
+    quizSubmitBtn.disabled = true;
   }
 
-  mmNewSetBtn.addEventListener("click", newMixSet);
-  mmSubmitBtn.addEventListener("click", submitMix);
-  mmTypeFilter.addEventListener("change", newMixSet);
-  mmDecadeFilter.addEventListener("change", newMixSet);
-  mmToBrowseBtn.addEventListener("click", () => {
-    if (mmBatch.length === 0) return;
-    loadBrowseBatch(mmBatch.slice(), `Showing the ${mmBatch.length} works from Quiz.`);
-    activateTab("browse");
+  quizNewSetBtn.addEventListener("click", newQuizSet);
+  quizSubmitBtn.addEventListener("click", submitQuiz);
+  quizTypeFilter.addEventListener("change", newQuizSet);
+  quizDecadeFilter.addEventListener("change", newQuizSet);
+  quizToStudyBtn.addEventListener("click", () => {
+    if (quizBatch.length === 0) return;
+    loadStudyBatch(quizBatch.slice(), `Showing the ${quizBatch.length} works from Quiz.`);
+    activateTab("study");
   });
-  initHoverPreview(mmGrid);
+  initHoverPreview(quizGrid);
 
-  // ---------- Study (browse) tab ----------
+  // ---------- Study tab ----------
 
-  const BROWSE_SET_SIZE = 9;
+  const STUDY_SET_SIZE = 9;
 
-  const browsePoolCount = document.getElementById("browse-pool-count");
-  const browseEmpty = document.getElementById("browse-empty");
-  const browseGrid = document.getElementById("browse-grid");
-  const browseNewSetBtn = document.getElementById("browse-new-set-btn");
-  const browseToMixBtn = document.getElementById("browse-to-mix-btn");
+  const studyPoolCount = document.getElementById("study-pool-count");
+  const studyEmpty = document.getElementById("study-empty");
+  const studyGrid = document.getElementById("study-grid");
+  const studyNewSetBtn = document.getElementById("study-new-set-btn");
+  const studyToQuizBtn = document.getElementById("study-to-quiz-btn");
 
-  let browseBatch = [];
+  let studyBatch = [];
 
-  function renderBrowseGrid() {
-    browseGrid.innerHTML = "";
-    browseBatch.forEach((card) => browseGrid.appendChild(buildDisplayCard(card)));
+  function renderStudyGrid() {
+    studyGrid.innerHTML = "";
+    studyBatch.forEach((card) => studyGrid.appendChild(buildArtworkCard(card)));
   }
 
-  function loadBrowseBatch(batch, sourceLabel) {
-    browseBatch = batch;
-    hideEmptyState(browseGrid, browseEmpty);
-    browsePoolCount.textContent = sourceLabel;
-    renderBrowseGrid();
+  function loadStudyBatch(batch, sourceLabel) {
+    studyBatch = batch;
+    hideEmptyState(studyGrid, studyEmpty);
+    studyPoolCount.textContent = sourceLabel;
+    renderStudyGrid();
   }
 
-  function newBrowseSet() {
+  function newStudySet() {
     // decade is required per-card so a set can always convert into Quiz
     const pool = filterArtworksPool({
-      type: browseTypeFilter.value,
-      decade: browseDecadeFilter.value,
+      type: studyTypeFilter.value,
+      decade: studyDecadeFilter.value,
       requireDecade: true,
     });
 
     if (pool.length === 0) {
-      browseBatch = [];
-      showEmptyState(browseGrid, browseEmpty);
-      browsePoolCount.textContent = "";
+      studyBatch = [];
+      showEmptyState(studyGrid, studyEmpty);
+      studyPoolCount.textContent = "";
       return;
     }
 
-    const batch = shuffled(pool).slice(0, BROWSE_SET_SIZE);
-    loadBrowseBatch(
+    const batch = shuffled(pool).slice(0, STUDY_SET_SIZE);
+    loadStudyBatch(
       batch,
       `${pool.length} work${pool.length === 1 ? "" : "s"} match this filter — showing ${batch.length}.`
     );
   }
 
-  browseNewSetBtn.addEventListener("click", newBrowseSet);
-  browseTypeFilter.addEventListener("change", newBrowseSet);
-  browseDecadeFilter.addEventListener("change", newBrowseSet);
-  browseToMixBtn.addEventListener("click", () => {
-    if (browseBatch.length === 0) return;
-    loadMixBatch(browseBatch.slice(), `Showing the ${browseBatch.length} works from Study.`);
-    activateTab("mix");
+  studyNewSetBtn.addEventListener("click", newStudySet);
+  studyTypeFilter.addEventListener("change", newStudySet);
+  studyDecadeFilter.addEventListener("change", newStudySet);
+  studyToQuizBtn.addEventListener("click", () => {
+    if (studyBatch.length === 0) return;
+    loadQuizBatch(studyBatch.slice(), `Showing the ${studyBatch.length} works from Study.`);
+    activateTab("quiz");
   });
-  initHoverPreview(browseGrid);
+  initHoverPreview(studyGrid);
 
   // ---------- Favorites tab ----------
 
@@ -481,7 +473,7 @@
     favoritesEmpty.classList.add("hidden");
     favoritesGrid.classList.remove("hidden");
     favoritesGrid.innerHTML = "";
-    items.forEach((card) => favoritesGrid.appendChild(buildDisplayCard(card)));
+    items.forEach((card) => favoritesGrid.appendChild(buildArtworkCard(card)));
   }
 
   initHoverPreview(favoritesGrid);
@@ -496,17 +488,17 @@
   let sortKey = "overallAcc";
   let sortDir = 1;
 
-  function pct(f) {
+  function computeAccuracy(f) {
     const total = f.right + f.wrong;
     return total > 0 ? f.right / total : null;
   }
 
-  function fmtPct(p) {
+  function formatAccuracy(p) {
     return p === null ? "—" : `${Math.round(p * 100)}%`;
   }
 
   function renderStats() {
-    const studiedIds = Object.keys(stats).filter((id) => stats[id].history.length > 0);
+    const studiedIds = Object.keys(stats).filter((id) => stats[id].lastAttempt !== null);
     if (studiedIds.length === 0) {
       statsTable.classList.add("hidden");
       statsSummary.classList.add("hidden");
@@ -523,9 +515,9 @@
         const art = byId.get(id);
         if (!art) return null;
         const s = stats[id];
-        const artistAcc = pct(s.artist);
-        const titleAcc = pct(s.title);
-        const decadeAcc = pct(s.decade);
+        const artistAcc = computeAccuracy(s.artist);
+        const titleAcc = computeAccuracy(s.title);
+        const decadeAcc = computeAccuracy(s.decade);
         const totalRight = s.artist.right + s.title.right + s.decade.right;
         const totalAttempts = totalRight + s.artist.wrong + s.title.wrong + s.decade.wrong;
         const overallAcc = totalAttempts > 0 ? totalRight / totalAttempts : null;
@@ -537,7 +529,7 @@
           overallAcc,
           type: art.types.join(", "),
           decade: art.decade || "—",
-          lastGuesses: s.history[0],
+          lastAttempt: s.lastAttempt,
         };
       })
       .filter(Boolean);
@@ -576,8 +568,8 @@
     statsBody.innerHTML = "";
     rows.forEach((r) => {
       const tr = document.createElement("tr");
-      const guessTitle = r.lastGuesses
-        ? `Last guess — artist: "${r.lastGuesses.artistGuess || "(blank)"}", title: "${r.lastGuesses.titleGuess || "(blank)"}", decade: "${r.lastGuesses.decadeGuess || "(blank)"}"`
+      const guessTitle = r.lastAttempt
+        ? `Last guess — artist: "${r.lastAttempt.artistGuess || "(blank)"}", title: "${r.lastAttempt.titleGuess || "(blank)"}", decade: "${r.lastAttempt.decadeGuess || "(blank)"}"`
         : "";
       tr.title = guessTitle;
       tr.innerHTML = `
@@ -586,10 +578,10 @@
         <td>${artistLinksHtml(r.art.artist)}</td>
         <td>${r.type}</td>
         <td>${r.decade}</td>
-        <td>${fmtPct(r.artistAcc)}</td>
-        <td>${fmtPct(r.titleAcc)}</td>
-        <td>${fmtPct(r.decadeAcc)}</td>
-        <td>${fmtPct(r.overallAcc)}</td>
+        <td>${formatAccuracy(r.artistAcc)}</td>
+        <td>${formatAccuracy(r.titleAcc)}</td>
+        <td>${formatAccuracy(r.decadeAcc)}</td>
+        <td>${formatAccuracy(r.overallAcc)}</td>
       `;
       statsBody.appendChild(tr);
     });
@@ -673,6 +665,7 @@
         <td><a href="${escapeHtml(artistDetailHref(rec.slug))}">${escapeHtml(rec.name)}</a></td>
         <td>${wikiCell}</td>
         <td>${formatArtistDates(rec.birthYear, rec.deathYear)}</td>
+        <td>${rec.artworkCount}</td>
         <td>${formatGenres(rec.genres)}</td>
       `;
       allArtistsBody.appendChild(tr);
@@ -681,7 +674,7 @@
 
   // ---------- Init ----------
 
-  newMixSet();
-  newBrowseSet();
+  newQuizSet();
+  newStudySet();
   activateTab(tabFromPath(window.location.pathname), { replaceHistory: true });
 })();

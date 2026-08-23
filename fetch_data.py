@@ -32,8 +32,8 @@ OUTPUT_JSON = Path(__file__).parent / "data" / "artworks.json"
 WIKI_API_BASE = "https://en.wikipedia.org"
 WIKI_USER_AGENT = "museum-flashcards-fetcher/1.0 (personal study app; contact via GitHub)"
 WIKI_REQUEST_DELAY_SECONDS = 0.4
-OUTPUT_ARTISTS_JS = Path(__file__).parent / "docs" / "artists.js"
-OUTPUT_ARTISTS_JSON = Path(__file__).parent / "data" / "artists_wiki.json"
+OUTPUT_ARTIST_WIKI_JS = Path(__file__).parent / "docs" / "artist-wiki.js"
+OUTPUT_ARTIST_WIKI_JSON = Path(__file__).parent / "data" / "artists_wiki.json"
 
 OUTPUT_ARTISTS_INDEX_JS = Path(__file__).parent / "docs" / "artists_index.js"
 OUTPUT_ARTISTS_INDEX_JSON = Path(__file__).parent / "data" / "artists_index.json"
@@ -438,13 +438,13 @@ ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Museum Flashcards — Studio Museum in Harlem</title>
+<title>Museum Flashcards — Studio Museum of Harlem</title>
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 <header class="app-header">
   <h1>Museum Flashcards</h1>
-  <p class="subtitle">Studio Museum in Harlem collection</p>
+  <p class="subtitle">Studio Museum of Harlem collection</p>
 </header>
 
 <div class="app-shell">
@@ -452,14 +452,14 @@ ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
     <a class="nav-btn" href="../../study/">Study</a>
     <a class="nav-btn" href="../../quiz/">Quiz</a>
     <a class="nav-btn" href="../../favorites/">Favorites</a>
-    <a class="nav-btn" href="../../stats/">Stats</a>
     <a class="nav-btn active" href="../../artists/">All Artists</a>
+    <a class="nav-btn" href="../../stats/">Stats</a>
   </nav>
 
   <main>
     <a class="back-link" href="../../artists/">&larr; All Artists</a>
     <div id="artist-header" class="artist-header"></div>
-    <div id="artist-grid" class="browse-grid"></div>
+    <div id="artist-grid" class="work-grid"></div>
   </main>
 </div>
 
@@ -473,7 +473,7 @@ ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
 
 <script>const CURRENT_ARTIST_SLUG = "__SLUG__";</script>
 <script src="../../data.js"></script>
-<script src="../../artists.js"></script>
+<script src="../../artist-wiki.js"></script>
 <script src="../../artists_index.js"></script>
 <script src="../../shared.js"></script>
 <script src="../../artist-page.js"></script>
@@ -550,8 +550,8 @@ def main() -> None:
     print(f"Looking up {len(artist_names)} unique artists on Wikipedia (this takes a few minutes)...")
     artist_wiki = build_artist_wiki_lookup(artist_names, birth_years)
 
-    write_json_and_js(OUTPUT_ARTISTS_JSON, OUTPUT_ARTISTS_JS, "ARTIST_WIKI", artist_wiki, sort_keys=True)
-    print(f"Wrote {OUTPUT_ARTISTS_JSON} and {OUTPUT_ARTISTS_JS}")
+    write_json_and_js(OUTPUT_ARTIST_WIKI_JSON, OUTPUT_ARTIST_WIKI_JS, "ARTIST_WIKI", artist_wiki, sort_keys=True)
+    print(f"Wrote {OUTPUT_ARTIST_WIKI_JSON} and {OUTPUT_ARTIST_WIKI_JS}")
 
     artist_records = collect_artist_records(raw_entries)
     artists_index = build_artists_index(artist_records, artist_wiki)

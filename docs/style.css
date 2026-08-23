@@ -281,22 +281,22 @@ main {
   display: block;
 }
 
-/* Work-card grid, shared by Quiz (.mm-*) and Study/Favorites/artist-detail
-   (.browse-*) — grouped so the properties both actually need are declared
+/* Artwork-card grid, shared by Quiz (.quiz-*) and Study/Favorites/artist-detail
+   (.work-*) — grouped so the properties both actually need are declared
    once, with only the real differences (margin-bottom on the grid/image,
    Quiz's extra flex layout for its dropdown fields) split out below. */
 
-.mm-grid, .browse-grid {
+.quiz-grid, .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-.mm-grid.hidden, .browse-grid.hidden { display: none; }
+.quiz-grid.hidden, .work-grid.hidden { display: none; }
 
-.mm-grid { margin-bottom: 16px; }
+.quiz-grid { margin-bottom: 16px; }
 
-.mm-card, .browse-card {
+.quiz-card, .work-card {
   position: relative;
   min-width: 0;
   background: var(--panel);
@@ -305,13 +305,13 @@ main {
   padding: 14px;
 }
 
-.mm-card {
+.quiz-card {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.mm-card img, .browse-card img {
+.quiz-card img, .work-card img {
   width: 100%;
   max-height: 160px;
   object-fit: contain;
@@ -320,12 +320,12 @@ main {
   cursor: zoom-in;
 }
 
-.mm-card img { margin-bottom: 4px; }
-.browse-card img { margin-bottom: 10px; }
+.quiz-card img { margin-bottom: 4px; }
+.work-card img { margin-bottom: 10px; }
 
 /* Quiz */
 
-.mm-field {
+.quiz-field {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -333,7 +333,7 @@ main {
   color: var(--text-dim);
 }
 
-.mm-select {
+.quiz-select {
   width: 100%;
   min-width: 0;
   background: var(--panel-2);
@@ -344,24 +344,24 @@ main {
   font-size: 0.85rem;
 }
 
-.mm-select:disabled {
+.quiz-select:disabled {
   opacity: 0.75;
 }
 
-.mm-score {
+.quiz-score {
   text-align: center;
   font-weight: 600;
   margin-top: 10px;
 }
 
-/* Study (browse) */
+/* Artwork card (Study/Favorites/artist-detail) */
 
-.browse-card h3 {
+.work-card h3 {
   margin: 0 0 4px;
   font-size: 1rem;
 }
 
-.browse-artist {
+.work-artist {
   color: var(--accent);
   font-weight: 600;
   margin: 0 0 4px;
@@ -391,7 +391,7 @@ main {
   opacity: 0.8;
 }
 
-.browse-card p {
+.work-card p {
   margin: 2px 0;
   font-size: 0.85rem;
   color: var(--text-dim);
@@ -478,15 +478,15 @@ main {
 .wiki-preview.hidden { display: none; }
 
 @media (max-width: 900px) {
-  .mm-grid,
-  .browse-grid {
+  .quiz-grid,
+  .work-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .mm-grid,
-  .browse-grid {
+  .quiz-grid,
+  .work-grid {
     grid-template-columns: 1fr;
   }
 }

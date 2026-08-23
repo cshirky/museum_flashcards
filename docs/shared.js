@@ -1,14 +1,14 @@
 // Shared across every page (the core Study/Quiz/Favorites/Stats/All Artists
 // app shell AND the per-artist detail leaf pages), exposed as
 // window.MuseumShared so plain <script> tags can use it without a bundler.
-// Depends on ARTWORKS (data.js) and ARTIST_WIKI (artists.js) being loaded
-// first as bare globals; expects #image-preview/#image-preview-img and
-// #wiki-preview to exist in the page's HTML.
+// Depends on ARTWORKS (data.js) and ARTIST_WIKI (artist-wiki.js) being
+// loaded first as bare globals; expects #image-preview/#image-preview-img
+// and #wiki-preview to exist in the page's HTML.
 
 window.MuseumShared = (function () {
   "use strict";
 
-  const WIKI = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
+  const artistWikiLookup = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
 
   function escapeHtml(str) {
     return String(str)
@@ -53,7 +53,7 @@ window.MuseumShared = (function () {
   function artistLinksHtml(field) {
     const names = splitArtistNames(field);
     if (names.length === 0) return escapeHtml(field || "");
-    return names.map((name) => wikiLinkHtml(name, WIKI[name])).join(", ");
+    return names.map((name) => wikiLinkHtml(name, artistWikiLookup[name])).join(", ");
   }
 
   // ---------- Favorites ----------
@@ -150,8 +150,13 @@ window.MuseumShared = (function () {
   }
 
   // ---------- Hover image preview (click-outside-to-close lightbox) ----------
-  // Mouseover a thumbnail opens a full-screen backdrop with the image
+  // Hovering a thumbnail opens a full-screen backdrop with the image
   // enlarged and centered (CSS flex-centers it — no cursor-relative math).
+  // The preview only opens once the cursor has been still over an image for
+  // HOVER_DELAY_MS — a plain mouseover fired it instantly while just passing
+  // over the grid, which was distracting. Tracked via mousemove (which stops
+  // firing once the pointer stops), restarting the timer on every move and
+  // clearing it on leaving the image, so it only fires after real stillness.
   // While shown, the backdrop covers the whole viewport and intercepts
   // every pointer event, so nothing underneath it can receive a stray
   // mouseover — that's what used to let the preview silently swap to a
@@ -162,15 +167,31 @@ window.MuseumShared = (function () {
 
   const imagePreview = document.getElementById("image-preview");
   const imagePreviewImg = document.getElementById("image-preview-img");
+  const HOVER_DELAY_MS = 400;
 
   function initHoverPreview(container) {
     if (!imagePreview || !imagePreviewImg) return;
-    container.addEventListener("mouseover", (e) => {
+    let hoverTimer = null;
+
+    function clearHoverTimer() {
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+    }
+
+    container.addEventListener("mousemove", (e) => {
       const img = e.target.closest("img");
+      clearHoverTimer();
       if (!img || !container.contains(img)) return;
-      imagePreviewImg.src = img.src;
-      imagePreview.classList.remove("hidden");
+      hoverTimer = setTimeout(() => {
+        hoverTimer = null;
+        imagePreviewImg.src = img.src;
+        imagePreview.classList.remove("hidden");
+      }, HOVER_DELAY_MS);
     });
+
+    container.addEventListener("mouseleave", clearHoverTimer);
   }
 
   if (imagePreview) {
@@ -209,7 +230,7 @@ window.MuseumShared = (function () {
     document.body.addEventListener("mouseover", (e) => {
       const link = e.target.closest(".artist-link");
       if (!link) return;
-      const wiki = WIKI[link.dataset.artist];
+      const wiki = artistWikiLookup[link.dataset.artist];
       if (!wiki || !wiki.extract) return;
       wikiPreview.textContent = wiki.extract;
       wikiPreview.classList.remove("hidden");
@@ -224,15 +245,15 @@ window.MuseumShared = (function () {
     });
   }
 
-  // ---------- Shared display-card builder ----------
+  // ---------- Shared artwork-card builder ----------
   // Used by Study, Favorites, and each artist's own detail page. opts.hideArtist
   // skips the artist name/dates line — redundant on a page that's already
   // dedicated to that one artist.
 
-  function buildDisplayCard(card, opts) {
+  function buildArtworkCard(card, opts) {
     opts = opts || {};
     const div = document.createElement("div");
-    div.className = "browse-card";
+    div.className = "work-card";
 
     const img = document.createElement("img");
     img.src = card.image;
@@ -246,7 +267,7 @@ window.MuseumShared = (function () {
 
     if (!opts.hideArtist) {
       const artist = document.createElement("p");
-      artist.className = "browse-artist";
+      artist.className = "work-artist";
       artist.innerHTML = card.artistDates
         ? `${artistLinksHtml(card.artist)} (${escapeHtml(card.artistDates)})`
         : artistLinksHtml(card.artist);
@@ -262,13 +283,10 @@ window.MuseumShared = (function () {
 
   return {
     escapeHtml,
-    splitArtistNames,
     wikipediaSearchUrl,
     wikiLinkHtml,
     artistLinksHtml,
-    isFavorite,
     getFavoriteIds,
-    updateFavButtons,
     toggleFavorite,
     makeFavButton,
     shuffled,
@@ -276,6 +294,6 @@ window.MuseumShared = (function () {
     showEmptyState,
     hideEmptyState,
     initHoverPreview,
-    buildDisplayCard,
+    buildArtworkCard,
   };
 })();
