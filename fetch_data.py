@@ -438,13 +438,13 @@ ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Museum Flashcards — Studio Museum of Harlem</title>
+<title>Museum Flashcards — The Studio Museum in Harlem</title>
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 <header class="app-header">
   <h1>Museum Flashcards</h1>
-  <p class="subtitle">Studio Museum of Harlem collection</p>
+  <p class="subtitle">The Studio Museum in Harlem collection</p>
 </header>
 
 <div class="app-shell">
