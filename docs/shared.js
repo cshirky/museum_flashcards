@@ -9,6 +9,9 @@ window.MuseumShared = (function () {
   "use strict";
 
   const artistWikiLookup = typeof ARTIST_WIKI !== "undefined" ? ARTIST_WIKI : {};
+  const artworksById = new Map(
+    (typeof ARTWORKS !== "undefined" ? ARTWORKS : []).map((a) => [a.id, a])
+  );
 
   function escapeHtml(str) {
     return String(str)
@@ -26,11 +29,18 @@ window.MuseumShared = (function () {
     return `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(name)}`;
   }
 
+  // Every page that links to an artist detail page lives exactly one
+  // directory below docs/ (study/, quiz/, favorites/, stats/, artists/), so
+  // a relative path — same pattern as this page's own "../style.css" etc. —
+  // reaches it without needing a computed base path.
+  function artistDetailHref(slug) {
+    return `../artist/${slug}/`;
+  }
+
   // The single place that builds a Wikipedia <a> tag for an artist, used by
-  // artistLinksHtml below, the All Artists table, and each artist's own
-  // detail page — those three used to each build this markup separately,
-  // which is how "red link" styling ended up silently broken everywhere at
-  // once (see artist-link-missing below).
+  // the All Artists table's Wikipedia column and each artist's own detail
+  // page header — the two spots that link to the actual Wikipedia article
+  // rather than this app's own artist page.
   //
   // wikiInfo is a {url, extract} pair — from ARTIST_WIKI[name] or an
   // ARTISTS_INDEX record's {wikipediaUrl, wikipediaExtract} (renamed by the
@@ -46,14 +56,31 @@ window.MuseumShared = (function () {
     return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" data-artist="${escapeHtml(name)}">${escapeHtml(text)}</a>`;
   }
 
-  // Unmatched artists (no confident Wikipedia article) still get a link —
-  // to a Wikipedia search page — but styled as a "red link" (Wikipedia's
-  // own term for a link to a page that doesn't exist yet) so it's visually
-  // obvious there's nothing to preview before you even hover it.
-  function artistLinksHtml(field) {
+  // Artist-byline links (work cards, stats table, quiz results, the image
+  // lightbox caption) point at this app's own artist page rather than
+  // straight to Wikipedia — the Wikipedia extract still shows on hover (via
+  // data-artist, read by the wiki-preview tooltip below), it's just no
+  // longer where the click goes. Artists with no confident Wikipedia match
+  // keep the "red link" style so it's visually obvious before hovering.
+  function artistNameLinkHtml(name, slug, wikiInfo) {
+    const matched = !!(wikiInfo && wikiInfo.extract);
+    const cls = matched ? "artist-link" : "artist-link artist-link-missing";
+    return `<a class="${cls}" href="${escapeHtml(artistDetailHref(slug))}" data-artist="${escapeHtml(name)}">${escapeHtml(name)}</a>`;
+  }
+
+  // slugs is the artwork's artistSlugs array, in the same order as the
+  // comma-separated names in field — every known artist has a detail page,
+  // so this always has a slug to link to.
+  function artistLinksHtml(field, slugs) {
     const names = splitArtistNames(field);
     if (names.length === 0) return escapeHtml(field || "");
-    return names.map((name) => wikiLinkHtml(name, artistWikiLookup[name])).join(", ");
+    return names
+      .map((name, i) => {
+        const slug = slugs && slugs[i];
+        if (!slug) return wikiLinkHtml(name, artistWikiLookup[name]);
+        return artistNameLinkHtml(name, slug, artistWikiLookup[name]);
+      })
+      .join(", ");
   }
 
   // ---------- Favorites ----------
@@ -169,6 +196,21 @@ window.MuseumShared = (function () {
   const imagePreviewImg = document.getElementById("image-preview-img");
   const HOVER_DELAY_MS = 400;
 
+  // The caption (title/artist/date) below the enlarged image isn't in any
+  // page's static HTML — it's built once here and reused, the same way the
+  // rest of this lightbox is driven entirely from JS, so none of the
+  // several page templates (including the ~630 generated artist pages)
+  // needed hand-editing to grow this feature.
+  let imagePreviewCaption = null;
+  if (imagePreview) {
+    const inner = imagePreview.querySelector(".image-preview-inner");
+    if (inner) {
+      imagePreviewCaption = document.createElement("div");
+      imagePreviewCaption.className = "image-preview-caption";
+      inner.appendChild(imagePreviewCaption);
+    }
+  }
+
   function initHoverPreview(container) {
     if (!imagePreview || !imagePreviewImg) return;
     let hoverTimer = null;
@@ -187,6 +229,14 @@ window.MuseumShared = (function () {
       hoverTimer = setTimeout(() => {
         hoverTimer = null;
         imagePreviewImg.src = img.src;
+        if (imagePreviewCaption) {
+          const art = artworksById.get(img.dataset.id);
+          imagePreviewCaption.innerHTML = art
+            ? `<h3>${escapeHtml(art.title)}${
+                art.date ? ` <span class="work-year">(${escapeHtml(art.date)})</span>` : ""
+              }</h3><p>${artistLinksHtml(art.artist, art.artistSlugs)}</p>`
+            : "";
+        }
         imagePreview.classList.remove("hidden");
       }, HOVER_DELAY_MS);
     });
@@ -231,8 +281,7 @@ window.MuseumShared = (function () {
       const link = e.target.closest(".artist-link");
       if (!link) return;
       const wiki = artistWikiLookup[link.dataset.artist];
-      if (!wiki || !wiki.extract) return;
-      wikiPreview.textContent = wiki.extract;
+      wikiPreview.textContent = wiki && wiki.extract ? wiki.extract : "Not found on Wikipedia";
       wikiPreview.classList.remove("hidden");
       positionWikiPreview(link);
     });
@@ -258,25 +307,24 @@ window.MuseumShared = (function () {
     const img = document.createElement("img");
     img.src = card.image;
     img.alt = "";
+    img.dataset.id = card.id;
     div.appendChild(img);
     div.appendChild(makeFavButton(card.id));
 
     const title = document.createElement("h3");
-    title.textContent = card.title;
+    title.innerHTML = card.date
+      ? `${escapeHtml(card.title)} <span class="work-year">(${escapeHtml(card.date)})</span>`
+      : escapeHtml(card.title);
     div.appendChild(title);
 
     if (!opts.hideArtist) {
       const artist = document.createElement("p");
       artist.className = "work-artist";
       artist.innerHTML = card.artistDates
-        ? `${artistLinksHtml(card.artist)} (${escapeHtml(card.artistDates)})`
-        : artistLinksHtml(card.artist);
+        ? `${artistLinksHtml(card.artist, card.artistSlugs)} (${escapeHtml(card.artistDates)})`
+        : artistLinksHtml(card.artist, card.artistSlugs);
       div.appendChild(artist);
     }
-
-    const dateLine = document.createElement("p");
-    dateLine.textContent = card.date;
-    div.appendChild(dateLine);
 
     return div;
   }
@@ -284,7 +332,9 @@ window.MuseumShared = (function () {
   return {
     escapeHtml,
     wikipediaSearchUrl,
+    artistDetailHref,
     wikiLinkHtml,
+    artistNameLinkHtml,
     artistLinksHtml,
     getFavoriteIds,
     toggleFavorite,

@@ -3,6 +3,7 @@
 
   const {
     escapeHtml,
+    artistDetailHref,
     artistLinksHtml,
     wikiLinkHtml,
     makeFavButton,
@@ -291,6 +292,7 @@
       const img = document.createElement("img");
       img.src = card.image;
       img.alt = "";
+      img.dataset.id = card.id;
       div.appendChild(img);
       div.appendChild(makeFavButton(card.id));
 
@@ -367,7 +369,8 @@
           gradedTotal += 1;
           if (correct) rightTotal += 1;
         }
-        const correctValueHtml = field === "artist" ? artistLinksHtml(card.artist) : undefined;
+        const correctValueHtml =
+          field === "artist" ? artistLinksHtml(card.artist, card.artistSlugs) : undefined;
         markResult(
           document.getElementById(`quiz-result-${field}-${idx}`),
           graded,
@@ -575,7 +578,7 @@
       tr.innerHTML = `
         <td><img src="${r.art.image}" alt=""></td>
         <td>${r.art.title}</td>
-        <td>${artistLinksHtml(r.art.artist)}</td>
+        <td>${artistLinksHtml(r.art.artist, r.art.artistSlugs)}</td>
         <td>${r.type}</td>
         <td>${r.decade}</td>
         <td>${formatAccuracy(r.artistAcc)}</td>
@@ -627,10 +630,6 @@
       .sort((a, b) => b[1] - a[1])
       .map(([type, count]) => `${escapeHtml(type)} (${count})`)
       .join(", ");
-  }
-
-  function artistDetailHref(slug) {
-    return `${BASE_PATH}artist/${slug}/`;
   }
 
   function renderAllArtists() {
