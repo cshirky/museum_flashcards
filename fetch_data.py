@@ -102,6 +102,64 @@ def fetch_page(limit: int, offset: int) -> list[dict]:
     return data["entries"]
 
 
+# ---------- Deduplication ----------
+#
+# The museum's own collection database contains true duplicate entries for
+# some works — e.g. Bob Thompson's "The Gambol" exists as two separate
+# records with the same artist/title/date, one apparently a later
+# re-photograph/re-catalog of the same physical work (a fresh imgix
+# filename, a Craft-CMS-style "-2" slug). Left in, these double-count that
+# work everywhere downstream: artist pages, All Artists' work counts,
+# Study/Quiz pools. Applied to raw_entries before anything else in main()
+# derives from them, so every downstream consumer (normalize, the artist
+# aggregates, the Wikipedia name list) sees the deduplicated set.
+
+
+def dedupe_key_raw(entry: dict) -> tuple:
+    artists = entry.get("artists") or []
+    artist_names = tuple(a["title"] for a in artists if a.get("title"))
+    title = entry.get("title") or "Untitled"
+    date = entry.get("artworkNetxDate") or "Date unknown"
+    return (artist_names, title, date)
+
+
+def dedupe_score_raw(entry: dict) -> tuple:
+    """Prefer whichever duplicate normalize() would actually keep data
+    from: valid media + artists first (never discard the only usable copy
+    in a group), then a recorded medium, then longer/more complete
+    dimensions text, then — as a last-resort tiebreak, since some
+    duplicate pairs are otherwise identical — the higher/most-recently-
+    added id."""
+    media = entry.get("artworkMedia") or []
+    has_usable = bool(media and media[0].get("url") and (entry.get("artists") or []))
+    medium = entry.get("artworkNetxMedium")
+    dims = entry.get("artworkNetxDimensions")
+    return (has_usable, bool(medium), bool(dims), len(dims or ""), int(entry["id"]))
+
+
+def dedupe_entries(raw_entries: list[dict]) -> list[dict]:
+    groups: dict[tuple, list[dict]] = {}
+    order: list[tuple] = []
+    for entry in raw_entries:
+        key = dedupe_key_raw(entry)
+        if key not in groups:
+            order.append(key)
+        groups.setdefault(key, []).append(entry)
+
+    deduped = []
+    removed = 0
+    for key in order:
+        group = groups[key]
+        if len(group) == 1:
+            deduped.append(group[0])
+            continue
+        removed += len(group) - 1
+        deduped.append(max(group, key=dedupe_score_raw))
+
+    print(f"Deduplicated {removed} repeated collection entries ({len(deduped)} unique works kept).")
+    return deduped
+
+
 def decade_from_date(date_text: str | None) -> str | None:
     if not date_text:
         return None
@@ -537,6 +595,8 @@ def main() -> None:
         offset += PAGE_SIZE
         print(f"  fetched {min(offset, total)}/{total}")
         time.sleep(REQUEST_DELAY_SECONDS)
+
+    raw_entries = dedupe_entries(raw_entries)
 
     artworks = [a for a in (normalize(e) for e in raw_entries) if a is not None]
     skipped = len(raw_entries) - len(artworks)

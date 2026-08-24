@@ -102,13 +102,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Adger_Cowans"
   },
   "adia-millett": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1975,
     "deathYear": null,
     "genres": {
       "Photograph": 1,
-      "Sculpture": 2,
-      "Textile": 1,
+      "Sculpture": 1,
       "Work on Paper": 1
     },
     "name": "Adia Millett",
@@ -155,11 +154,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Aim%C3%A9_Mpane"
   },
   "aisha-tandiwe-bell": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Aisha Tandiwe Bell",
     "slug": "aisha-tandiwe-bell",
@@ -167,13 +166,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Aisha_Tandiwe_Bell"
   },
   "al-loving": {
-    "artworkCount": 10,
+    "artworkCount": 6,
     "birthYear": 1935,
     "deathYear": 2005,
     "genres": {
-      "Painting": 4,
-      "Sculpture": 2,
-      "Work on Paper": 4
+      "Painting": 3,
+      "Sculpture": 1,
+      "Work on Paper": 2
     },
     "name": "Al Loving",
     "slug": "al-loving",
@@ -205,13 +204,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Alex_Gardner_(artist)"
   },
   "alexander-skunder-boghossian-2": {
-    "artworkCount": 4,
+    "artworkCount": 2,
     "birthYear": 1937,
     "deathYear": 2003,
     "genres": {
       "Mixed Media": 1,
       "Painting": 1,
-      "Sculpture": 3
+      "Sculpture": 1
     },
     "name": "Alexander \"Skunder\" Boghossian",
     "slug": "alexander-skunder-boghossian-2",
@@ -280,11 +279,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Alice_Attie"
   },
   "alison-saar": {
-    "artworkCount": 8,
+    "artworkCount": 7,
     "birthYear": 1956,
     "deathYear": null,
     "genres": {
-      "Sculpture": 8
+      "Sculpture": 7
     },
     "name": "Alison Saar",
     "slug": "alison-saar",
@@ -343,11 +342,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Allison_Janae_Hamilton"
   },
   "alma-thomas": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1891,
     "deathYear": 1978,
     "genres": {
-      "Work on Paper": 3
+      "Work on Paper": 2
     },
     "name": "Alma Thomas",
     "slug": "alma-thomas",
@@ -355,11 +354,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Alma_Thomas"
   },
   "alteronce-gumby": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1985,
     "deathYear": null,
     "genres": {
-      "Painting": 3
+      "Painting": 2
     },
     "name": "Alteronce Gumby",
     "slug": "alteronce-gumby",
@@ -403,12 +402,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Amanda_Williams_(artist)"
   },
   "ambrose-rhapsody-murray": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1996,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2,
-      "Textile": 2
+      "Sculpture": 1,
+      "Textile": 1
     },
     "name": "Ambrose Rhapsody Murray",
     "slug": "ambrose-rhapsody-murray",
@@ -428,11 +427,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Amos_Ferguson"
   },
   "ananias-l\u00e9ki-dago": {
-    "artworkCount": 3,
+    "artworkCount": 1,
     "birthYear": 1970,
     "deathYear": null,
     "genres": {
-      "Photograph": 3
+      "Photograph": 1
     },
     "name": "Ananias L\u00e9ki Dago",
     "slug": "ananias-l\u00e9ki-dago",
@@ -452,11 +451,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Andile%20Dyalvane"
   },
   "andre-bradley": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1987,
     "deathYear": null,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Andre Bradley",
     "slug": "andre-bradley",
@@ -512,11 +511,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Anna%20Moon"
   },
   "antony-charles-robert-armstrong-jones": {
-    "artworkCount": 8,
+    "artworkCount": 1,
     "birthYear": 1930,
     "deathYear": 2017,
     "genres": {
-      "Photograph": 7
+      "Photograph": 1
     },
     "name": "Antony Charles Robert Armstrong-Jones",
     "slug": "antony-charles-robert-armstrong-jones",
@@ -574,11 +573,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Arthur_Jafa"
   },
   "asiru-olatunde-2": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1922,
     "deathYear": 1993,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Asiru Olatunde",
     "slug": "asiru-olatunde-2",
@@ -670,12 +669,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Barbara_Chase-Riboud"
   },
   "barbara-jones-hogu": {
-    "artworkCount": 8,
+    "artworkCount": 7,
     "birthYear": 1938,
     "deathYear": 2017,
     "genres": {
-      "Print": 7,
-      "Work on Paper": 8
+      "Print": 6,
+      "Work on Paper": 7
     },
     "name": "Barbara Jones-Hogu",
     "slug": "barbara-jones-hogu",
@@ -708,12 +707,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Bayet%C3%A9_Ross_Smith"
   },
   "beauford-delaney": {
-    "artworkCount": 13,
+    "artworkCount": 11,
     "birthYear": 1901,
     "deathYear": 1979,
     "genres": {
       "Painting": 8,
-      "Work on Paper": 6
+      "Work on Paper": 4
     },
     "name": "Beauford Delaney",
     "slug": "beauford-delaney",
@@ -734,15 +733,15 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Ben_F._Jones"
   },
   "benny-andrews": {
-    "artworkCount": 17,
+    "artworkCount": 11,
     "birthYear": 1930,
     "deathYear": 2006,
     "genres": {
-      "Drawing": 3,
+      "Drawing": 2,
       "Mixed Media": 1,
-      "Painting": 6,
-      "Print": 2,
-      "Work on Paper": 10
+      "Painting": 4,
+      "Print": 1,
+      "Work on Paper": 7
     },
     "name": "Benny Andrews",
     "slug": "benny-andrews",
@@ -774,11 +773,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Bessie_Harvey"
   },
   "bethany-collins": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1984,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 3
+      "Work on Paper": 2
     },
     "name": "Bethany Collins",
     "slug": "bethany-collins",
@@ -798,11 +797,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Betty_Blayton"
   },
   "betye-saar": {
-    "artworkCount": 6,
+    "artworkCount": 4,
     "birthYear": 1926,
     "deathYear": 2026,
     "genres": {
-      "Painting": 5,
+      "Painting": 3,
       "Sculpture": 1
     },
     "name": "Betye Saar",
@@ -811,11 +810,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Betye_Saar"
   },
   "beverly-buchanan": {
-    "artworkCount": 6,
+    "artworkCount": 5,
     "birthYear": 1940,
     "deathYear": 2015,
     "genres": {
-      "Photograph": 5,
+      "Photograph": 4,
       "Sculpture": 1
     },
     "name": "Beverly Buchanan",
@@ -899,11 +898,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Birth%20Livingstone"
   },
   "bob-thompson": {
-    "artworkCount": 8,
+    "artworkCount": 5,
     "birthYear": 1937,
     "deathYear": 1966,
     "genres": {
-      "Painting": 7,
+      "Painting": 4,
       "Work on Paper": 1
     },
     "name": "Bob Thompson",
@@ -1046,11 +1045,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Cameron%20Clayborn"
   },
   "camille-billops": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1933,
     "deathYear": 2019,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Camille Billops",
     "slug": "camille-billops",
@@ -1082,11 +1081,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Candida_Alvarez"
   },
   "carl-van-vechten": {
-    "artworkCount": 51,
+    "artworkCount": 50,
     "birthYear": 1880,
     "deathYear": 1964,
     "genres": {
-      "Photograph": 48,
+      "Photograph": 47,
       "Work on Paper": 3
     },
     "name": "Carl Van Vechten",
@@ -1108,11 +1107,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Carol%20Byard"
   },
   "carrie-mae-weems": {
-    "artworkCount": 8,
+    "artworkCount": 6,
     "birthYear": 1953,
     "deathYear": null,
     "genres": {
-      "Photograph": 7,
+      "Photograph": 5,
       "Work on Paper": 1
     },
     "name": "Carrie Mae Weems",
@@ -1145,12 +1144,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Catti"
   },
   "cauleen-smith": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1967,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2,
-      "Textile": 1,
+      "Sculpture": 1,
       "Work on Paper": 2
     },
     "name": "Cauleen Smith",
@@ -1183,11 +1181,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Charisse_Pearlina_Weston"
   },
   "charles-alston": {
-    "artworkCount": 6,
+    "artworkCount": 5,
     "birthYear": 1907,
     "deathYear": 1977,
     "genres": {
-      "Painting": 3,
+      "Painting": 2,
       "Work on Paper": 3
     },
     "name": "Charles Alston",
@@ -1208,12 +1206,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Charles_Ethan_Porter"
   },
   "charles-gaines": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1944,
     "deathYear": null,
     "genres": {
       "Mixed Media": 1,
-      "Work on Paper": 4
+      "Work on Paper": 3
     },
     "name": "Charles Gaines",
     "slug": "charles-gaines",
@@ -1307,7 +1305,7 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Chinedu%20Felix%20Osuchukwu"
   },
   "chris-ofili": {
-    "artworkCount": 12,
+    "artworkCount": 11,
     "birthYear": 1968,
     "deathYear": null,
     "genres": {
@@ -1315,7 +1313,7 @@
       "Mixed Media": 1,
       "Painting": 2,
       "Print": 2,
-      "Work on Paper": 10
+      "Work on Paper": 9
     },
     "name": "Chris Ofili",
     "slug": "chris-ofili",
@@ -1323,11 +1321,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Chris_Ofili"
   },
   "christian-walker": {
-    "artworkCount": 12,
+    "artworkCount": 1,
     "birthYear": 1953,
     "deathYear": 2003,
     "genres": {
-      "Photograph": 12
+      "Photograph": 1
     },
     "name": "Christian Walker",
     "slug": "christian-walker",
@@ -1454,11 +1452,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Cy_Gavin"
   },
   "cynthia-hawkins": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1950,
     "deathYear": null,
     "genres": {
-      "Painting": 4
+      "Painting": 3
     },
     "name": "Cynthia Hawkins",
     "slug": "cynthia-hawkins",
@@ -1613,15 +1611,14 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=David%20Fludd"
   },
   "david-hammons": {
-    "artworkCount": 9,
+    "artworkCount": 8,
     "birthYear": 1943,
     "deathYear": null,
     "genres": {
-      "Mixed Media": 1,
       "Photograph": 1,
       "Print": 1,
       "Sculpture": 3,
-      "Work on Paper": 5
+      "Work on Paper": 4
     },
     "name": "David Hammons",
     "slug": "david-hammons",
@@ -1665,11 +1662,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=David%20L.%20Johnson"
   },
   "david-levinthal": {
-    "artworkCount": 3,
+    "artworkCount": 1,
     "birthYear": 1949,
     "deathYear": null,
     "genres": {
-      "Photograph": 3
+      "Photograph": 1
     },
     "name": "David Levinthal",
     "slug": "david-levinthal",
@@ -1715,11 +1712,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Dawit%20L%20Petros"
   },
   "dawoud-bey": {
-    "artworkCount": 32,
+    "artworkCount": 26,
     "birthYear": 1953,
     "deathYear": null,
     "genres": {
-      "Photograph": 32
+      "Photograph": 26
     },
     "name": "Dawoud Bey",
     "slug": "dawoud-bey",
@@ -1829,13 +1826,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Demetrius_Oliver"
   },
   "derek-fordjour": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1974,
     "deathYear": null,
     "genres": {
       "Mixed Media": 2,
       "Painting": 2,
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Derek Fordjour",
     "slug": "derek-fordjour",
@@ -1843,11 +1840,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Derek_Fordjour"
   },
   "derek-walcott": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1930,
     "deathYear": 2017,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Derek Walcott",
     "slug": "derek-walcott",
@@ -1870,11 +1867,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Derrick_Adams"
   },
   "derrick-beard": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1958,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Derrick Beard",
     "slug": "derrick-beard",
@@ -1882,11 +1879,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Derrick%20Beard"
   },
   "devin-allen": {
-    "artworkCount": 4,
+    "artworkCount": 1,
     "birthYear": 1988,
     "deathYear": null,
     "genres": {
-      "Photograph": 4
+      "Photograph": 1
     },
     "name": "Devin Allen",
     "slug": "devin-allen",
@@ -2070,11 +2067,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Ebony_Patterson"
   },
   "ed-clark": {
-    "artworkCount": 7,
+    "artworkCount": 5,
     "birthYear": 1926,
     "deathYear": 2019,
     "genres": {
-      "Painting": 4,
+      "Painting": 2,
       "Work on Paper": 3
     },
     "name": "Ed Clark",
@@ -2171,13 +2168,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Eliegene%20Jean"
   },
   "elizabeth-catlett": {
-    "artworkCount": 26,
+    "artworkCount": 18,
     "birthYear": 1915,
     "deathYear": 2012,
     "genres": {
-      "Print": 12,
-      "Sculpture": 5,
-      "Work on Paper": 21
+      "Print": 10,
+      "Sculpture": 3,
+      "Work on Paper": 15
     },
     "name": "Elizabeth Catlett",
     "slug": "elizabeth-catlett",
@@ -2185,11 +2182,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Elizabeth_Catlett"
   },
   "elizabeth-colomba": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1976,
     "deathYear": null,
     "genres": {
-      "Painting": 2,
+      "Painting": 1,
       "Work on Paper": 1
     },
     "name": "Elizabeth Colomba",
@@ -2222,12 +2219,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Elle_P%C3%A9rez"
   },
   "ellen-gallagher": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1965,
     "deathYear": null,
     "genres": {
       "Etching": 1,
-      "Painting": 3,
+      "Painting": 2,
       "Print": 1,
       "Work on Paper": 1
     },
@@ -2299,12 +2296,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Emma%20Amos"
   },
   "emory-douglas": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1943,
     "deathYear": null,
     "genres": {
-      "Poster": 2,
-      "Work on Paper": 4
+      "Poster": 1,
+      "Work on Paper": 3
     },
     "name": "Emory Douglas",
     "slug": "emory-douglas",
@@ -2348,11 +2345,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Ephrem%20Solomon"
   },
   "eric-n-mack": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1987,
     "deathYear": null,
     "genres": {
-      "Sculpture": 3,
+      "Sculpture": 2,
       "Textile": 1,
       "Work on Paper": 1
     },
@@ -2436,12 +2433,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Fahamu_Pecou"
   },
   "faith-ringgold": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1930,
     "deathYear": 2024,
     "genres": {
       "Sculpture": 1,
-      "Textile": 2
+      "Textile": 1
     },
     "name": "Faith Ringgold",
     "slug": "faith-ringgold",
@@ -2536,11 +2533,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Francisco_Amighetti"
   },
   "frank-bowling": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1934,
     "deathYear": null,
     "genres": {
-      "Painting": 2
+      "Painting": 1
     },
     "name": "Frank Bowling",
     "slug": "frank-bowling",
@@ -2548,11 +2545,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Frank_Bowling"
   },
   "frank-stewart": {
-    "artworkCount": 13,
+    "artworkCount": 11,
     "birthYear": 1949,
     "deathYear": null,
     "genres": {
-      "Photograph": 13
+      "Photograph": 11
     },
     "name": "Frank Stewart",
     "slug": "frank-stewart",
@@ -2596,11 +2593,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Fred%20Moore"
   },
   "fred-w-mcdarrah": {
-    "artworkCount": 4,
+    "artworkCount": 2,
     "birthYear": 1926,
     "deathYear": 2007,
     "genres": {
-      "Photograph": 4
+      "Photograph": 2
     },
     "name": "Fred W. McDarrah",
     "slug": "fred-w-mcdarrah",
@@ -2649,11 +2646,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Frederick_J._Brown"
   },
   "gary-simmons": {
-    "artworkCount": 10,
+    "artworkCount": 9,
     "birthYear": 1964,
     "deathYear": null,
     "genres": {
-      "Painting": 4,
+      "Painting": 3,
       "Work on Paper": 6
     },
     "name": "Gary Simmons",
@@ -2760,11 +2757,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Gerard%20Paul"
   },
   "ghada-amer": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1963,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Ghada Amer",
     "slug": "ghada-amer",
@@ -2784,15 +2781,15 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Gino%20Beghe"
   },
   "glenn-ligon": {
-    "artworkCount": 14,
+    "artworkCount": 12,
     "birthYear": 1960,
     "deathYear": null,
     "genres": {
       "Drawing": 1,
-      "Painting": 6,
+      "Painting": 5,
       "Print": 1,
       "Sculpture": 1,
-      "Work on Paper": 7
+      "Work on Paper": 6
     },
     "name": "Glenn Ligon",
     "slug": "glenn-ligon",
@@ -2877,12 +2874,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Hale_Woodruff"
   },
   "hank-willis-thomas": {
-    "artworkCount": 18,
+    "artworkCount": 16,
     "birthYear": 1976,
     "deathYear": null,
     "genres": {
       "Painting": 3,
-      "Photograph": 12,
+      "Photograph": 10,
       "Print": 2,
       "Sculpture": 1,
       "Work on Paper": 2
@@ -2905,11 +2902,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Harold_Mendez"
   },
   "hassan-hajjaj": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1961,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Hassan Hajjaj",
     "slug": "hassan-hajjaj",
@@ -2991,11 +2988,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Henry_Taylor_(artist)"
   },
   "henry-wilmer-bannarn": {
-    "artworkCount": 5,
+    "artworkCount": 2,
     "birthYear": 1910,
     "deathYear": 1965,
     "genres": {
-      "Work on Paper": 5
+      "Work on Paper": 2
     },
     "name": "Henry Wilmer Bannarn",
     "slug": "henry-wilmer-bannarn",
@@ -3003,11 +3000,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Henry_Bannarn"
   },
   "herbert-alexander-gentry": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1919,
     "deathYear": 2003,
     "genres": {
-      "Painting": 4,
+      "Painting": 3,
       "Print": 1,
       "Work on Paper": 1
     },
@@ -3017,12 +3014,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Herbert%20Alexander%20Gentry"
   },
   "houston-e-conwill": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1947,
     "deathYear": 2016,
     "genres": {
       "Print": 1,
-      "Sculpture": 3,
+      "Sculpture": 2,
       "Work on Paper": 1
     },
     "name": "Houston E. Conwill",
@@ -3169,11 +3166,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Jabu%20Arnell"
   },
   "jack-whitten": {
-    "artworkCount": 6,
+    "artworkCount": 4,
     "birthYear": 1939,
     "deathYear": 2018,
     "genres": {
-      "Painting": 5,
+      "Painting": 3,
       "Work on Paper": 1
     },
     "name": "Jack Whitten",
@@ -3194,13 +3191,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Jackie_Nickerson"
   },
   "jacob-lawrence": {
-    "artworkCount": 8,
+    "artworkCount": 7,
     "birthYear": 1917,
     "deathYear": 2000,
     "genres": {
       "Painting": 1,
       "Print": 3,
-      "Work on Paper": 7
+      "Work on Paper": 6
     },
     "name": "Jacob Lawrence",
     "slug": "jacob-lawrence",
@@ -3355,11 +3352,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Jared%20Owens"
   },
   "jas-knight": {
-    "artworkCount": 6,
+    "artworkCount": 5,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Painting": 5,
+      "Painting": 4,
       "Work on Paper": 1
     },
     "name": "Jas Knight",
@@ -3465,11 +3462,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Jennie_C._Jones"
   },
   "jennifer-packer": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1984,
     "deathYear": null,
     "genres": {
-      "Painting": 3
+      "Painting": 2
     },
     "name": "Jennifer Packer",
     "slug": "jennifer-packer",
@@ -3489,12 +3486,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Jerald%20Ieans"
   },
   "jerome-lagarrigue": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1973,
     "deathYear": null,
     "genres": {
-      "Painting": 3,
-      "Work on Paper": 1
+      "Painting": 3
     },
     "name": "Jerome Lagarrigue",
     "slug": "jerome-lagarrigue",
@@ -3551,12 +3547,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/John_Ahearn"
   },
   "john-bankston": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1963,
     "deathYear": null,
     "genres": {
       "Mixed Media": 1,
-      "Painting": 3,
+      "Painting": 2,
       "Work on Paper": 2
     },
     "name": "John Bankston",
@@ -3712,11 +3708,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Jules%20Allen"
   },
   "julia-phillips": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1985,
     "deathYear": null,
     "genres": {
-      "Sculpture": 3,
+      "Sculpture": 2,
       "Work on Paper": 1
     },
     "name": "Julia Phillips",
@@ -3737,11 +3733,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Juliana_Huxtable"
   },
   "julie-mehretu": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1970,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 4
+      "Work on Paper": 3
     },
     "name": "Julie Mehretu",
     "slug": "julie-mehretu",
@@ -3762,11 +3758,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Julius_Eastman"
   },
   "justin-randolph-thompson": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1979,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Justin Randolph Thompson",
     "slug": "justin-randolph-thompson",
@@ -3786,13 +3782,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Justine%20Georges"
   },
   "kalup-linzy": {
-    "artworkCount": 15,
+    "artworkCount": 14,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
       "Digital Media": 1,
       "Photograph": 1,
-      "Work on Paper": 13
+      "Work on Paper": 12
     },
     "name": "Kalup Linzy",
     "slug": "kalup-linzy",
@@ -3888,11 +3884,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Kay%20Hassan"
   },
   "kehinde-wiley": {
-    "artworkCount": 10,
+    "artworkCount": 9,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
-      "Painting": 3,
+      "Painting": 2,
       "Photograph": 3,
       "Sculpture": 4,
       "Textile": 1
@@ -3940,7 +3936,7 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Kenyatta_A.C._Hinkle"
   },
   "kerry-james-marshall": {
-    "artworkCount": 15,
+    "artworkCount": 11,
     "birthYear": 1955,
     "deathYear": null,
     "genres": {
@@ -3948,7 +3944,7 @@
       "Painting": 1,
       "Photograph": 1,
       "Print": 3,
-      "Work on Paper": 13
+      "Work on Paper": 9
     },
     "name": "Kerry James Marshall",
     "slug": "kerry-james-marshall",
@@ -4028,12 +4024,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Kohshin%20Finley"
   },
   "kojo-griffin": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1971,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Work on Paper": 4
+      "Work on Paper": 3
     },
     "name": "Kojo Griffin",
     "slug": "kojo-griffin",
@@ -4041,11 +4037,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Kojo_Griffin"
   },
   "kori-newkirk": {
-    "artworkCount": 7,
+    "artworkCount": 5,
     "birthYear": 1970,
     "deathYear": null,
     "genres": {
-      "Sculpture": 6,
+      "Sculpture": 4,
       "Work on Paper": 1
     },
     "name": "Kori Newkirk",
@@ -4066,11 +4062,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Kudzanai-Violet_Hwami"
   },
   "kwame-brathwaite": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1938,
     "deathYear": 2023,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Kwame Brathwaite",
     "slug": "kwame-brathwaite",
@@ -4078,11 +4074,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Kwame_Brathwaite"
   },
   "kyrae-cowan": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Kyrae Cowan",
     "slug": "kyrae-cowan",
@@ -4200,11 +4196,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Lava_Thomas"
   },
   "lavar-munroe": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1982,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Lavar Munroe",
     "slug": "lavar-munroe",
@@ -4212,11 +4208,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Lavar_Munroe"
   },
   "laylah-ali": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1968,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 4
+      "Work on Paper": 3
     },
     "name": "Laylah Ali",
     "slug": "laylah-ali",
@@ -4273,11 +4269,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Leonardo%20Benzant"
   },
   "leonardo-drew": {
-    "artworkCount": 4,
+    "artworkCount": 2,
     "birthYear": 1961,
     "deathYear": null,
     "genres": {
-      "Sculpture": 4
+      "Sculpture": 2
     },
     "name": "Leonardo Drew",
     "slug": "leonardo-drew",
@@ -4323,11 +4319,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Leroy%20Woodson"
   },
   "leslie-hewitt": {
-    "artworkCount": 7,
+    "artworkCount": 4,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
-      "Photograph": 6,
+      "Photograph": 3,
       "Print": 1,
       "Work on Paper": 1
     },
@@ -4350,13 +4346,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Lev%20Timothy%20Mills"
   },
   "lezley-saar": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1953,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Sculpture": 2,
-      "Textile": 1
+      "Sculpture": 1
     },
     "name": "Lezley Saar",
     "slug": "lezley-saar",
@@ -4388,12 +4383,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Lisa_Diane_Wedgeworth"
   },
   "lloyd-mcneill": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1935,
     "deathYear": 2021,
     "genres": {
-      "Print": 2,
-      "Work on Paper": 2
+      "Print": 1,
+      "Work on Paper": 1
     },
     "name": "Lloyd McNeill",
     "slug": "lloyd-mcneill",
@@ -4401,11 +4396,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Lloyd_McNeill"
   },
   "lloyd-stevens": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1940,
     "deathYear": null,
     "genres": {
-      "Painting": 2
+      "Painting": 1
     },
     "name": "Lloyd Stevens",
     "slug": "lloyd-stevens",
@@ -4413,11 +4408,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Lloyd%20Stevens"
   },
   "lois-mailou-jones": {
-    "artworkCount": 6,
+    "artworkCount": 5,
     "birthYear": 1905,
     "deathYear": 1998,
     "genres": {
-      "Painting": 5,
+      "Painting": 4,
       "Work on Paper": 1
     },
     "name": "Lois Mailou Jones",
@@ -4450,16 +4445,16 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Loretta_Pettway"
   },
   "lorna-simpson": {
-    "artworkCount": 18,
+    "artworkCount": 10,
     "birthYear": 1960,
     "deathYear": null,
     "genres": {
-      "Drawing": 7,
+      "Drawing": 1,
       "Mixed Media": 1,
       "Painting": 1,
-      "Photograph": 2,
+      "Photograph": 1,
       "Print": 1,
-      "Work on Paper": 15
+      "Work on Paper": 8
     },
     "name": "Lorna Simpson",
     "slug": "lorna-simpson",
@@ -4515,11 +4510,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Luce_Turnier"
   },
   "lunga-kama": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1982,
     "deathYear": null,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Lunga Kama",
     "slug": "lunga-kama",
@@ -4541,12 +4536,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Lyle_Ashton_Harris"
   },
   "lynette-yiadom-boakye": {
-    "artworkCount": 14,
+    "artworkCount": 12,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
       "Painting": 2,
-      "Work on Paper": 12
+      "Work on Paper": 10
     },
     "name": "Lynette Yiadom-Boakye",
     "slug": "lynette-yiadom-boakye",
@@ -4566,11 +4561,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Malcolm%20Peacock"
   },
   "malick-sidib\u00e9": {
-    "artworkCount": 16,
+    "artworkCount": 13,
     "birthYear": 1936,
     "deathYear": 2016,
     "genres": {
-      "Photograph": 16
+      "Photograph": 13
     },
     "name": "Malick Sidib\u00e9",
     "slug": "malick-sidib\u00e9",
@@ -4602,11 +4597,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Malvin_Gray_Johnson"
   },
   "mambu-bayoh": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Photograph": 2,
+      "Photograph": 1,
       "Sculpture": 1
     },
     "name": "Mambu Bayoh",
@@ -4663,11 +4658,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Marc_Brandenburg"
   },
   "marcia-kure": {
-    "artworkCount": 4,
+    "artworkCount": 2,
     "birthYear": 1970,
     "deathYear": null,
     "genres": {
-      "Photograph": 4
+      "Photograph": 2
     },
     "name": "Marcia Kure",
     "slug": "marcia-kure",
@@ -4711,11 +4706,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Marilyn_Nance"
   },
   "mario-moore": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Painting": 4
+      "Painting": 3
     },
     "name": "Mario Moore",
     "slug": "mario-moore",
@@ -4723,12 +4718,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Mario_Moore"
   },
   "mark-bradford": {
-    "artworkCount": 3,
+    "artworkCount": 1,
     "birthYear": 1961,
     "deathYear": null,
     "genres": {
-      "Painting": 2,
-      "Sculpture": 1
+      "Painting": 1
     },
     "name": "Mark Bradford",
     "slug": "mark-bradford",
@@ -4821,11 +4815,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Martine_Syms"
   },
   "mary-evans": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1963,
     "deathYear": null,
     "genres": {
-      "Painting": 2
+      "Painting": 1
     },
     "name": "Mary Evans",
     "slug": "mary-evans",
@@ -4845,13 +4839,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Mary_Lee_Bendolph"
   },
   "mavis-pusey": {
-    "artworkCount": 13,
+    "artworkCount": 12,
     "birthYear": 1928,
     "deathYear": 2019,
     "genres": {
       "Painting": 1,
-      "Print": 10,
-      "Work on Paper": 12
+      "Print": 9,
+      "Work on Paper": 11
     },
     "name": "Mavis Pusey",
     "slug": "mavis-pusey",
@@ -4871,12 +4865,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Max%20Petrus"
   },
   "mcarthur-binion": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1946,
     "deathYear": null,
     "genres": {
-      "Drawing": 1,
-      "Painting": 1
+      "Drawing": 1
     },
     "name": "McArthur Binion",
     "slug": "mcarthur-binion",
@@ -4908,12 +4901,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Melvin_Edwards"
   },
   "mequitta-ahuja": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1976,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Work on Paper": 3
+      "Work on Paper": 2
     },
     "name": "Mequitta Ahuja",
     "slug": "mequitta-ahuja",
@@ -4996,11 +4989,10 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Michael%20Kelly%20Williams"
   },
   "michael-paul-britto": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1968,
     "deathYear": null,
     "genres": {
-      "Photograph": 1,
       "Work on Paper": 1
     },
     "name": "Michael Paul Britto",
@@ -5034,11 +5026,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Michael%20Queenland"
   },
   "michael-richards": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1963,
     "deathYear": 2001,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Michael Richards",
     "slug": "michael-richards",
@@ -5082,14 +5074,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Micius_Stephane"
   },
   "mickalene-thomas": {
-    "artworkCount": 6,
+    "artworkCount": 4,
     "birthYear": 1971,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Photograph": 2,
-      "Print": 1,
-      "Work on Paper": 3
+      "Photograph": 1,
+      "Work on Paper": 2
     },
     "name": "Mickalene Thomas",
     "slug": "mickalene-thomas",
@@ -5268,12 +5259,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Myra_Greene"
   },
   "nadine-delawrence-maine": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1953,
     "deathYear": 1992,
     "genres": {
       "Painting": 1,
-      "Sculpture": 3
+      "Sculpture": 2
     },
     "name": "Nadine DeLawrence-Maine",
     "slug": "nadine-delawrence-maine",
@@ -5281,12 +5272,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Nadine_M._DeLawrence"
   },
   "nadine-robinson": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1968,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Sculpture": 3
+      "Sculpture": 2
     },
     "name": "Nadine Robinson",
     "slug": "nadine-robinson",
@@ -5405,11 +5396,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Nicholas_Hlobo"
   },
   "nick-cave": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1959,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Nick Cave",
     "slug": "nick-cave",
@@ -5478,13 +5469,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Njena%20Surae%20Jarvis"
   },
   "njideka-akunyili-crosby": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1983,
     "deathYear": null,
     "genres": {
-      "Mixed Media": 1,
       "Print": 1,
-      "Work on Paper": 3
+      "Work on Paper": 2
     },
     "name": "Njideka Akunyili Crosby",
     "slug": "njideka-akunyili-crosby",
@@ -5799,11 +5789,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Paula_Wilson"
   },
   "peter-bradley": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1940,
     "deathYear": null,
     "genres": {
-      "Painting": 3
+      "Painting": 2
     },
     "name": "Peter Bradley",
     "slug": "peter-bradley",
@@ -5872,11 +5862,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Philip_Moore_(artist)"
   },
   "philom\u00e9-obin": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1891,
     "deathYear": 1968,
     "genres": {
-      "Painting": 4
+      "Painting": 3
     },
     "name": "Philom\u00e9 Obin",
     "slug": "philom\u00e9-obin",
@@ -5970,12 +5960,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Rachel%20Eulena%20Willliams"
   },
   "radcliffe-bailey": {
-    "artworkCount": 5,
+    "artworkCount": 3,
     "birthYear": 1968,
     "deathYear": 2023,
     "genres": {
-      "Painting": 2,
-      "Photograph": 3,
+      "Painting": 1,
+      "Photograph": 2,
       "Sculpture": 1
     },
     "name": "Radcliffe Bailey",
@@ -5996,11 +5986,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Ralph_Gibson"
   },
   "ralph-lemon": {
-    "artworkCount": 3,
+    "artworkCount": 1,
     "birthYear": 1952,
     "deathYear": null,
     "genres": {
-      "Photograph": 3
+      "Photograph": 1
     },
     "name": "Ralph Lemon",
     "slug": "ralph-lemon",
@@ -6044,13 +6034,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Rashawn_Griffin"
   },
   "rashid-johnson": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
       "Mixed Media": 1,
       "Painting": 2,
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Rashid Johnson",
     "slug": "rashid-johnson",
@@ -6108,11 +6098,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Reggie%20Burrows%20Hodges"
   },
   "reginald-jackson": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Reginald Jackson",
     "slug": "reginald-jackson",
@@ -6208,11 +6198,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Richard_Hunt_(artist)"
   },
   "richard-mayhew": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1924,
     "deathYear": 2024,
     "genres": {
-      "Painting": 3,
+      "Painting": 2,
       "Print": 1,
       "Work on Paper": 1
     },
@@ -6222,11 +6212,10 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Richard_Mayhew"
   },
   "richard-yarde": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1939,
     "deathYear": 2011,
     "genres": {
-      "Painting": 1,
       "Work on Paper": 2
     },
     "name": "Richard Yarde",
@@ -6284,12 +6273,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Robert%20A.%20Sengstacke"
   },
   "robert-blackburn": {
-    "artworkCount": 16,
+    "artworkCount": 15,
     "birthYear": 1920,
     "deathYear": 2003,
     "genres": {
-      "Print": 3,
-      "Work on Paper": 16
+      "Print": 2,
+      "Work on Paper": 15
     },
     "name": "Robert Blackburn",
     "slug": "robert-blackburn",
@@ -6345,11 +6334,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Robert%20Reid"
   },
   "robert-st-brice": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1898,
     "deathYear": 1973,
     "genres": {
-      "Painting": 2
+      "Painting": 1
     },
     "name": "Robert St. Brice",
     "slug": "robert-st-brice",
@@ -6395,11 +6384,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Rodney_McMillian"
   },
   "roland-freeman": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1936,
     "deathYear": 2023,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Roland Freeman",
     "slug": "roland-freeman",
@@ -6407,7 +6396,7 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Roland_Freeman"
   },
   "romare-bearden": {
-    "artworkCount": 33,
+    "artworkCount": 32,
     "birthYear": 1911,
     "deathYear": 1988,
     "genres": {
@@ -6415,7 +6404,7 @@
       "Painting": 5,
       "Photograph": 1,
       "Print": 9,
-      "Work on Paper": 24
+      "Work on Paper": 23
     },
     "name": "Romare Bearden",
     "slug": "romare-bearden",
@@ -6423,11 +6412,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Romare_Bearden"
   },
   "ron-tarver": {
-    "artworkCount": 7,
+    "artworkCount": 4,
     "birthYear": 1957,
     "deathYear": null,
     "genres": {
-      "Photograph": 7
+      "Photograph": 4
     },
     "name": "Ron Tarver",
     "slug": "ron-tarver",
@@ -6459,11 +6448,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Rosana_Paulino"
   },
   "roy-decarava": {
-    "artworkCount": 12,
+    "artworkCount": 9,
     "birthYear": 1919,
     "deathYear": 2009,
     "genres": {
-      "Photograph": 12
+      "Photograph": 9
     },
     "name": "Roy DeCarava",
     "slug": "roy-decarava",
@@ -6471,13 +6460,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Roy_DeCarava"
   },
   "rozeal": {
-    "artworkCount": 7,
+    "artworkCount": 6,
     "birthYear": null,
     "deathYear": null,
     "genres": {
       "Painting": 1,
       "Sculpture": 1,
-      "Work on Paper": 5
+      "Work on Paper": 4
     },
     "name": "Rozeal.",
     "slug": "rozeal",
@@ -6485,11 +6474,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Rozeal."
   },
   "ruby-onyinyechi-amanze": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1982,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 5
+      "Work on Paper": 4
     },
     "name": "ruby onyinyechi amanze",
     "slug": "ruby-onyinyechi-amanze",
@@ -6497,12 +6486,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Ruby_Onyinyechi_Amanze"
   },
   "rudy-shepherd": {
-    "artworkCount": 11,
+    "artworkCount": 10,
     "birthYear": 1975,
     "deathYear": null,
     "genres": {
-      "Print": 2,
-      "Work on Paper": 11
+      "Print": 1,
+      "Work on Paper": 10
     },
     "name": "Rudy Shepherd",
     "slug": "rudy-shepherd",
@@ -6559,12 +6548,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Sable_Elyse_Smith"
   },
   "sadie-barnette": {
-    "artworkCount": 10,
+    "artworkCount": 3,
     "birthYear": 1984,
     "deathYear": null,
     "genres": {
-      "Drawing": 7,
-      "Work on Paper": 10
+      "Drawing": 2,
+      "Work on Paper": 3
     },
     "name": "Sadie Barnette",
     "slug": "sadie-barnette",
@@ -6572,14 +6561,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Sadie_Barnette"
   },
   "sam-gilliam": {
-    "artworkCount": 23,
+    "artworkCount": 20,
     "birthYear": 1933,
     "deathYear": 2022,
     "genres": {
-      "Mixed Media": 1,
-      "Painting": 8,
+      "Painting": 6,
       "Print": 3,
-      "Work on Paper": 15
+      "Work on Paper": 14
     },
     "name": "Sam Gilliam",
     "slug": "sam-gilliam",
@@ -6601,11 +6589,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Sam_Middleton"
   },
   "samuel-fosso": {
-    "artworkCount": 4,
+    "artworkCount": 2,
     "birthYear": 1962,
     "deathYear": null,
     "genres": {
-      "Photograph": 4
+      "Photograph": 2
     },
     "name": "Samuel Fosso",
     "slug": "samuel-fosso",
@@ -6626,11 +6614,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Samuel_Levi_Jones"
   },
   "sana-musasama": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1957,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Sana Musasama",
     "slug": "sana-musasama",
@@ -6652,12 +6640,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Sanford_Biggers"
   },
   "sanou-oumar": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1986,
     "deathYear": null,
     "genres": {
-      "Drawing": 1,
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Sanou Oumar",
     "slug": "sanou-oumar",
@@ -6691,12 +6678,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Selma_Burke"
   },
   "senga-nengudi": {
-    "artworkCount": 5,
+    "artworkCount": 2,
     "birthYear": 1943,
     "deathYear": null,
     "genres": {
-      "Photograph": 3,
-      "Sculpture": 2
+      "Photograph": 1,
+      "Sculpture": 1
     },
     "name": "Senga Nengudi",
     "slug": "senga-nengudi",
@@ -6740,11 +6727,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Seydou_Ke%C3%AFta"
   },
   "shaunt\u00e9-gates": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Photograph": 2
+      "Photograph": 1
     },
     "name": "Shaunt\u00e9 Gates",
     "slug": "shaunt\u00e9-gates",
@@ -6825,11 +6812,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Simon%20Gouverneur"
   },
   "simone-leigh": {
-    "artworkCount": 5,
+    "artworkCount": 3,
     "birthYear": 1967,
     "deathYear": null,
     "genres": {
-      "Sculpture": 5
+      "Sculpture": 3
     },
     "name": "Simone Leigh",
     "slug": "simone-leigh",
@@ -6910,12 +6897,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Steffani_Jemison"
   },
   "stephanie-pogue": {
-    "artworkCount": 5,
+    "artworkCount": 1,
     "birthYear": 1944,
     "deathYear": 2002,
     "genres": {
-      "Print": 5,
-      "Work on Paper": 5
+      "Print": 1,
+      "Work on Paper": 1
     },
     "name": "Stephanie Pogue",
     "slug": "stephanie-pogue",
@@ -6923,13 +6910,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Stephanie_Pogue"
   },
   "stephanie-weaver": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1946,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Print": 1,
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Stephanie Weaver",
     "slug": "stephanie-weaver",
@@ -7058,11 +7044,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Terrell%20Richard%20Avedon%20Studio"
   },
   "terry-adkins": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1953,
     "deathYear": 2014,
     "genres": {
-      "Sculpture": 3
+      "Sculpture": 2
     },
     "name": "Terry Adkins",
     "slug": "terry-adkins",
@@ -7070,11 +7056,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Terry_Adkins"
   },
   "texas-isaiah": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Photograph": 5
+      "Photograph": 4
     },
     "name": "Texas Isaiah",
     "slug": "texas-isaiah",
@@ -7156,11 +7142,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Tim_Okamura"
   },
   "tim-rollins-k-o-s": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Painting": 2,
+      "Painting": 1,
       "Work on Paper": 1
     },
     "name": "Tim Rollins & K.O.S",
@@ -7184,13 +7170,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Timothy%20Yanick%20Hunter"
   },
   "titus-kaphar": {
-    "artworkCount": 19,
+    "artworkCount": 17,
     "birthYear": 1976,
     "deathYear": null,
     "genres": {
       "Drawing": 1,
       "Mixed Media": 6,
-      "Painting": 9,
+      "Painting": 7,
       "Photograph": 1,
       "Sculpture": 1,
       "Work on Paper": 8
@@ -7201,11 +7187,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Titus_Kaphar"
   },
   "todd-gray": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1954,
     "deathYear": null,
     "genres": {
-      "Work on Paper": 2
+      "Work on Paper": 1
     },
     "name": "Todd Gray",
     "slug": "todd-gray",
@@ -7226,11 +7212,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Tom_Feelings"
   },
   "tom-lloyd": {
-    "artworkCount": 7,
+    "artworkCount": 5,
     "birthYear": 1929,
     "deathYear": 1996,
     "genres": {
-      "Sculpture": 7
+      "Sculpture": 5
     },
     "name": "Tom Lloyd",
     "slug": "tom-lloyd",
@@ -7334,12 +7320,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Tracey_Rose"
   },
   "trenton-doyle-hancock": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": 1974,
     "deathYear": null,
     "genres": {
       "Painting": 1,
-      "Work on Paper": 4
+      "Work on Paper": 3
     },
     "name": "Trenton Doyle Hancock",
     "slug": "trenton-doyle-hancock",
@@ -7359,13 +7345,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Troy_Montes-Michie"
   },
   "tschabalala-self": {
-    "artworkCount": 9,
+    "artworkCount": 7,
     "birthYear": 1990,
     "deathYear": null,
     "genres": {
       "Mixed Media": 1,
       "Painting": 4,
-      "Work on Paper": 5
+      "Work on Paper": 3
     },
     "name": "Tschabalala Self",
     "slug": "tschabalala-self",
@@ -7458,11 +7444,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Frohawk_Two_Feathers"
   },
   "unidentified-artist-2": {
-    "artworkCount": 5,
+    "artworkCount": 4,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Photograph": 5
+      "Photograph": 4
     },
     "name": "Unidentified Artist",
     "slug": "unidentified-artist-2",
@@ -7533,11 +7519,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Victor_Ehikhamenor"
   },
   "vladimir-cybil-charlier": {
-    "artworkCount": 2,
+    "artworkCount": 1,
     "birthYear": 1967,
     "deathYear": null,
     "genres": {
-      "Sculpture": 2
+      "Sculpture": 1
     },
     "name": "Vladimir Cybil Charlier",
     "slug": "vladimir-cybil-charlier",
@@ -7620,14 +7606,14 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Walter%20Williams"
   },
   "wangechi-mutu": {
-    "artworkCount": 17,
+    "artworkCount": 13,
     "birthYear": 1972,
     "deathYear": null,
     "genres": {
       "Mixed Media": 1,
-      "Painting": 6,
+      "Painting": 3,
       "Sculpture": 1,
-      "Work on Paper": 10
+      "Work on Paper": 9
     },
     "name": "Wangechi Mutu",
     "slug": "wangechi-mutu",
@@ -7635,14 +7621,14 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Wangechi_Mutu"
   },
   "wardell-milan": {
-    "artworkCount": 23,
+    "artworkCount": 8,
     "birthYear": 1977,
     "deathYear": null,
     "genres": {
-      "Drawing": 18,
+      "Drawing": 3,
       "Photograph": 2,
       "Print": 1,
-      "Work on Paper": 21
+      "Work on Paper": 6
     },
     "name": "Wardell Milan",
     "slug": "wardell-milan",
@@ -7650,12 +7636,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Wardell_Milan"
   },
   "wayne-hodge": {
-    "artworkCount": 6,
+    "artworkCount": 4,
     "birthYear": null,
     "deathYear": null,
     "genres": {
-      "Painting": 2,
-      "Work on Paper": 4
+      "Painting": 1,
+      "Work on Paper": 3
     },
     "name": "Wayne Hodge",
     "slug": "wayne-hodge",
@@ -7676,11 +7662,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Wendy%20Wilson"
   },
   "whitfield-lovell": {
-    "artworkCount": 5,
+    "artworkCount": 3,
     "birthYear": 1959,
     "deathYear": null,
     "genres": {
-      "Sculpture": 5
+      "Sculpture": 3
     },
     "name": "Whitfield Lovell",
     "slug": "whitfield-lovell",
@@ -7688,11 +7674,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Whitfield_Lovell"
   },
   "widline-cadet": {
-    "artworkCount": 3,
+    "artworkCount": 2,
     "birthYear": 1992,
     "deathYear": null,
     "genres": {
-      "Photograph": 3
+      "Photograph": 2
     },
     "name": "Widline Cadet",
     "slug": "widline-cadet",
@@ -7724,13 +7710,13 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=William%20Kitt"
   },
   "william-majors": {
-    "artworkCount": 6,
+    "artworkCount": 5,
     "birthYear": 1930,
     "deathYear": 1982,
     "genres": {
       "Mixed Media": 1,
       "Painting": 1,
-      "Work on Paper": 5
+      "Work on Paper": 4
     },
     "name": "William Majors",
     "slug": "william-majors",
@@ -7752,13 +7738,12 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/William_Scott_(artist)"
   },
   "william-t-williams": {
-    "artworkCount": 9,
+    "artworkCount": 5,
     "birthYear": 1942,
     "deathYear": null,
     "genres": {
-      "Painting": 2,
-      "Print": 2,
-      "Work on Paper": 7
+      "Painting": 1,
+      "Work on Paper": 4
     },
     "name": "William T. Williams",
     "slug": "william-t-williams",
@@ -7780,11 +7765,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/wiki/William_Villalongo"
   },
   "willie-cole": {
-    "artworkCount": 7,
+    "artworkCount": 6,
     "birthYear": 1955,
     "deathYear": null,
     "genres": {
-      "Sculpture": 5,
+      "Sculpture": 4,
       "Work on Paper": 2
     },
     "name": "Willie Cole",
@@ -7890,11 +7875,11 @@
     "wikipediaUrl": "https://en.wikipedia.org/w/index.php?search=Zora%20J%20Murff"
   },
   "zwelethu-mthethwa": {
-    "artworkCount": 4,
+    "artworkCount": 3,
     "birthYear": 1960,
     "deathYear": null,
     "genres": {
-      "Photograph": 4
+      "Photograph": 3
     },
     "name": "Zwelethu Mthethwa",
     "slug": "zwelethu-mthethwa",
