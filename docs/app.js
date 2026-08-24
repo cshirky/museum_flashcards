@@ -9,6 +9,7 @@
     makeFavButton,
     getFavoriteIds,
     shuffled,
+    describeFilter,
     filterArtworksPool,
     showEmptyState,
     hideEmptyState,
@@ -340,7 +341,13 @@
       return;
     }
 
-    loadQuizBatch(shuffled(pool).slice(0, QUIZ_SET_SIZE), `${pool.length} works match this filter.`);
+    loadQuizBatch(
+      shuffled(pool).slice(0, QUIZ_SET_SIZE),
+      `${pool.length} work${pool.length === 1 ? "" : "s"} match ${describeFilter(
+        quizTypeFilter.value,
+        quizDecadeFilter.value
+      )}.`
+    );
   }
 
   function submitQuiz() {
@@ -440,7 +447,10 @@
     const batch = shuffled(pool).slice(0, STUDY_SET_SIZE);
     loadStudyBatch(
       batch,
-      `${pool.length} work${pool.length === 1 ? "" : "s"} match this filter — showing ${batch.length}.`
+      `${pool.length} work${pool.length === 1 ? "" : "s"} match ${describeFilter(
+        studyTypeFilter.value,
+        studyDecadeFilter.value
+      )} — showing ${batch.length}.`
     );
   }
 
@@ -611,7 +621,13 @@
   // "family name" field in the source data.
   const NAME_SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
 
+  // Collective/group names don't fit the "last word is a family name"
+  // heuristic at all — called out individually rather than trying to
+  // generalize "& <acronym>" parsing for what's currently a single case.
+  const SORT_KEY_OVERRIDES = { "Tim Rollins & K.O.S": "rollins" };
+
   function lastNameKey(fullName) {
+    if (SORT_KEY_OVERRIDES[fullName]) return SORT_KEY_OVERRIDES[fullName];
     const words = fullName.trim().split(/\s+/);
     let idx = words.length - 1;
     while (idx > 0 && NAME_SUFFIXES.has(words[idx].toLowerCase().replace(/\.$/, ""))) {

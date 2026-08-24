@@ -21,6 +21,18 @@ window.MuseumShared = (function () {
       .replace(/"/g, "&quot;");
   }
 
+  // Shared "Title (Medium; year)" formatting for the work-card heading and
+  // the image lightbox caption — medium is card.types (the same coarse
+  // category the Medium filter dropdown uses, e.g. "Painting"), not the
+  // free-text medium field (e.g. "Oil stick on paper"), so it reads
+  // consistently with the rest of the app's own vocabulary.
+  function titleLineHtml(card) {
+    const meta = [(card.types || []).join(", "), card.date].filter(Boolean).join("; ");
+    return meta
+      ? `${escapeHtml(card.title)} <span class="work-year">(${escapeHtml(meta)})</span>`
+      : escapeHtml(card.title);
+  }
+
   function splitArtistNames(field) {
     return (field || "").split(",").map((n) => n.trim()).filter(Boolean);
   }
@@ -153,6 +165,13 @@ window.MuseumShared = (function () {
     return a;
   }
 
+  // Turns the current Medium/Decade filter selection into the pool-count
+  // sentence's tail — "Painting in the 1950s", "all mediums in all
+  // decades" — shared by Study and Quiz since both filter on the same pair.
+  function describeFilter(type, decade) {
+    return `${type || "all mediums"} in ${decade ? `the ${decade}` : "all decades"}`;
+  }
+
   // Shared by Quiz and Study, which both filter ARTWORKS by the same
   // Medium/Decade pair. requireDecade excludes artworks with no known
   // decade — both tabs need this so a batch can always convert into the
@@ -232,9 +251,7 @@ window.MuseumShared = (function () {
         if (imagePreviewCaption) {
           const art = artworksById.get(img.dataset.id);
           imagePreviewCaption.innerHTML = art
-            ? `<h3>${escapeHtml(art.title)}${
-                art.date ? ` <span class="work-year">(${escapeHtml(art.date)})</span>` : ""
-              }</h3><p>${artistLinksHtml(art.artist, art.artistSlugs)}</p>`
+            ? `<h3>${titleLineHtml(art)}</h3><p>${artistLinksHtml(art.artist, art.artistSlugs)}</p>`
             : "";
         }
         imagePreview.classList.remove("hidden");
@@ -312,9 +329,7 @@ window.MuseumShared = (function () {
     div.appendChild(makeFavButton(card.id));
 
     const title = document.createElement("h3");
-    title.innerHTML = card.date
-      ? `${escapeHtml(card.title)} <span class="work-year">(${escapeHtml(card.date)})</span>`
-      : escapeHtml(card.title);
+    title.innerHTML = titleLineHtml(card);
     div.appendChild(title);
 
     if (!opts.hideArtist) {
@@ -340,6 +355,7 @@ window.MuseumShared = (function () {
     toggleFavorite,
     makeFavButton,
     shuffled,
+    describeFilter,
     filterArtworksPool,
     showEmptyState,
     hideEmptyState,

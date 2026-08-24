@@ -509,8 +509,8 @@ ARTIST_PAGE_TEMPLATE = """<!DOCTYPE html>
   <nav class="side-nav">
     <a class="nav-btn" href="../../study/">Study</a>
     <a class="nav-btn" href="../../quiz/">Quiz</a>
-    <a class="nav-btn" href="../../favorites/">Favorites</a>
     <a class="nav-btn active" href="../../artists/">All Artists</a>
+    <a class="nav-btn" href="../../favorites/">Favorites</a>
     <a class="nav-btn" href="../../stats/">Stats</a>
   </nav>
 
