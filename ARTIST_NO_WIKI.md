@@ -20,13 +20,13 @@ For each: a Wikipedia search link and a Google search link (with "artist" added 
 
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Jules%20Allen)
 - [Search Google](https://www.google.com/search?q=Jules%20Allen%20artist)
-- Notes:
+- Notes: Disambiguate to https://en.wikipedia.org/wiki/Jules_T._Allen
 
 ## Francisco Alvarado-Juárez
 
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Francisco%20Alvarado-Ju%C3%A1rez)
 - [Search Google](https://www.google.com/search?q=Francisco%20Alvarado-Ju%C3%A1rez%20artist)
-- Notes:
+- Notes: No page; few matches (see e.g. https://en.wikipedia.org/wiki/Pablo_Zelaya_Sierra); Personal page: https://www.franciscoalvarado.com/. Many gallery links
 
 ## Emma Amos
 
