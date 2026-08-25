@@ -1,6 +1,6 @@
 # Artists Not Found on Wikipedia
 
-203 of 633 artists in the collection have no confident Wikipedia match (the app links these as a Wikipedia search instead of an article, with no hover preview). Sorted the same way as the All Artists page (by last name).
+184 of 633 artists in the collection have no confident Wikipedia match (the app links these as a Wikipedia search instead of an article, with no hover preview) — these are the **numbered** entries below. Sorted the same way as the All Artists page (by last name); numbering follows that same order, so gaps are expected as entries get resolved.
 
 For each: a Wikipedia search link and a Google search link (with "artist" added to the query). When the Wikipedia search auto-redirects to an existing article (an exact-title match, usually a namesake), the entry has a "Search lands on" line showing that page, its Wikipedia description, and why the matcher rejected it — a year mismatch alone can just mean the two sources disagree about dates, so those may still be the right person.
 
@@ -10,7 +10,7 @@ For each: a Wikipedia search link and a Google search link (with "artist" added 
 - `Notes: No match` — checked, and the artist genuinely has no Wikipedia page.
 - Empty Notes — not reviewed yet.
 
-Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI_MATCHES` in `fetch_data.py`, the app's data files are patched (article link + hover extract), and the entry is removed from this list.
+Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI_MATCHES` in `fetch_data.py`, and the app's data files are patched (article link + hover extract). The entry itself stays in this list rather than being deleted — its heading loses its number (moving it out of the still-to-review sequence) and its Notes line drops the raw URL once applied, keeping just the match rationale (e.g. spelling variant, middle name) as a record of how it was resolved.
 
 ## 1. Tunji Adeniyi-Jones
 
@@ -40,12 +40,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Kenseth%20Armstead%20artist)
 - Notes:
 
-## 5. Antony Charles Robert Armstrong-Jones
+## Antony Charles Robert Armstrong-Jones
 
 - Dates: 1930–2017
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Antony%20Charles%20Robert%20Armstrong-Jones)
 - [Search Google](https://www.google.com/search?q=Antony%20Charles%20Robert%20Armstrong-Jones%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Antony_Armstrong-Jones,_1st_Earl_of_Snowdon — Lord Snowdon; British photographer (1930–2017), dates match
+- Notes: Matched — Lord Snowdon; British photographer (1930–2017), dates match
 
 ## 6. Jabu Arnell
 
@@ -89,12 +89,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Mambu%20Bayoh%20artist)
 - Notes:
 
-## 12. Enida Beal
+## Enida Beal
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Enida%20Beal)
 - [Search Google](https://www.google.com/search?q=Enida%20Beal%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Endia_Beal — museum spelling 'Enida' vs Wikipedia 'Endia'; American visual artist, curator, and educator
+- Notes: Matched — museum spelling 'Enida' vs Wikipedia 'Endia'; American visual artist, curator, and educator
 
 ## 13. Derrick Beard
 
@@ -166,19 +166,19 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Charles%20R.%20Burwell%20artist)
 - Notes:
 
-## 23. Carol Byard
+## Carol Byard
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Carol%20Byard)
 - [Search Google](https://www.google.com/search?q=Carol%20Byard%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Carole_Byard — museum drops the 'e'; American artist (1941–2017)
+- Notes: Matched — museum drops the 'e'; American artist (1941–2017)
 
-## 24. Bourmand Byron
+## Bourmand Byron
 
 - Dates: 1920–2004
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Bourmand%20Byron)
 - [Search Google](https://www.google.com/search?q=Bourmand%20Byron%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Bourmond_Byron — museum spelling 'Bourmand' vs 'Bourmond'; Haitian painter
+- Notes: Matched — museum spelling 'Bourmand' vs 'Bourmond'; Haitian painter
 
 ## 25. Bill Caldwell
 
@@ -187,12 +187,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Bill%20Caldwell%20artist)
 - Notes: Search redirected to a disambiguation page (https://en.wikipedia.org/wiki/William_Caldwell) with no matching artist entry; link updated to show full-text search results.
 
-## 26. Dana C. Chandler Jr.
+## Dana C. Chandler Jr.
 
 - Dates: 1941–2025
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Dana%20C.%20Chandler%20Jr.)
 - [Search Google](https://www.google.com/search?q=Dana%20C.%20Chandler%20Jr.%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Dana_Chandler — American visual artist and activist (1941–2025), dates match
+- Notes: Matched — American visual artist and activist (1941–2025), dates match
 
 ## 27. Colin Chase
 
@@ -302,12 +302,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Delphine%20Desane%20artist)
 - Notes:
 
-## 42. Thorton Dial
+## Thorton Dial
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Thorton%20Dial)
 - [Search Google](https://www.google.com/search?q=Thorton%20Dial%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Thornton_Dial — museum spelling 'Thorton'; American artist (1928–2016)
+- Notes: Matched — museum spelling 'Thorton'; American artist (1928–2016)
 
 ## 43. Delano Dunn
 
@@ -372,12 +372,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Buraimoh%20Gbadamosi%20artist)
 - Notes:
 
-## 52. Herbert Alexander Gentry
+## Herbert Alexander Gentry
 
 - Dates: 1919–2003
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Herbert%20Alexander%20Gentry)
 - [Search Google](https://www.google.com/search?q=Herbert%20Alexander%20Gentry%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Herbert_Gentry — American painter (1919–2003), dates match
+- Notes: Matched — American painter (1919–2003), dates match
 
 ## 53. Rennie George
 
@@ -407,12 +407,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Simon%20Gouverneur%20artist)
 - Notes:
 
-## 57. Dr. Eugene Grigsby
+## Dr. Eugene Grigsby
 
 - Dates: 1918–2013
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Dr.%20Eugene%20Grigsby)
 - [Search Google](https://www.google.com/search?q=Dr.%20Eugene%20Grigsby%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/J._Eugene_Grigsby — American painter and educator
+- Notes: Matched — American painter and educator
 
 ## 58. Ray Grist
 
@@ -472,12 +472,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Search lands on: [Gregory W. Henry](https://en.wikipedia.org/wiki/Gregory_W._Henry) — American astronomer. Rejected by matcher: description isn't art-related.
 - Notes: No page
 
-## 66. Chester Higgins
+## Chester Higgins
 
 - Dates: b. 1946
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Chester%20Higgins)
 - [Search Google](https://www.google.com/search?q=Chester%20Higgins%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Chester_Higgins_Jr. — American photographer (born 1946), dates match
+- Notes: Matched — American photographer (born 1946), dates match
 
 ## 67. Arnold C. Hinton
 
@@ -523,12 +523,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Search lands on: [Patricia Howard](https://en.wikipedia.org/wiki/Patricia_Howard) — Patricia Magill was the first regular British Women's Royal Air Force officer to wear an. Rejected by matcher: description isn't art-related.
 - Notes: No page
 
-## 73. Earlie Hudnall Jr.
+## Earlie Hudnall Jr.
 
 - Dates: b. 1946
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Earlie%20Hudnall%20Jr.)
 - [Search Google](https://www.google.com/search?q=Earlie%20Hudnall%20Jr.%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Earlie_Hudnall,_Jr. — comma in Wikipedia title; American photographer (born 1946)
+- Notes: Matched — comma in Wikipedia title; American photographer (born 1946)
 
 ## 74. Jibade-Khalil Huffman
 
@@ -729,12 +729,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Birth%20Livingstone%20artist)
 - Notes:
 
-## 102. Al Loving
+## Al Loving
 
 - Dates: 1935–2005
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Al%20Loving)
 - [Search Google](https://www.google.com/search?q=Al%20Loving%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Alvin_D._Loving — African-American abstract expressionist painter (1935–2005), dates match
+- Notes: Matched — African-American abstract expressionist painter (1935–2005), dates match
 
 ## 103. Manuel Macarrulla
 
@@ -1021,12 +1021,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Search lands on: [Andre Pierre](https://en.wikipedia.org/wiki/Andre_Pierre) — American politician. Rejected by matcher: description isn't art-related.
 - Notes: No page
 
-## 143. P.H. Polk
+## P.H. Polk
 
 - Dates: 1898–1984
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=P.H.%20Polk)
 - [Search Google](https://www.google.com/search?q=P.H.%20Polk%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/P._H._Polk — spacing in initials differs; American photographer (1898–1984), dates match
+- Notes: Matched — spacing in initials differs; American photographer (1898–1984), dates match
 
 ## 144. Ted Pontiflet
 
@@ -1043,12 +1043,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Search lands on: [Legal disputes over the Harry Potter series](https://en.wikipedia.org/wiki/Legal_disputes_over_the_Harry_Potter_series) — Since first coming to wide notice in the late 1990s, the Harry Potter book series by. Rejected by matcher: description isn't art-related.
 - Notes: No page
 
-## 146. Robert A. Pruitt
+## Robert A. Pruitt
 
 - Dates: b. 1975
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Robert%20A.%20Pruitt)
 - [Search Google](https://www.google.com/search?q=Robert%20A.%20Pruitt%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Robert_Pruitt_(artist) — visual artist from Houston (born 1975), dates match
+- Notes: Matched — visual artist from Houston (born 1975), dates match
 
 ## 147. Zoë Pulley
 
@@ -1085,12 +1085,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Erika%20Ranee%20artist)
 - Notes:
 
-## 152. Jeanne Raynal
+## Jeanne Raynal
 
 - Dates: 1903–1983
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Jeanne%20Raynal)
 - [Search Google](https://www.google.com/search?q=Jeanne%20Raynal%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Jeanne_Reynal — museum spelling 'Raynal' vs 'Reynal'; American mosaicist (1903–1983)
+- Notes: Matched — museum spelling 'Raynal' vs 'Reynal'; American mosaicist (1903–1983)
 
 ## 153. Robert Reid
 
@@ -1099,12 +1099,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Robert%20Reid%20artist)
 - Notes: Search redirected to a disambiguation page (https://en.wikipedia.org/wiki/Robert_Reid) with no matching artist entry; link updated to show full-text search results.
 
-## 154. Mallica Kapo Reynolds
+## Mallica Kapo Reynolds
 
 - Dates: 1911–1989
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Mallica%20Kapo%20Reynolds)
 - [Search Google](https://www.google.com/search?q=Mallica%20Kapo%20Reynolds%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Mallica_Reynolds — known as Kapo; Jamaican artist (1911–1989), dates match
+- Notes: Matched — known as Kapo; Jamaican artist (1911–1989), dates match
 
 ## 155. Andy Robert
 
@@ -1127,12 +1127,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Nadine%20Robinson%20artist)
 - Notes:
 
-## 158. Tim Rollins & K.O.S
+## Tim Rollins & K.O.S
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Tim%20Rollins%20%26%20K.O.S)
 - [Search Google](https://www.google.com/search?q=Tim%20Rollins%20%26%20K.O.S%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Tim_Rollins_and_K.O.S. — 'and' spelled out in Wikipedia title
+- Notes: Matched — 'and' spelled out in Wikipedia title
 
 ## 159. Mosie Romney
 
@@ -1239,12 +1239,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Aswuzi%20Smith%20artist)
 - Notes:
 
-## 174. Dr.Charles Smith
+## Dr.Charles Smith
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Dr.Charles%20Smith)
 - [Search Google](https://www.google.com/search?q=Dr.Charles%20Smith%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Dr._Charles_Smith — visual artist and historian (born 1940, New Orleans)
+- Notes: Matched — visual artist and historian (born 1940, New Orleans)
 
 ## 175. George Smith
 
@@ -1330,12 +1330,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - [Search Google](https://www.google.com/search?q=Justin%20Randolph%20Thompson%20artist)
 - Notes:
 
-## 187. Mose Ernest Tolliver
+## Mose Ernest Tolliver
 
 - Dates: 1920–2006
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Mose%20Ernest%20Tolliver)
 - [Search Google](https://www.google.com/search?q=Mose%20Ernest%20Tolliver%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Mose_Tolliver — Wikipedia drops middle name; American folk painter
+- Notes: Matched — Wikipedia drops middle name; American folk painter
 
 ## 188. Renee Townsend
 
@@ -1437,12 +1437,12 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Search lands on: [Wendy Wilson](https://en.wikipedia.org/wiki/Wendy_Wilson) — American pop singer (born 1969). Rejected by matcher: description isn't art-related.
 - Notes: No page
 
-## 202. Frank Wimberly
+## Frank Wimberly
 
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Frank%20Wimberly)
 - [Search Google](https://www.google.com/search?q=Frank%20Wimberly%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Frank_Wimberley — museum drops the 'e'; American artist (1926–2025)
+- Notes: Matched — museum drops the 'e'; American artist (1926–2025)
 
 ## 203. Allan Zion
 
