@@ -58,8 +58,15 @@ minute or two. There is no separate build/deploy command.
   (uncached, ~630 artists, rate-limited) — a full run takes several
   minutes. Only re-run this for a real data refresh, not for app-code
   changes.
+- `wiki_match.py` — the Wikipedia artist matcher (tiered lookup, identity
+  gates, `MANUAL_WIKI_MATCHES` hand-verified overrides), imported by
+  `fetch_data.py` and usable standalone: `python3 wiki_match.py "Name"
+  --dates "b. 1950"` for one-off checks, `--recheck
+  ARTIST_DATA/ARTIST_NO_WIKI.md` to spot artists who have since gained a
+  Wikipedia page. Hand-verified matches go in `MANUAL_WIKI_MATCHES` here.
 - `ARTIST_DATA/` — user-maintained artist research notes, not app-facing:
   `ARTIST_NO_WIKI.md` (artists with no confident Wikipedia match, with the
-  manual review workflow documented in its intro) and `ARTISTS_NO_IMAGE.md`
-  (museum-listed artists with no artwork entries/images, hence absent from
-  the flashcards data).
+  manual review workflow documented in its intro), `ARTIST_ERRATA.md`
+  (hand-resolved former no-wiki artists with match rationales), and
+  `ARTISTS_NO_IMAGE.md` (museum-listed artists with no artwork
+  entries/images, hence absent from the flashcards data).
