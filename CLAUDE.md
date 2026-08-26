@@ -70,5 +70,8 @@ minute or two. There is no separate build/deploy command.
   `ARTISTS_NOIMAGE_NOWIKI.md` (museum-listed artists with no artwork
   entries/images and no Wikipedia match — the background-docket pool),
   `ARTIST_NOIMAGE_WIKI.md` (no-image artists whose Wikipedia pages the
-  matcher found; proposals pending review), and `ARTIST_ERRATA.md`
-  (hand-resolved matches and museum-side duplicate/alternate entries).
+  matcher found; proposals pending review), `ARTIST_ERRATA.md`
+  (hand-resolved matches and museum-side duplicate/alternate entries),
+  and `dockets/` + `DOCKETS.md` — one background-research docket per
+  no-Wikipedia artist (own site, social, bio, venues, press; status
+  unreviewed/draft/verified lives in each docket's `Status:` line).

@@ -1,0 +1,18 @@
+# Burnham Ware
+
+- Dates: b. 1949
+- Museum page: https://www.studiomuseum.org/artists/burnham-ware
+- Identity anchor: b. 1949; Studio Museum in Harlem artist list; 1 work(s) in the flashcards data: Photograph (1)
+- Status: unreviewed
+
+## Own site
+
+## Social media
+
+## Bio
+
+## Shown at (up to 5)
+
+## Press (up to 5)
+
+## Notes
