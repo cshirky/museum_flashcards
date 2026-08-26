@@ -62,11 +62,13 @@ minute or two. There is no separate build/deploy command.
   gates, `MANUAL_WIKI_MATCHES` hand-verified overrides), imported by
   `fetch_data.py` and usable standalone: `python3 wiki_match.py "Name"
   --dates "b. 1950"` for one-off checks, `--recheck
-  ARTIST_DATA/ARTIST_NO_WIKI.md` to spot artists who have since gained a
+  ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md` to spot artists who have since gained a
   Wikipedia page. Hand-verified matches go in `MANUAL_WIKI_MATCHES` here.
 - `ARTIST_DATA/` — user-maintained artist research notes, not app-facing:
-  `ARTIST_NO_WIKI.md` (artists with no confident Wikipedia match, with the
-  manual review workflow documented in its intro), `ARTIST_ERRATA.md`
-  (hand-resolved former no-wiki artists with match rationales), and
-  `ARTISTS_NO_IMAGE.md` (museum-listed artists with no artwork
-  entries/images, hence absent from the flashcards data).
+  `ARTIST_IMAGE_NOWIKI.md` (in-app artists with no confident Wikipedia
+  match, with the manual review workflow documented in its intro),
+  `ARTISTS_NOIMAGE_NOWIKI.md` (museum-listed artists with no artwork
+  entries/images and no Wikipedia match — the background-docket pool),
+  `ARTIST_NOIMAGE_WIKI.md` (no-image artists whose Wikipedia pages the
+  matcher found; proposals pending review), and `ARTIST_ERRATA.md`
+  (hand-resolved matches and museum-side duplicate/alternate entries).

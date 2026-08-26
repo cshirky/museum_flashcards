@@ -19,7 +19,7 @@ art-related keyword.
 
 Usage:
     python3 wiki_match.py "Artist Name" [--dates "b. 1950"]
-    python3 wiki_match.py --recheck ARTIST_DATA/ARTIST_NO_WIKI.md
+    python3 wiki_match.py --recheck ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md
 
 --recheck parses "## N. Artist Name" headings (numbered or not) and their
 "- Dates:" lines from a markdown file in the ARTIST_DATA conventions and
@@ -183,7 +183,7 @@ def looks_art_related(summary: dict) -> bool:
 # Hand-verified matches for names the automatic tiers get wrong or miss —
 # Wikipedia titles the page differently, the museum's spelling differs, or
 # the plain name lands on a namesake/disambiguation page. Checked against
-# the museum's artist dates; see ARTIST_DATA/ARTIST_NO_WIKI.md history.
+# the museum's artist dates; see ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md history.
 MANUAL_WIKI_MATCHES = {
     "Al Loving": "Alvin D. Loving",
     "Antony Charles Robert Armstrong-Jones": "Antony Armstrong-Jones, 1st Earl of Snowdon",
