@@ -1146,7 +1146,7 @@ Matched entries get processed in batches: each `Match:` is added to `MANUAL_WIKI
 - Dates: —
 - [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Rozeal.)
 - [Search Google](https://www.google.com/search?q=Rozeal.%20artist)
-- Notes:
+- Notes: Match: https://en.wikipedia.org/wiki/Iona_Rozeal_Brown — the museum's own duplicate artist entry (slug iona-rozeal-brown) equates Rozeal. with Iona Rozeal Brown; Wikipedia describes her as "American painter", lead opens "Rozeal is a contemporary American artist"
 
 ## 145. John Rozelle
 
