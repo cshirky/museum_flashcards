@@ -58,5 +58,8 @@ minute or two. There is no separate build/deploy command.
   (uncached, ~630 artists, rate-limited) — a full run takes several
   minutes. Only re-run this for a real data refresh, not for app-code
   changes.
-- `ARTIST_NO_WIKI.md` — working notes on the ~228 artists with no confident
-  Wikipedia match; user-maintained, not app-facing.
+- `ARTIST_DATA/` — user-maintained artist research notes, not app-facing:
+  `ARTIST_NO_WIKI.md` (artists with no confident Wikipedia match, with the
+  manual review workflow documented in its intro) and `ARTISTS_NO_IMAGE.md`
+  (museum-listed artists with no artwork entries/images, hence absent from
+  the flashcards data).

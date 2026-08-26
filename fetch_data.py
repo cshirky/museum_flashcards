@@ -378,7 +378,10 @@ def strip_middle_initials(name: str) -> str | None:
 
 
 ART_KEYWORDS = (
-    "artist", "painter", "photographer", "sculptor", "printmaker", "illustrator",
+    # "photograph" (not "photographer") also catches "photography"/"photographed";
+    # "photojournal" catches photojournalist/photojournalism, which contain
+    # neither — a gap that cost us Robert A. Sengstacke and LeRoy Woodson.
+    "artist", "painter", "photograph", "photojournal", "sculptor", "printmaker", "illustrator",
     "muralist", "ceramicist", "ceramist", "collagist", "filmmaker", "curator",
     "designer", "installation art", "multimedia artist", "visual artist",
     "conceptual art", "contemporary art", "art historian", "art collective",
@@ -395,7 +398,7 @@ def looks_art_related(summary: dict) -> bool:
 
 # Hand-verified matches for names whose exact-title lookup lands on a
 # disambiguation page (so the automatic tiers below all fail). Checked
-# against the museum's artist dates; see ARTIST_NO_WIKI.md history.
+# against the museum's artist dates; see ARTIST_DATA/ARTIST_NO_WIKI.md history.
 MANUAL_WIKI_MATCHES = {
     "Al Loving": "Alvin D. Loving",
     "Antony Charles Robert Armstrong-Jones": "Antony Armstrong-Jones, 1st Earl of Snowdon",
