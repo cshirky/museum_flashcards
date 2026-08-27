@@ -1,11 +1,13 @@
 # Duplicate Candidates — museum-side multiple entries for one artist
 
 Draft for review (2026-08-26), found by fuzzy-matching names across the flashcards data and
-the ARTIST_DATA pools (plus one pair surfaced by pilot docket research). Nothing here has been
-consolidated yet — each pair needs your confirmation, after which the redundant entry moves to
-`ARTIST_ERRATA.md` per the usual convention. "Flashcards" = the artist is in the app's data.
+the ARTIST_DATA pools (plus one pair surfaced by pilot docket research). The "Certain" pairs
+were confirmed and processed 2026-08-26: each redundant entry moved to `ARTIST_ERRATA.md`
+(canonical entry stays in its pool/app), and orphaned docket stubs were removed. The Likely
+and Uncertain sections still need your confirmation. "Flashcards" = the artist is in the
+app's data.
 
-## Certain — typo/variant with matching identity evidence
+## Certain — PROCESSED 2026-08-26 (redundant entries now in ARTIST_ERRATA.md)
 
 1. **Rachel Eulena Willliams** (flashcards, `rachel-eulena-willliams`, triple-l) = **Rachel Eulena Williams** (no-image pool, `rachel-eulena-williams`, b. 1991). Same person; artwork-credit entry has the typo.
 2. **Francisco Alvarado-Juárez** (flashcards, `francisco-alvarado-juarez`, b. 1950) = **Francisco Alvaroado-Juarez** (no-image pool, `francisco-alvaroado-juarez`). "Alvaroado" is the typo side.

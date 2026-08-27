@@ -1,6 +1,6 @@
 # Additional Artists Not in the Flashcards Data
 
-The museum's API lists 863 artists (matching the "over 800" on the site), but the flashcards data has 633 — these are the 111 of them that appear in the museum's artist list but not on our All Artists page AND have no confident Wikipedia match — the candidate pool for the background-docket project. (The 100 no-image artists the matcher did find Wikipedia pages for are in `ARTIST_NOIMAGE_WIKI.md`.) None of them has any artwork entry in the museum's collection data (verified via the museum API), so their museum pages show no images of their work and they carry no flashcards; most appear to be in the artist list via residencies or exhibitions rather than collection holdings. (Seven museum-side duplicate/alternate entries for artists we already have were moved to `ARTIST_ERRATA.md`.) Sorted by last name, as on the All Artists page. (One further API entry, slug `ben-f-jones-2`, is a museum-side duplicate of Ben F. Jones, whom we already have, and is not listed.)
+The museum's API lists 863 artists (matching the "over 800" on the site), but the flashcards data has 633 — these are the 103 of them that appear in the museum's artist list but not on our All Artists page AND have no confident Wikipedia match — the candidate pool for the background-docket project. (The 108 no-image artists the matcher did find Wikipedia pages for are in `ARTIST_NOIMAGE_WIKI.md`.) None of them has any artwork entry in the museum's collection data (verified via the museum API), so their museum pages show no images of their work and they carry no flashcards; most appear to be in the artist list via residencies or exhibitions rather than collection holdings. (Seven museum-side duplicate/alternate entries for artists we already have were moved to `ARTIST_ERRATA.md`.) Sorted by last name, as on the All Artists page. (One further API entry, slug `ben-f-jones-2`, is a museum-side duplicate of Ben F. Jones, whom we already have, and is not listed.)
 
 For each: the museum's artist page, plus Wikipedia and Google search links in the ARTIST_IMAGE_NOWIKI.md style.
 
@@ -28,15 +28,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=BK%20Adams%20artist)
 - Notes:
 
-## 4. Francisco Alvaroado-Juarez
-
-- Dates: —
-- [Museum page](https://www.studiomuseum.org/artists/francisco-alvaroado-juarez)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Francisco%20Alvaroado-Juarez)
-- [Search Google](https://www.google.com/search?q=Francisco%20Alvaroado-Juarez%20artist)
-- Notes:
-
-## 5. Lotte Andersen
+## 4. Lotte Andersen
 
 - Dates: b. 1989
 - [Museum page](https://www.studiomuseum.org/artists/lotte-andersen)
@@ -44,7 +36,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Lotte%20Andersen%20artist)
 - Notes:
 
-## 6. Noel Anderson
+## 5. Noel Anderson
 
 - Dates: b. 1981
 - [Museum page](https://www.studiomuseum.org/artists/noel-anderson)
@@ -52,7 +44,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Noel%20Anderson%20artist)
 - Notes:
 
-## 7. Sheila Batiste
+## 6. Sheila Batiste
 
 - Dates: b. 1955
 - [Museum page](https://www.studiomuseum.org/artists/sheila-batiste)
@@ -60,7 +52,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Sheila%20Batiste%20artist)
 - Notes:
 
-## 8. Cleveland John Bellow
+## 7. Cleveland John Bellow
 
 - Dates: b. 1946
 - [Museum page](https://www.studiomuseum.org/artists/cleveland-john-bellow)
@@ -68,7 +60,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Cleveland%20John%20Bellow%20artist)
 - Notes:
 
-## 9. Kajahl Benes
+## 8. Kajahl Benes
 
 - Dates: b. 1985
 - [Museum page](https://www.studiomuseum.org/artists/kajahl-benes)
@@ -76,7 +68,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Kajahl%20Benes%20artist)
 - Notes:
 
-## 10. Bright Bimpong
+## 9. Bright Bimpong
 
 - Dates: b. 1960
 - [Museum page](https://www.studiomuseum.org/artists/bright-bimpong)
@@ -84,7 +76,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Bright%20Bimpong%20artist)
 - Notes:
 
-## 11. Terry Boddie
+## 10. Terry Boddie
 
 - Dates: b. 1965
 - [Museum page](https://www.studiomuseum.org/artists/terry-boddie)
@@ -92,7 +84,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Terry%20Boddie%20artist)
 - Notes:
 
-## 12. John Braithwaite
+## 11. John Braithwaite
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/john-braithwaite)
@@ -100,7 +92,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=John%20Braithwaite%20artist)
 - Notes:
 
-## 13. Greg Breda
+## 12. Greg Breda
 
 - Dates: b. 1959
 - [Museum page](https://www.studiomuseum.org/artists/greg-breda)
@@ -108,7 +100,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Greg%20Breda%20artist)
 - Notes:
 
-## 14. Enick Brig
+## 13. Enick Brig
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/enick-brig)
@@ -116,7 +108,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Enick%20Brig%20artist)
 - Notes:
 
-## 15. James Andrew Brown
+## 14. James Andrew Brown
 
 - Dates: b. 1953
 - [Museum page](https://www.studiomuseum.org/artists/james-andrew-brown)
@@ -124,7 +116,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=James%20Andrew%20Brown%20artist)
 - Notes:
 
-## 16. Louis Cameron
+## 15. Louis Cameron
 
 - Dates: b. 1973
 - [Museum page](https://www.studiomuseum.org/artists/louis-cameron)
@@ -132,7 +124,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Louis%20Cameron%20artist)
 - Notes:
 
-## 17. Benjamin E. Campbell
+## 16. Benjamin E. Campbell
 
 - Dates: b. 1935
 - [Museum page](https://www.studiomuseum.org/artists/benjamin-e-campbell)
@@ -140,7 +132,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Benjamin%20E.%20Campbell%20artist)
 - Notes:
 
-## 18. Juan Cash
+## 17. Juan Cash
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/juan-cash)
@@ -148,7 +140,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Juan%20Cash%20artist)
 - Notes:
 
-## 19. Wesley Clark
+## 18. Wesley Clark
 
 - Dates: 1938–2021
 - [Museum page](https://www.studiomuseum.org/artists/wesley-clark)
@@ -156,7 +148,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Wesley%20Clark%20artist)
 - Notes:
 
-## 20. Mike Cloud
+## 19. Mike Cloud
 
 - Dates: b. 1974
 - [Museum page](https://www.studiomuseum.org/artists/mike-cloud)
@@ -164,7 +156,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Mike%20Cloud%20artist)
 - Notes:
 
-## 21. Derrick Alexis Coard
+## 20. Derrick Alexis Coard
 
 - Dates: b. 1961
 - [Museum page](https://www.studiomuseum.org/artists/derrick-alexis-coard)
@@ -172,7 +164,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Derrick%20Alexis%20Coard%20artist)
 - Notes:
 
-## 22. Brett Cook-Dizney
+## 21. Brett Cook-Dizney
 
 - Dates: b. 1968
 - [Museum page](https://www.studiomuseum.org/artists/brett-cook-dizney)
@@ -180,7 +172,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Brett%20Cook-Dizney%20artist)
 - Notes:
 
-## 23. Hervé Cortinat
+## 22. Hervé Cortinat
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/herv%C3%A9-cortinat)
@@ -188,7 +180,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Herv%C3%A9%20Cortinat%20artist)
 - Notes:
 
-## 24. Russell Craig
+## 23. Russell Craig
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/russell-craig)
@@ -196,7 +188,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Russell%20Craig%20artist)
 - Notes:
 
-## 25. Ada Cruz
+## 24. Ada Cruz
 
 - Dates: b. 1956
 - [Museum page](https://www.studiomuseum.org/artists/ada-cruz)
@@ -204,7 +196,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ada%20Cruz%20artist)
 - Notes:
 
-## 26. Andrews Ofori Danso
+## 25. Andrews Ofori Danso
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/andrews-ofori-danso)
@@ -212,23 +204,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Andrews%20Ofori%20Danso%20artist)
 - Notes:
 
-## 27. TJ Dedeaux-Norris
-
-- Dates: —
-- [Museum page](https://www.studiomuseum.org/artists/tj-dedeaux-norris)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=TJ%20Dedeaux-Norris)
-- [Search Google](https://www.google.com/search?q=TJ%20Dedeaux-Norris%20artist)
-- Notes:
-
-## 28. Avel C. DeKnight
-
-- Dates: 1923–1995
-- [Museum page](https://www.studiomuseum.org/artists/avel-c-deknight)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Avel%20C.%20DeKnight)
-- [Search Google](https://www.google.com/search?q=Avel%20C.%20DeKnight%20artist)
-- Notes:
-
-## 29. Karoly Demeter
+## 26. Karoly Demeter
 
 - Dates: 1892–1983
 - [Museum page](https://www.studiomuseum.org/artists/karoly-demeter)
@@ -236,7 +212,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Karoly%20Demeter%20artist)
 - Notes:
 
-## 30. James Denmark
+## 27. James Denmark
 
 - Dates: b. 1936
 - [Museum page](https://www.studiomuseum.org/artists/james-denmark)
@@ -244,7 +220,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=James%20Denmark%20artist)
 - Notes:
 
-## 31. Modou Dieng
+## 28. Modou Dieng
 
 - Dates: b. 1970
 - [Museum page](https://www.studiomuseum.org/artists/modou-dieng)
@@ -252,7 +228,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Modou%20Dieng%20artist)
 - Notes:
 
-## 32. Vincent S. Dillard
+## 29. Vincent S. Dillard
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/vincent-s-dillard)
@@ -260,7 +236,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Vincent%20S.%20Dillard%20artist)
 - Notes:
 
-## 33. John Dowell
+## 30. John Dowell
 
 - Dates: b. 1941
 - [Museum page](https://www.studiomuseum.org/artists/john-dowell)
@@ -268,7 +244,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=John%20Dowell%20artist)
 - Notes:
 
-## 34. Deshawn Dumas
+## 31. Deshawn Dumas
 
 - Dates: b. 1985
 - [Museum page](https://www.studiomuseum.org/artists/deshawn-dumas)
@@ -276,7 +252,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Deshawn%20Dumas%20artist)
 - Notes:
 
-## 35. Mel Ettrick
+## 32. Mel Ettrick
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/mel-ettrick)
@@ -284,7 +260,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Mel%20Ettrick%20artist)
 - Notes:
 
-## 36. Adebisi Fabunmi
+## 33. Adebisi Fabunmi
 
 - Dates: b. 1930
 - [Museum page](https://www.studiomuseum.org/artists/adebisi-fabunmi)
@@ -292,7 +268,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Adebisi%20Fabunmi%20artist)
 - Notes:
 
-## 37. Justin George
+## 34. Justin George
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/justin-georges)
@@ -300,7 +276,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Justin%20George%20artist)
 - Notes:
 
-## 38. Cameron Granger
+## 35. Cameron Granger
 
 - Dates: b. 1993
 - [Museum page](https://www.studiomuseum.org/artists/cameron-granger)
@@ -308,7 +284,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Cameron%20Granger%20artist)
 - Notes:
 
-## 39. Roy Gumpel
+## 36. Roy Gumpel
 
 - Dates: b. 1956
 - [Museum page](https://www.studiomuseum.org/artists/roy-gumpel)
@@ -316,7 +292,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Roy%20Gumpel%20artist)
 - Notes:
 
-## 40. Russell Hamilton
+## 37. Russell Hamilton
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/russell-hamilton)
@@ -324,7 +300,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Russell%20Hamilton%20artist)
 - Notes:
 
-## 41. Ranu Harding
+## 38. Ranu Harding
 
 - Dates: b. 1945
 - [Museum page](https://www.studiomuseum.org/artists/ranu-harding)
@@ -332,7 +308,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ranu%20Harding%20artist)
 - Notes:
 
-## 42. Rosalyn Hawthorne
+## 39. Rosalyn Hawthorne
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/rosalyn-hawthorne)
@@ -340,7 +316,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Rosalyn%20Hawthorne%20artist)
 - Notes:
 
-## 43. Stephanie Hill
+## 40. Stephanie Hill
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/stephanie-hill)
@@ -348,7 +324,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Stephanie%20Hill%20artist)
 - Notes:
 
-## 44. Jacqui Holmes
+## 41. Jacqui Holmes
 
 - Dates: b. 1951
 - [Museum page](https://www.studiomuseum.org/artists/jacqui-holmes)
@@ -356,7 +332,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Jacqui%20Holmes%20artist)
 - Notes:
 
-## 45. Joseph ("Joe") S. Lewis III
+## 42. Joseph ("Joe") S. Lewis III
 
 - Dates: b. 1953
 - [Museum page](https://www.studiomuseum.org/artists/joseph-joe-s-lewis-iii)
@@ -364,7 +340,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Joseph%20%28%22Joe%22%29%20S.%20Lewis%20III%20artist)
 - Notes:
 
-## 46. Alex Jackson
+## 43. Alex Jackson
 
 - Dates: b. 1993
 - [Museum page](https://www.studiomuseum.org/artists/alex-jackson)
@@ -372,15 +348,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Alex%20Jackson%20artist)
 - Notes:
 
-## 47. February James
-
-- Dates: —
-- [Museum page](https://www.studiomuseum.org/artists/february-james)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=February%20James)
-- [Search Google](https://www.google.com/search?q=February%20James%20artist)
-- Notes:
-
-## 48. Noah Jemison
+## 44. Noah Jemison
 
 - Dates: b. 1943
 - [Museum page](https://www.studiomuseum.org/artists/noah-jemison)
@@ -388,7 +356,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Noah%20Jemison%20artist)
 - Notes:
 
-## 49. A.K. Jenkins
+## 45. A.K. Jenkins
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/a-k-jenkins)
@@ -396,7 +364,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=A.K.%20Jenkins%20artist)
 - Notes:
 
-## 50. Genesis Jerez
+## 46. Genesis Jerez
 
 - Dates: b. 1993
 - [Museum page](https://www.studiomuseum.org/artists/genesis-jerez)
@@ -404,7 +372,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Genesis%20Jerez%20artist)
 - Notes:
 
-## 51. William Joseph
+## 47. William Joseph
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/william-joseph)
@@ -412,7 +380,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=William%20Joseph%20artist)
 - Notes:
 
-## 52. James H. Karales
+## 48. James H. Karales
 
 - Dates: 1930–2002
 - [Museum page](https://www.studiomuseum.org/artists/james-h-karales)
@@ -420,7 +388,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=James%20H.%20Karales%20artist)
 - Notes:
 
-## 53. Paul Farwell Keene
+## 49. Paul Farwell Keene
 
 - Dates: 1920–2009
 - [Museum page](https://www.studiomuseum.org/artists/paul-farwell-keene)
@@ -428,7 +396,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Paul%20Farwell%20Keene%20artist)
 - Notes:
 
-## 54. William Keith
+## 50. William Keith
 
 - Dates: 1929–2004
 - [Museum page](https://www.studiomuseum.org/artists/william-keith)
@@ -436,7 +404,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=William%20Keith%20artist)
 - Notes:
 
-## 55. Michael S. Kendall
+## 51. Michael S. Kendall
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/michael-s-kendall)
@@ -444,7 +412,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Michael%20S.%20Kendall%20artist)
 - Notes:
 
-## 56. Jeremy Kost
+## 52. Jeremy Kost
 
 - Dates: b. 1977
 - [Museum page](https://www.studiomuseum.org/artists/jeremy-kost)
@@ -452,7 +420,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Jeremy%20Kost%20artist)
 - Notes:
 
-## 57. D. Lammie-Hanson
+## 53. D. Lammie-Hanson
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/d-lammie-hanson)
@@ -460,7 +428,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=D.%20Lammie-Hanson%20artist)
 - Notes:
 
-## 58. Shaun El C. Leonardo
+## 54. Shaun El C. Leonardo
 
 - Dates: b. 1976
 - [Museum page](https://www.studiomuseum.org/artists/shaun-el-c-leonardo)
@@ -468,7 +436,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Shaun%20El%20C.%20Leonardo%20artist)
 - Notes:
 
-## 59. Richard Lewis
+## 55. Richard Lewis
 
 - Dates: b. 1966
 - [Museum page](https://www.studiomuseum.org/artists/richard-lewis)
@@ -476,7 +444,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Richard%20Lewis%20artist)
 - Notes:
 
-## 60. Leonel López-Nussa
+## 56. Leonel López-Nussa
 
 - Dates: 1916–2004
 - [Museum page](https://www.studiomuseum.org/artists/leonel-nussa)
@@ -484,7 +452,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Leonel%20L%C3%B3pez-Nussa%20artist)
 - Notes:
 
-## 61. Nzuji De Magalhaes
+## 57. Nzuji De Magalhaes
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/nzuji-de-magalhaes)
@@ -492,7 +460,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Nzuji%20De%20Magalhaes%20artist)
 - Notes:
 
-## 62. Carolyn Maitland
+## 58. Carolyn Maitland
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/carolyn-maitland)
@@ -500,7 +468,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Carolyn%20Maitland%20artist)
 - Notes:
 
-## 63. Francisco Mora
+## 59. Francisco Mora
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/francisco-mora)
@@ -508,7 +476,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Francisco%20Mora%20artist)
 - Notes:
 
-## 64. Rafael Morla
+## 60. Rafael Morla
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/rafael-morla)
@@ -516,15 +484,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Rafael%20Morla%20artist)
 - Notes:
 
-## 65. Rashaad Newsom
-
-- Dates: b. 1979
-- [Museum page](https://www.studiomuseum.org/artists/rashaad-newsom)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Rashaad%20Newsom)
-- [Search Google](https://www.google.com/search?q=Rashaad%20Newsom%20artist)
-- Notes:
-
-## 66. Ludovic Nkoth
+## 61. Ludovic Nkoth
 
 - Dates: b. 1994
 - [Museum page](https://www.studiomuseum.org/artists/ludovic-nkoth)
@@ -532,7 +492,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ludovic%20Nkoth%20artist)
 - Notes:
 
-## 67. Fred Noel
+## 62. Fred Noel
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/fred-noel)
@@ -540,15 +500,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Fred%20Noel%20artist)
 - Notes:
 
-## 68. Leonel Nussa
-
-- Dates: —
-- [Museum page](https://www.studiomuseum.org/artists/leonel-nussa-2)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Leonel%20Nussa)
-- [Search Google](https://www.google.com/search?q=Leonel%20Nussa%20artist)
-- Notes:
-
-## 69. Antoine Obin
+## 63. Antoine Obin
 
 - Dates: 1929–1990
 - [Museum page](https://www.studiomuseum.org/artists/antoine-obin)
@@ -556,7 +508,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Antoine%20Obin%20artist)
 - Notes:
 
-## 70. Saturnino Portuondo Odio
+## 64. Saturnino Portuondo Odio
 
 - Dates: 1928–1997
 - [Museum page](https://www.studiomuseum.org/artists/saturnino-portuondo-odio)
@@ -564,7 +516,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Saturnino%20Portuondo%20Odio%20artist)
 - Notes:
 
-## 71. Kayode Ojo
+## 65. Kayode Ojo
 
 - Dates: b. 1990
 - [Museum page](https://www.studiomuseum.org/artists/kayode-ojo)
@@ -572,7 +524,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Kayode%20Ojo%20artist)
 - Notes:
 
-## 72. Nnamdi Okonkwo
+## 66. Nnamdi Okonkwo
 
 - Dates: b. 1965
 - [Museum page](https://www.studiomuseum.org/artists/nnamdi-okonkwo)
@@ -580,7 +532,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Nnamdi%20Okonkwo%20artist)
 - Notes:
 
-## 73. Alexis Peskine
+## 67. Alexis Peskine
 
 - Dates: b. 1979
 - [Museum page](https://www.studiomuseum.org/artists/alexis-peskine)
@@ -588,7 +540,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Alexis%20Peskine%20artist)
 - Notes:
 
-## 74. Essie Bendolph Pettway
+## 68. Essie Bendolph Pettway
 
 - Dates: b. 1942
 - [Museum page](https://www.studiomuseum.org/artists/essie-bendolph-pettway)
@@ -596,7 +548,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Essie%20Bendolph%20Pettway%20artist)
 - Notes:
 
-## 75. Derriann Pharr
+## 69. Derriann Pharr
 
 - Dates: 2026
 - [Museum page](https://www.studiomuseum.org/artists/derriann-pharr)
@@ -604,7 +556,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Derriann%20Pharr%20artist)
 - Notes:
 
-## 76. James Phillips
+## 70. James Phillips
 
 - Dates: b. 1945
 - [Museum page](https://www.studiomuseum.org/artists/james-phillips)
@@ -612,7 +564,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=James%20Phillips%20artist)
 - Notes:
 
-## 77. Murray De Pillars
+## 71. Murray De Pillars
 
 - Dates: 1938–2008
 - [Museum page](https://www.studiomuseum.org/artists/murray-de-pillars)
@@ -620,7 +572,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Murray%20De%20Pillars%20artist)
 - Notes:
 
-## 78. Simonette Quamina
+## 72. Simonette Quamina
 
 - Dates: 2026
 - [Museum page](https://www.studiomuseum.org/artists/simonette-quamina)
@@ -628,7 +580,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Simonette%20Quamina%20artist)
 - Notes:
 
-## 79. Jamea Richmond-Edwards
+## 73. Jamea Richmond-Edwards
 
 - Dates: b. 1982
 - [Museum page](https://www.studiomuseum.org/artists/jamea-richmond-edwards)
@@ -636,7 +588,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Jamea%20Richmond-Edwards%20artist)
 - Notes:
 
-## 80. Gregory Ridley
+## 74. Gregory Ridley
 
 - Dates: 1925–2004
 - [Museum page](https://www.studiomuseum.org/artists/gregory-ridley)
@@ -644,7 +596,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Gregory%20Ridley%20artist)
 - Notes:
 
-## 81. Enrico Riley
+## 75. Enrico Riley
 
 - Dates: b. 1973
 - [Museum page](https://www.studiomuseum.org/artists/enrico-riley)
@@ -652,7 +604,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Enrico%20Riley%20artist)
 - Notes:
 
-## 82. Bob Rivera
+## 76. Bob Rivera
 
 - Dates: b. 1943
 - [Museum page](https://www.studiomuseum.org/artists/bob-rivera)
@@ -660,7 +612,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Bob%20Rivera%20artist)
 - Notes:
 
-## 83. Ellington Robinson
+## 77. Ellington Robinson
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/ellington-robinson)
@@ -668,7 +620,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ellington%20Robinson%20artist)
 - Notes:
 
-## 84. Duhirwe Rushemeza
+## 78. Duhirwe Rushemeza
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/duhirwe-rushemeza)
@@ -676,7 +628,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Duhirwe%20Rushemeza%20artist)
 - Notes:
 
-## 85. Ed Salter
+## 79. Ed Salter
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/ed-salter)
@@ -684,7 +636,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ed%20Salter%20artist)
 - Notes:
 
-## 86. Curtis "Talwst" Santiago
+## 80. Curtis "Talwst" Santiago
 
 - Dates: b. 1979
 - [Museum page](https://www.studiomuseum.org/artists/curtis-talwst-santiago)
@@ -692,7 +644,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Curtis%20%22Talwst%22%20Santiago%20artist)
 - Notes:
 
-## 87. Taylor Simmons
+## 81. Taylor Simmons
 
 - Dates: 2026
 - [Museum page](https://www.studiomuseum.org/artists/taylor-simmons)
@@ -700,15 +652,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Taylor%20Simmons%20artist)
 - Notes:
 
-## 88. Michel Sinvil
-
-- Dates: —
-- [Museum page](https://www.studiomuseum.org/artists/michel-sivnil)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Michel%20Sinvil)
-- [Search Google](https://www.google.com/search?q=Michel%20Sinvil%20artist)
-- Notes:
-
-## 89. Aj Smith
+## 82. Aj Smith
 
 - Dates: b. 1952
 - [Museum page](https://www.studiomuseum.org/artists/aj-smith)
@@ -716,7 +660,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Aj%20Smith%20artist)
 - Notes:
 
-## 90. George (Geo) Smith
+## 83. George (Geo) Smith
 
 - Dates: 1945–1999
 - [Museum page](https://www.studiomuseum.org/artists/george-geo-smith)
@@ -724,7 +668,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=George%20%28Geo%29%20Smith%20artist)
 - Notes:
 
-## 91. Vincent Smith
+## 84. Vincent Smith
 
 - Dates: 1929–2003
 - [Museum page](https://www.studiomuseum.org/artists/vincent-smith)
@@ -732,7 +676,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Vincent%20Smith%20artist)
 - Notes:
 
-## 92. James Everett Stanley
+## 85. James Everett Stanley
 
 - Dates: b. 1975
 - [Museum page](https://www.studiomuseum.org/artists/james-everett-stanley)
@@ -740,7 +684,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=James%20Everett%20Stanley%20artist)
 - Notes:
 
-## 93. Allen Stringfellow
+## 86. Allen Stringfellow
 
 - Dates: 1923–2004
 - [Museum page](https://www.studiomuseum.org/artists/allen-stringfellow)
@@ -748,7 +692,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Allen%20Stringfellow%20artist)
 - Notes:
 
-## 94. Dick Stroud
+## 87. Dick Stroud
 
 - Dates: 1940–2015
 - [Museum page](https://www.studiomuseum.org/artists/dick-stroud)
@@ -756,7 +700,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Dick%20Stroud%20artist)
 - Notes:
 
-## 95. Janet E. Taylor
+## 88. Janet E. Taylor
 
 - Dates: b. 1948
 - [Museum page](https://www.studiomuseum.org/artists/janet-e-taylor)
@@ -764,7 +708,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Janet%20E.%20Taylor%20artist)
 - Notes:
 
-## 96. Thomas Teamoh
+## 89. Thomas Teamoh
 
 - Dates: b. 1945
 - [Museum page](https://www.studiomuseum.org/artists/thomas-teamoh)
@@ -772,7 +716,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Thomas%20Teamoh%20artist)
 - Notes:
 
-## 97. Felandus Thames
+## 90. Felandus Thames
 
 - Dates: b. 1974
 - [Museum page](https://www.studiomuseum.org/artists/felandus-thames)
@@ -780,7 +724,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Felandus%20Thames%20artist)
 - Notes:
 
-## 98. Chiffon Thomas
+## 91. Chiffon Thomas
 
 - Dates: b. 1991
 - [Museum page](https://www.studiomuseum.org/artists/chiffon-thomas)
@@ -788,7 +732,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Chiffon%20Thomas%20artist)
 - Notes:
 
-## 99. Philip Thomas
+## 92. Philip Thomas
 
 - Dates: b. 1980
 - [Museum page](https://www.studiomuseum.org/artists/philip-thomas)
@@ -796,7 +740,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Philip%20Thomas%20artist)
 - Notes:
 
-## 100. Brad Trent
+## 93. Brad Trent
 
 - Dates: b. 1959
 - [Museum page](https://www.studiomuseum.org/artists/brad-trent)
@@ -804,7 +748,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Brad%20Trent%20artist)
 - Notes:
 
-## 101. Julio Valdez
+## 94. Julio Valdez
 
 - Dates: b. 1969
 - [Museum page](https://www.studiomuseum.org/artists/julio-valdez)
@@ -812,7 +756,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Julio%20Valdez%20artist)
 - Notes:
 
-## 102. Henderson Day (Bo) Walker
+## 95. Henderson Day (Bo) Walker
 
 - Dates: 1951–1986
 - [Museum page](https://www.studiomuseum.org/artists/henderson-day-bo-walker)
@@ -820,7 +764,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Henderson%20Day%20%28Bo%29%20Walker%20artist)
 - Notes:
 
-## 103. Autumn Wallace
+## 96. Autumn Wallace
 
 - Dates: b. 1996
 - [Museum page](https://www.studiomuseum.org/artists/autumn-wallace)
@@ -828,7 +772,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Autumn%20Wallace%20artist)
 - Notes:
 
-## 104. Ian Weaver
+## 97. Ian Weaver
 
 - Dates: b. 1970
 - [Museum page](https://www.studiomuseum.org/artists/ian-weaver)
@@ -836,7 +780,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Ian%20Weaver%20artist)
 - Notes:
 
-## 105. Bernard Williams
+## 98. Bernard Williams
 
 - Dates: b. 1964
 - [Museum page](https://www.studiomuseum.org/artists/bernard-williams)
@@ -844,7 +788,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Bernard%20Williams%20artist)
 - Notes:
 
-## 106. Bri Williams
+## 99. Bri Williams
 
 - Dates: b. 1993
 - [Museum page](https://www.studiomuseum.org/artists/bri-williams)
@@ -852,7 +796,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Bri%20Williams%20artist)
 - Notes:
 
-## 107. Fabian Williams
+## 100. Fabian Williams
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/fabian-williams)
@@ -860,7 +804,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Fabian%20Williams%20artist)
 - Notes:
 
-## 108. Grace Williams
+## 101. Grace Williams
 
 - Dates: b. 1943
 - [Museum page](https://www.studiomuseum.org/artists/grace-williams)
@@ -868,15 +812,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Grace%20Williams%20artist)
 - Notes:
 
-## 109. Rachel Eulena Williams
-
-- Dates: b,. 1991
-- [Museum page](https://www.studiomuseum.org/artists/rachel-eulena-williams)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Rachel%20Eulena%20Williams)
-- [Search Google](https://www.google.com/search?q=Rachel%20Eulena%20Williams%20artist)
-- Notes:
-
-## 110. Christopher Wynter
+## 102. Christopher Wynter
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/christopher-wynter)
@@ -884,7 +820,7 @@ For each: the museum's artist page, plus Wikipedia and Google search links in th
 - [Search Google](https://www.google.com/search?q=Christopher%20Wynter%20artist)
 - Notes:
 
-## 111. Yéanzi
+## 103. Yéanzi
 
 - Dates: b. 1988
 - [Museum page](https://www.studiomuseum.org/artists/y%C3%A9anzi)

@@ -1,6 +1,6 @@
 # Docket Index
 
-One docket per artist with no Wikipedia page (295 artists: 184 with images in the app, 111 museum-listed without). Status lives in each docket file's `Status:` line — unreviewed | draft (links gathered, unverified) | verified. This index is regenerated from the docket files; re-run the snippet in ARTIST_DATA/dockets/ conventions if statuses drift.
+One docket per artist with no Wikipedia page (287 artists: 184 with images in the app, 103 museum-listed without). Status lives in each docket file's `Status:` line — unreviewed | draft (links gathered, unverified) | verified. This index is regenerated from the docket files; re-run the snippet in ARTIST_DATA/dockets/ conventions if statuses drift.
 
 | Artist | Dates | Pool | Status |
 |---|---|---|---|
@@ -10,7 +10,6 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Tunji Adeniyi-Jones](dockets/tunji-adeniyi-jones.md) | b. 1992 | has images | draft |
 | [Turiya Adkins](dockets/turiya-adkins.md) | — | has images | draft |
 | [Francisco Alvarado-Juárez](dockets/francisco-alvarado-juarez.md) | b. 1950 | has images | unreviewed |
-| [Francisco Alvaroado-Juarez](dockets/francisco-alvaroado-juarez.md) | — | no images | unreviewed |
 | [Lotte Andersen](dockets/lotte-andersen.md) | b. 1989 | no images | unreviewed |
 | [Noel Anderson](dockets/noel-anderson.md) | b. 1981 | no images | unreviewed |
 | [Kenseth Armstead](dockets/kenseth-armstead.md) | — | has images | unreviewed |
@@ -64,8 +63,6 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Walter Davis](dockets/walter-davis.md) | 1937–2001 | has images | unreviewed |
 | [C. Daniel Dawson](dockets/c-daniel-dawson.md) | b. 1943 | has images | unreviewed |
 | [T.J. Dedeaux-Norris](dockets/t-j-dedeaux-norris.md) | — | has images | unreviewed |
-| [TJ Dedeaux-Norris](dockets/tj-dedeaux-norris.md) | — | no images | unreviewed |
-| [Avel C. DeKnight](dockets/avel-c-deknight.md) | 1923–1995 | no images | unreviewed |
 | [Karoly Demeter](dockets/karoly-demeter.md) | 1892–1983 | no images | unreviewed |
 | [James Denmark](dockets/james-denmark.md) | b. 1936 | no images | unreviewed |
 | [Joseph A. DePace](dockets/joseph-a-depace.md) | — | has images | unreviewed |
@@ -122,7 +119,6 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Gerald Jackson](dockets/gerald-jackson.md) | b. 1936 | has images | unreviewed |
 | [Reginald Jackson](dockets/reginald-jackson.md) | — | has images | unreviewed |
 | [Walter C. Jackson](dockets/walter-c-jackson.md) | b. 1940 | has images | unreviewed |
-| [February James](dockets/february-james.md) | — | no images | unreviewed |
 | [Feburary James](dockets/feburary-james.md) | — | has images | unreviewed |
 | [Njena Surae Jarvis](dockets/njena-surae-jarvis.md) | — | has images | unreviewed |
 | [Eliegene Jean](dockets/eliegene-jean.md) | — | has images | unreviewed |
@@ -181,13 +177,11 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Cassi Namoda](dockets/cassi-namoda.md) | b. 1988 | has images | unreviewed |
 | [Brandon Ndife](dockets/brandon-ndife.md) | b. 1991 | has images | unreviewed |
 | [Rudzani Nemasetoni](dockets/rudzani-nemasetoni.md) | b. 1962 | has images | unreviewed |
-| [Rashaad Newsom](dockets/rashaad-newsom.md) | b. 1979 | no images | unreviewed |
 | [Nisibandoki](dockets/nisibandoki.md) | — | has images | unreviewed |
 | [Serge Alain Nitegeka](dockets/serge-alain-nitegeka.md) | b. 1983 | has images | unreviewed |
 | [Charles Nkosi](dockets/charles-nkosi.md) | b. 1949 | has images | unreviewed |
 | [Ludovic Nkoth](dockets/ludovic-nkoth.md) | b. 1994 | no images | unreviewed |
 | [Fred Noel](dockets/fred-noel.md) | — | no images | unreviewed |
-| [Leonel Nussa](dockets/leonel-nussa-2.md) | — | no images | unreviewed |
 | [Antoine Obin](dockets/antoine-obin.md) | 1929–1990 | no images | unreviewed |
 | [Saturnino Portuondo Odio](dockets/saturnino-portuondo-odio.md) | 1928–1997 | no images | unreviewed |
 | [Kemi Odulana](dockets/kemi-odulana.md) | — | has images | unreviewed |
@@ -245,7 +239,6 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Tariku Shiferaw](dockets/tariku-shiferaw.md) | — | has images | unreviewed |
 | [David Shrobe](dockets/david-shrobe.md) | b. 1974 | has images | unreviewed |
 | [Taylor Simmons](dockets/taylor-simmons.md) | 2026 | no images | unreviewed |
-| [Michel Sinvil](dockets/michel-sivnil.md) | — | no images | draft |
 | [Michel Sivnil](dockets/michel-sivnil-2.md) | — | has images | draft |
 | [Yarrow Slaps](dockets/yarrow-slaps.md) | b. 1990 | has images | unreviewed |
 | [Aj Smith](dockets/aj-smith.md) | b. 1952 | no images | unreviewed |
@@ -291,7 +284,6 @@ One docket per artist with no Wikipedia page (295 artists: 184 with images in th
 | [Fabian Williams](dockets/fabian-williams.md) | — | no images | unreviewed |
 | [Grace Williams](dockets/grace-williams.md) | b. 1943 | no images | unreviewed |
 | [Michael Kelly Williams](dockets/michael-kelly-williams.md) | b. 1950 | has images | unreviewed |
-| [Rachel Eulena Williams](dockets/rachel-eulena-williams.md) | b,. 1991 | no images | unreviewed |
 | [Randy Williams](dockets/randy-williams.md) | b. 1947 | has images | unreviewed |
 | [Rachel Eulena Willliams](dockets/rachel-eulena-willliams.md) | — | has images | unreviewed |
 | [LeRone Wilson](dockets/lerone-wilson.md) | b. 1968 | has images | unreviewed |

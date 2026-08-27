@@ -298,15 +298,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Charles%20Farrar%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Charles_Farrar — American songwriter, composer, producer (auto-matcher, unverified) — CAUTION: Wikipedia says songwriter/composer; matched only via the musician keyword — possible namesake, verify
 
-## 38. Frohawk Two Feathers
-
-- Dates: b. 1976
-- [Museum page](https://www.studiomuseum.org/artists/frohawk-two-feathers)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Frohawk%20Two%20Feathers)
-- [Search Google](https://www.google.com/search?q=Frohawk%20Two%20Feathers%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Frohawk_Two_Feathers — American artist (born 1976) (auto-matcher, unverified)
-
-## 39. Denzil Forrester
+## 38. Denzil Forrester
 
 - Dates: b. 1956
 - [Museum page](https://www.studiomuseum.org/artists/denzil-forrester)
@@ -314,7 +306,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Denzil%20Forrester%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Denzil_Forrester — Grenadian/British artist (born 1956) (auto-matcher, unverified)
 
-## 40. Ja'Tovia Gary
+## 39. Ja'Tovia Gary
 
 - Dates: b. 1984
 - [Museum page](https://www.studiomuseum.org/artists/jatovia-gary)
@@ -322,7 +314,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Ja%27Tovia%20Gary%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Ja'Tovia_Gary — American artist and filmmaker (auto-matcher, unverified)
 
-## 41. vanessa german
+## 40. vanessa german
 
 - Dates: b. 1976
 - [Museum page](https://www.studiomuseum.org/artists/vanessa-german)
@@ -330,7 +322,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=vanessa%20german%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Vanessa_german — American artist (auto-matcher, unverified)
 
-## 42. Timothy Greenfield-Sanders
+## 41. Timothy Greenfield-Sanders
 
 - Dates: b. 1952
 - [Museum page](https://www.studiomuseum.org/artists/timothy-greenfield-sanders)
@@ -338,7 +330,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Timothy%20Greenfield-Sanders%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Timothy_Greenfield-Sanders — American filmmaker and photographer (born 1952) (auto-matcher, unverified)
 
-## 43. Adler Guerrier
+## 42. Adler Guerrier
 
 - Dates: b. 1975
 - [Museum page](https://www.studiomuseum.org/artists/adler-guerrier)
@@ -346,7 +338,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Adler%20Guerrier%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Adler_Guerrier — Haitian American visual artist (auto-matcher, unverified)
 
-## 44. Carol Guzy
+## 43. Carol Guzy
 
 - Dates: b. 1956
 - [Museum page](https://www.studiomuseum.org/artists/carol-guzy)
@@ -354,7 +346,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Carol%20Guzy%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Carol_Guzy — American news photographer (born 1956) (auto-matcher, unverified)
 
-## 45. Hugh Hayden
+## 44. Hugh Hayden
 
 - Dates: b. 1983
 - [Museum page](https://www.studiomuseum.org/artists/hugh-hayden)
@@ -362,7 +354,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Hugh%20Hayden%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Hugh_Hayden — American sculptor (born 1983) (auto-matcher, unverified)
 
-## 46. Mike Henderson
+## 45. Mike Henderson
 
 - Dates: b. 1944
 - [Museum page](https://www.studiomuseum.org/artists/mike-henderson)
@@ -370,7 +362,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Mike%20Henderson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Mike_Henderson_(artist) — American painter, filmmaker and musician (auto-matcher, unverified)
 
-## 47. Janet Henry
+## 46. Janet Henry
 
 - Dates: b. 1947
 - [Museum page](https://www.studiomuseum.org/artists/janet-henry)
@@ -378,7 +370,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Janet%20Henry%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Janet_Henry_(artist) — American artist (auto-matcher, unverified)
 
-## 48. Ayana V. Jackson
+## 47. Ayana V. Jackson
 
 - Dates: b. 1977
 - [Museum page](https://www.studiomuseum.org/artists/ayana-v-jackson)
@@ -386,7 +378,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Ayana%20V.%20Jackson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Ayana_V._Jackson — American photographer and filmmaker (born 1977) (auto-matcher, unverified)
 
-## 49. E. Jane
+## 48. E. Jane
 
 - Dates: b. 1990
 - [Museum page](https://www.studiomuseum.org/artists/e-jane)
@@ -394,7 +386,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=E.%20Jane%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/E._Jane — American new media artist (auto-matcher, unverified)
 
-## 50. Olalekan Jeyifous
+## 49. Olalekan Jeyifous
 
 - Dates: b. 1977
 - [Museum page](https://www.studiomuseum.org/artists/olalekan-jeyifous)
@@ -402,7 +394,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Olalekan%20Jeyifous%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Olalekan_Jeyifous — Nigerian artist (born 1977) (auto-matcher, unverified)
 
-## 51. Rindon Johnson
+## 50. Rindon Johnson
 
 - Dates: b. 1990
 - [Museum page](https://www.studiomuseum.org/artists/rindon-johnson)
@@ -410,7 +402,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Rindon%20Johnson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Rindon_Johnson — American artist and writer (born 1990) (auto-matcher, unverified)
 
-## 52. Rachel Jones
+## 51. Rachel Jones
 
 - Dates: b. 1991
 - [Museum page](https://www.studiomuseum.org/artists/rachel-jones)
@@ -418,7 +410,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Rachel%20Jones%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Rachel_Jones_(artist) — British visual artist (born 1991) (auto-matcher, unverified)
 
-## 53. Cullen Washington Jr.
+## 52. Cullen Washington Jr.
 
 - Dates: b. 1972
 - [Museum page](https://www.studiomuseum.org/artists/cullen-washington-jr)
@@ -426,7 +418,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Cullen%20Washington%20Jr.%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Cullen_Washington_Jr. — American painter (born 1972) (auto-matcher, unverified)
 
-## 54. Cyrus Kabiru
+## 53. Cyrus Kabiru
 
 - Dates: b. 1984
 - [Museum page](https://www.studiomuseum.org/artists/cyrus-kabiru)
@@ -434,7 +426,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Cyrus%20Kabiru%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Cyrus_Kabiru — Kenyan visual artist (born 1984) (auto-matcher, unverified)
 
-## 55. Glenn Kaino
+## 54. Glenn Kaino
 
 - Dates: b. 1972
 - [Museum page](https://www.studiomuseum.org/artists/glenn-kaino)
@@ -442,7 +434,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Glenn%20Kaino%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Glenn_Kaino — American artist (auto-matcher, unverified)
 
-## 56. Jayson Keeling
+## 55. Jayson Keeling
 
 - Dates: 1966–2022
 - [Museum page](https://www.studiomuseum.org/artists/jayson-keeling)
@@ -450,7 +442,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Jayson%20Keeling%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Jayson_Keeling — American artist (1966–2022) (auto-matcher, unverified)
 
-## 57. Claude Lawrence
+## 56. Claude Lawrence
 
 - Dates: b. 1944
 - [Museum page](https://www.studiomuseum.org/artists/claude-lawrence)
@@ -458,7 +450,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Claude%20Lawrence%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Claude_Lawrence — American jazz musician and abstract artist (auto-matcher, unverified)
 
-## 58. Joe Lewis
+## 57. Joe Lewis
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/joe-lewis)
@@ -466,7 +458,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Joe%20Lewis%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Joe_Lewis_(artist) — American artist and academic (born 1953) (auto-matcher, unverified)
 
-## 59. Joe Lewis Light
+## 58. Joe Lewis Light
 
 - Dates: 1934–2005
 - [Museum page](https://www.studiomuseum.org/artists/joe-lewis-light)
@@ -474,7 +466,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Joe%20Lewis%20Light%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Joe_Light — Wikipedia titles him "Joe Louis Light", African-American painter (1934–2005, exact date match with museum record); museum spelling "Lewis" appears to be a variant (proposed, unverified)
 
-## 60. Donald Locke
+## 59. Donald Locke
 
 - Dates: 1930–2010
 - [Museum page](https://www.studiomuseum.org/artists/donald-locke)
@@ -482,7 +474,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Donald%20Locke%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Donald_Locke — Guyanese artist (auto-matcher, unverified)
 
-## 61. Hew Locke
+## 60. Hew Locke
 
 - Dates: b. 1959
 - [Museum page](https://www.studiomuseum.org/artists/hew-locke)
@@ -490,7 +482,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Hew%20Locke%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Hew_Locke — British sculptor (born 1959) (auto-matcher, unverified)
 
-## 62. Ronald Lockett
+## 61. Ronald Lockett
 
 - Dates: 1965–1998
 - [Museum page](https://www.studiomuseum.org/artists/ronald-lockett)
@@ -498,7 +490,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Ronald%20Lockett%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Ronald_Lockett — American artist (auto-matcher, unverified)
 
-## 63. Michelangelo Lovelace
+## 62. Michelangelo Lovelace
 
 - Dates: 1960–2021
 - [Museum page](https://www.studiomuseum.org/artists/michelangelo-lovelace)
@@ -506,7 +498,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Michelangelo%20Lovelace%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Michelangelo_Lovelace — Self-taught painter from Cleveland, Ohio (auto-matcher, unverified)
 
-## 64. Charlie Lucas
+## 63. Charlie Lucas
 
 - Dates: b. 1951
 - [Museum page](https://www.studiomuseum.org/artists/charles-lucas)
@@ -514,7 +506,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Charlie%20Lucas%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Charlie_Lucas — American sculptor (auto-matcher, unverified)
 
-## 65. Andrew Lyght
+## 64. Andrew Lyght
 
 - Dates: b. 1949
 - [Museum page](https://www.studiomuseum.org/artists/andrew-lyght)
@@ -522,7 +514,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Andrew%20Lyght%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Andrew_Lyght — Guyanese artist (auto-matcher, unverified)
 
-## 66. Lakwena Maciver
+## 65. Lakwena Maciver
 
 - Dates: b. 1986
 - [Museum page](https://www.studiomuseum.org/artists/lakwena-maciver)
@@ -530,7 +522,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Lakwena%20Maciver%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Lakwena_Maciver — Visual artist (auto-matcher, unverified)
 
-## 67. Stevenson Magloire
+## 66. Stevenson Magloire
 
 - Dates: 1963–1994
 - [Museum page](https://www.studiomuseum.org/artists/stevenson-magloire)
@@ -538,7 +530,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Stevenson%20Magloire%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Stevenson_Magloire — Haitian painter (auto-matcher, unverified)
 
-## 68. Tsedaye Makonnen
+## 67. Tsedaye Makonnen
 
 - Dates: b. 1984
 - [Museum page](https://www.studiomuseum.org/artists/tsedaye-makonnen)
@@ -546,7 +538,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Tsedaye%20Makonnen%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Tsedaye_Makonnen — Multidisciplinary artist (auto-matcher, unverified)
 
-## 69. Allie McGhee
+## 68. Allie McGhee
 
 - Dates: b. 1941
 - [Museum page](https://www.studiomuseum.org/artists/allie-mcghee)
@@ -554,7 +546,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Allie%20McGhee%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Allie_McGhee — American artist (auto-matcher, unverified)
 
-## 70. Ruben Natal-San Miguel
+## 69. Ruben Natal-San Miguel
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/ruben-natal-san-miguel)
@@ -562,7 +554,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Ruben%20Natal-San%20Miguel%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Ruben_Natal-San_Miguel — Puerto Rican-born New York-based photographer (born 1963) (auto-matcher, unverified)
 
-## 71. Nicole Miller
+## 70. Nicole Miller
 
 - Dates: b. 1982
 - [Museum page](https://www.studiomuseum.org/artists/nicole-miller)
@@ -570,7 +562,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Nicole%20Miller%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Nicole_Miller_(artist) — Artist who lives and works in Los Angeles, California (auto-matcher, unverified)
 
-## 72. Joe Minter
+## 71. Joe Minter
 
 - Dates: b. 1943
 - [Museum page](https://www.studiomuseum.org/artists/joe-minter)
@@ -578,7 +570,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Joe%20Minter%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Joe_Minter — American artist (auto-matcher, unverified)
 
-## 73. Nandipha Mntambo
+## 72. Nandipha Mntambo
 
 - Dates: b. 1982
 - [Museum page](https://www.studiomuseum.org/artists/nandipha-mntambo)
@@ -586,15 +578,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Nandipha%20Mntambo%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Nandipha_Mntambo — South African artist (born 1982) (auto-matcher, unverified)
 
-## 74. Tracey Moffat
-
-- Dates: b. 1960
-- [Museum page](https://www.studiomuseum.org/artists/tracey-moffat)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=Tracey%20Moffat)
-- [Search Google](https://www.google.com/search?q=Tracey%20Moffat%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/Tracey_Moffatt — Australian photographer (born 1960) (auto-matcher, unverified)
-
-## 75. Petrona Morrison
+## 73. Petrona Morrison
 
 - Dates: b. 1954
 - [Museum page](https://www.studiomuseum.org/artists/petrona-morrison)
@@ -602,7 +586,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Petrona%20Morrison%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Petrona_Morrison — Jamaican sculptor and artist (auto-matcher, unverified)
 
-## 76. Aolar Mosely
+## 74. Aolar Mosely
 
 - Dates: 1912–1999
 - [Museum page](https://www.studiomuseum.org/artists/aolar-mosely)
@@ -610,7 +594,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Aolar%20Mosely%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Aolar_Mosely — American artist (1912–1999) (auto-matcher, unverified)
 
-## 77. Jeanne Moutoussamy-Ashe
+## 75. Jeanne Moutoussamy-Ashe
 
 - Dates: b. 1951
 - [Museum page](https://www.studiomuseum.org/artists/jeanne-moutoussamy-ashe)
@@ -618,15 +602,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Jeanne%20Moutoussamy-Ashe%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Jeanne_Moutoussamy-Ashe — American photographer and activist (auto-matcher, unverified)
 
-## 78. J. B. Murray
-
-- Dates: 1908–1988
-- [Museum page](https://www.studiomuseum.org/artists/j-b-murray)
-- [Search Wikipedia](https://en.wikipedia.org/w/index.php?search=J.%20B.%20Murray)
-- [Search Google](https://www.google.com/search?q=J.%20B.%20Murray%20artist)
-- Notes: Match: https://en.wikipedia.org/wiki/John_Bunion_Murray — African American painter (1908–1988) (auto-matcher, unverified)
-
-## 79. Rashaad Newsome
+## 76. Rashaad Newsome
 
 - Dates: b. 1979
 - [Museum page](https://www.studiomuseum.org/artists/rashaad-newsome)
@@ -634,7 +610,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Rashaad%20Newsome%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Rashaad_Newsome — American visual artist (born 1979) (auto-matcher, unverified)
 
-## 80. Arcmanoro Niles
+## 77. Arcmanoro Niles
 
 - Dates: b. 1989
 - [Museum page](https://www.studiomuseum.org/artists/arcmanoro-niles)
@@ -642,7 +618,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Arcmanoro%20Niles%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Arcmanoro_Niles — American contemporary visual artist (auto-matcher, unverified)
 
-## 81. Sénèque Obin
+## 78. Sénèque Obin
 
 - Dates: 1893–1977
 - [Museum page](https://www.studiomuseum.org/artists/s%C3%A9n%C3%A8que-obin)
@@ -650,7 +626,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=S%C3%A9n%C3%A8que%20Obin%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/S%C3%A9n%C3%A8que_Obin — Haitian artist (auto-matcher, unverified)
 
-## 82. Senam Okudzeto
+## 79. Senam Okudzeto
 
 - Dates: b. 1972
 - [Museum page](https://www.studiomuseum.org/artists/senam-okudzeto)
@@ -658,7 +634,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Senam%20Okudzeto%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Senam_Okudzeto — American and British artist and educator (born 1972) (auto-matcher, unverified)
 
-## 83. Xiomara de Oliver
+## 80. Xiomara de Oliver
 
 - Dates: b. 1967
 - [Museum page](https://www.studiomuseum.org/artists/xiomara-de-oliver)
@@ -666,7 +642,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Xiomara%20de%20Oliver%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Xiomara_De_Oliver — article: Xiomara De Oliver (auto-matcher, unverified)
 
-## 84. Bruce Onobrakpeya
+## 81. Bruce Onobrakpeya
 
 - Dates: b. 1932
 - [Museum page](https://www.studiomuseum.org/artists/bruce-onobrakpeya)
@@ -674,7 +650,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Bruce%20Onobrakpeya%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Bruce_Onobrakpeya — Nigerian printmaker, painter and sculptor (born 1932) (auto-matcher, unverified)
 
-## 85. Frida Orupabo
+## 82. Frida Orupabo
 
 - Dates: b. 1986
 - [Museum page](https://www.studiomuseum.org/artists/frida-orupabo)
@@ -682,7 +658,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Frida%20Orupabo%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Frida_Orupabo — Norwegian artist (born 1986) (auto-matcher, unverified)
 
-## 86. Muraina Oyelami
+## 83. Muraina Oyelami
 
 - Dates: b. 1940
 - [Museum page](https://www.studiomuseum.org/artists/muraina-oyelami)
@@ -690,7 +666,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Muraina%20Oyelami%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Muraina_Oyelami — Nigerian painter and performing artist (born 1940) (auto-matcher, unverified)
 
-## 87. Benjamin Patterson
+## 84. Benjamin Patterson
 
 - Dates: 1934–2016
 - [Museum page](https://www.studiomuseum.org/artists/benjamin-patterson)
@@ -698,7 +674,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Benjamin%20Patterson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Ben_Patterson — American musician (1934–2016) (auto-matcher, unverified)
 
-## 88. Elliot Reed
+## 85. Elliot Reed
 
 - Dates: b. 1992
 - [Museum page](https://www.studiomuseum.org/artists/elliot-reed)
@@ -706,7 +682,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Elliot%20Reed%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Elliot_Reed — American dancer and performance artist (auto-matcher, unverified)
 
-## 89. Eugene Richards
+## 86. Eugene Richards
 
 - Dates: b. 1944
 - [Museum page](https://www.studiomuseum.org/artists/eugene-richards)
@@ -714,7 +690,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Eugene%20Richards%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Eugene_Richards — American documentary photographer (born 1944) (auto-matcher, unverified)
 
-## 90. Kenny Rivero
+## 87. Kenny Rivero
 
 - Dates: b. 1981
 - [Museum page](https://www.studiomuseum.org/artists/kenny-rivero)
@@ -722,7 +698,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Kenny%20Rivero%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Kenny_Rivero — Dominican-American visual artist based in Bronx, NY (auto-matcher, unverified)
 
-## 91. Larry Rivers
+## 88. Larry Rivers
 
 - Dates: 1923–2002
 - [Museum page](https://www.studiomuseum.org/artists/larry-rivers)
@@ -730,7 +706,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Larry%20Rivers%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Larry_Rivers — American artist, musician, filmmaker, and occasional actor (1923–2002) (auto-matcher, unverified)
 
-## 92. Kenya (Robinson)
+## 89. Kenya (Robinson)
 
 - Dates: b. 1977
 - [Museum page](https://www.studiomuseum.org/artists/kenya-robinson)
@@ -738,7 +714,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Kenya%20%28Robinson%29%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Kenya_(Robinson) — American multimedia artist (born 1977) (auto-matcher, unverified)
 
-## 93. Durant Sihlali
+## 90. Durant Sihlali
 
 - Dates: 1935–2004
 - [Museum page](https://www.studiomuseum.org/artists/durant-sihlali)
@@ -746,7 +722,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Durant%20Sihlali%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Durant_Sihlali — South African artist (auto-matcher, unverified)
 
-## 94. Coreen Simpson
+## 91. Coreen Simpson
 
 - Dates: b. 1942
 - [Museum page](https://www.studiomuseum.org/artists/coreen-simpson)
@@ -754,7 +730,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Coreen%20Simpson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Coreen_Simpson — American photographer and jewelry designer (auto-matcher, unverified)
 
-## 95. Mary T. Smith
+## 92. Mary T. Smith
 
 - Dates: 1905–1995
 - [Museum page](https://www.studiomuseum.org/artists/mary-t-smith)
@@ -762,7 +738,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Mary%20T.%20Smith%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Mary_T._Smith — African American painter (auto-matcher, unverified)
 
-## 96. Georgia Speller
+## 93. Georgia Speller
 
 - Dates: 1931–1988
 - [Museum page](https://www.studiomuseum.org/artists/georgia-speller)
@@ -770,7 +746,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Georgia%20Speller%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Georgia_Speller — American artist (1931–1988) (auto-matcher, unverified)
 
-## 97. Henry Speller
+## 94. Henry Speller
 
 - Dates: 1900–1997
 - [Museum page](https://www.studiomuseum.org/artists/henry-speller)
@@ -778,7 +754,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Henry%20Speller%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Henry_Speller — American artist and musician (auto-matcher, unverified)
 
-## 98. Maya Stovall
+## 95. Maya Stovall
 
 - Dates: b. 1982
 - [Museum page](https://www.studiomuseum.org/artists/maya-stovall)
@@ -786,7 +762,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Maya%20Stovall%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Maya_Stovall — American artist (auto-matcher, unverified)
 
-## 99. Barthélémy Toguo
+## 96. Barthélémy Toguo
 
 - Dates: b. 1967
 - [Museum page](https://www.studiomuseum.org/artists/barth%C3%A9l%C3%A9my-toguo)
@@ -794,7 +770,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Barth%C3%A9l%C3%A9my%20Toguo%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Barth%C3%A9l%C3%A9my_Toguo — Cameroonian painter (auto-matcher, unverified)
 
-## 100. Rigoberto Torres
+## 97. Rigoberto Torres
 
 - Dates: b. 1960
 - [Museum page](https://www.studiomuseum.org/artists/rigoberto-torres)
@@ -802,7 +778,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Rigoberto%20Torres%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Rigoberto_Torres — Puerto Rican sculptor (auto-matcher, unverified)
 
-## 101. Tourmaline
+## 98. Tourmaline
 
 - Dates: b. 1983
 - [Museum page](https://www.studiomuseum.org/artists/tourmaline)
@@ -810,7 +786,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Tourmaline%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Tourmaline_%28activist%29 — American artist and activist (born 1983) (hand-proposed: article title is "Tourmaline (activist)"; plain title is the mineral, unverified)
 
-## 102. Cornelius Tulloch
+## 99. Cornelius Tulloch
 
 - Dates: —
 - [Museum page](https://www.studiomuseum.org/artists/cornelius-tulloch)
@@ -818,7 +794,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Cornelius%20Tulloch%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Cornelius_Tulloch — American artist (auto-matcher, unverified)
 
-## 103. Jina Valentine
+## 100. Jina Valentine
 
 - Dates: b. 1979
 - [Museum page](https://www.studiomuseum.org/artists/jina-valentine)
@@ -826,7 +802,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Jina%20Valentine%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Jina_Valentine — American artist (born 1979) (auto-matcher, unverified)
 
-## 104. Jessica Vaughn
+## 101. Jessica Vaughn
 
 - Dates: b. 1983
 - [Museum page](https://www.studiomuseum.org/artists/jessica-vaughn)
@@ -834,7 +810,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Jessica%20Vaughn%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Jessica_Vaughn — American sculptor and installation artist (auto-matcher, unverified)
 
-## 105. Sam Vernon
+## 102. Sam Vernon
 
 - Dates: b. 1987
 - [Museum page](https://www.studiomuseum.org/artists/sam-vernon)
@@ -842,7 +818,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Sam%20Vernon%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Sam_Vernon — article: Sam Vernon (auto-matcher, unverified)
 
-## 106. Andre D. Wagner
+## 103. Andre D. Wagner
 
 - Dates: b. 1986
 - [Museum page](https://www.studiomuseum.org/artists/andre-d-wagner)
@@ -850,7 +826,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Andre%20D.%20Wagner%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Andre_D._Wagner — American photographer (auto-matcher, unverified)
 
-## 107. Andy Warhol
+## 104. Andy Warhol
 
 - Dates: 1928–1987
 - [Museum page](https://www.studiomuseum.org/artists/andy-warhol)
@@ -858,7 +834,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Andy%20Warhol%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Andy_Warhol — American artist and filmmaker (1928–1987) (auto-matcher, unverified)
 
-## 108. Albert Watson
+## 105. Albert Watson
 
 - Dates: b. 1942
 - [Museum page](https://www.studiomuseum.org/artists/albert-watson)
@@ -866,7 +842,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Albert%20Watson%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Albert_Watson_(photographer) — Scottish photographer (auto-matcher, unverified)
 
-## 109. Lorna Williams
+## 106. Lorna Williams
 
 - Dates: b. 1986
 - [Museum page](https://www.studiomuseum.org/artists/lorna-williams)
@@ -874,7 +850,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Lorna%20Williams%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Lorna_Williams — article: Lorna Williams (auto-matcher, unverified)
 
-## 110. Annie Mae Young
+## 107. Annie Mae Young
 
 - Dates: 1928–2013
 - [Museum page](https://www.studiomuseum.org/artists/annie-mae-young)
@@ -882,7 +858,7 @@ The complement of `ARTISTS_NOIMAGE_NOWIKI.md`: museum-listed artists absent from
 - [Search Google](https://www.google.com/search?q=Annie%20Mae%20Young%20artist)
 - Notes: Match: https://en.wikipedia.org/wiki/Annie_Mae_Young — American artist (1928–2013) (auto-matcher, unverified)
 
-## 111. Purvis Young
+## 108. Purvis Young
 
 - Dates: 1943–2010
 - [Museum page](https://www.studiomuseum.org/artists/purvis-young)
