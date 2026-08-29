@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/ada-cruz
 - Identity anchor: b. 1956; full working name **Ada Pilar Cruz**; ceramic sculptor/printmaker (Cranbrook MFA 1987), Lake Peekskill NY; Studio Museum artist in residence (listed in "From the Studio: Fifty-Eight Years of Artists in Residence"); no artworks in the museum's collection feed
 - Status: draft
+- Docket quality: 2/5 (galleries 5 + press 0 + wiki 0, ÷3)
 
 ## Own site
 
@@ -30,6 +31,10 @@
 ## Press (up to 5)
 
 - None found in art press yet; her museum-education role (MoMA education department since 1994, per MAD bio) suggests institutional sources over press coverage.
+
+## Wikipedia mentions (up to 5)
+
+- None found. Searched "Ada Pilar Cruz" and "Ada Cruz" (fulltext, article namespace). The only Wikipedia article at that title, [Ada Cruz](https://en.wikipedia.org/wiki/Ada_Cruz), is Ada del Carmen Cruz Chavarría, a Chilean football coach/former player — a different person, not this artist.
 
 ## Notes
 

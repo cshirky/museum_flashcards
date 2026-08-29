@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/adebisi-fabunmi
 - Identity anchor: Adebisi "Bisi" Fabunmi (also "FAB"), Oshogbo school printmaker, born Takoradi, Ghana; joined Mbari Mbayo workshop 1964; known for dense black-and-white "city" linocuts; no artworks in the museum's collection feed. NOTE: museum says b. 1930 but web sources say b. 1945 — dates conflict, see Notes.
 - Status: draft
+- Docket quality: 1/5 (galleries 2 + press 2 + wiki 0, ÷3)
 
 ## Own site
 
@@ -28,6 +29,10 @@
 
 - [The Guardian (Nigeria) — "With vision of last quarter, 50 years of Osogbo art glows in Lagos"](https://guardian.ng/art/with-vision-of-last-quarter-50-years-of-osogbo-art-glows-in-lagos/)
 - [Smithsonian Institution — "Bisi Fabunmi" (library/object record)](https://www.si.edu/object/siris_sil_681035)
+
+## Wikipedia mentions (up to 5)
+
+- None found. Searched "Adebisi Fabunmi" and "Bisi Fabunmi" (fulltext, article namespace) and the bare surname "Fabunmi" (49 hits). All are unrelated Nigerian namesakes — [L. A. Fabunmi](https://en.wikipedia.org/wiki/L._A._Fabunmi) (diplomat), [Fabunmi of Okemesi](https://en.wikipedia.org/wiki/Fabunmi_of_Okemesi) (19th-century Yoruba warlord/king), [Olavale Fabunmi](https://en.wikipedia.org/wiki/Olavale_Fabunmi) (footballer) — or Oshogbo-movement articles that don't actually name him.
 
 ## Notes
 
