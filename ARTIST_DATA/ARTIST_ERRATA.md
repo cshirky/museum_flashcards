@@ -78,6 +78,13 @@ Artists formerly listed in `ARTIST_IMAGE_NOWIKI.md` whose Wikipedia pages were f
 - [Search Google](https://www.google.com/search?q=Avel%20C.%20DeKnight%20artist)
 - Notes: Museum-side duplicate (spacing variant) of flashcards artist Avel C. de Knight (1923–1995), already wiki-linked in the app.
 
+## Murray De Pillars
+
+- Dates: 1938–2008
+- [Wikipedia](https://en.wikipedia.org/wiki/Murry_DePillars)
+- [Search Google](https://www.google.com/search?q=Murray%20De%20Pillars%20artist)
+- Notes: Matched — museum spells it 'Murray De Pillars', Wikipedia 'Murry DePillars' (one word); Chicago-born painter and educator, AfriCOBRA member, dean of the VCU School of the Arts, dates match exactly. Found during the docket Wikipedia-mentions pass.
+
 ## Thorton Dial
 
 - Dates: —
@@ -142,6 +149,13 @@ Artists formerly listed in `ARTIST_IMAGE_NOWIKI.md` whose Wikipedia pages were f
 - [Wikipedia](https://en.wikipedia.org/wiki/Tim_Rollins_and_K.O.S.)
 - [Search Google](https://www.google.com/search?q=Tim%20Rollins%20%26%20K.O.S%20artist)
 - Notes: Matched — 'and' spelled out in Wikipedia title
+
+## Shaun El C. Leonardo
+
+- Dates: b. 1976
+- [Wikipedia](https://en.wikipedia.org/wiki/Shaun_Leonardo)
+- [Search Google](https://www.google.com/search?q=Shaun%20El%20C.%20Leonardo%20artist)
+- Notes: Matched — Wikipedia titles the article 'Shaun Leonardo' without the middle initials, but it opens "Shaun El C. Leonardo is an American artist and performer", the museum's spelling verbatim. Found during the docket Wikipedia-mentions pass.
 
 ## Al Loving
 
@@ -225,6 +239,20 @@ Artists formerly listed in `ARTIST_IMAGE_NOWIKI.md` whose Wikipedia pages were f
 - [Wikipedia](https://en.wikipedia.org/wiki/Mallica_Reynolds)
 - [Search Google](https://www.google.com/search?q=Mallica%20Kapo%20Reynolds%20artist)
 - Notes: Matched — known as Kapo; Jamaican artist (1911–1989), dates match
+
+## Rozeal.
+
+- Dates: —
+- [Wikipedia](https://en.wikipedia.org/wiki/Iona_Rozeal_Brown)
+- [Search Google](https://www.google.com/search?q=Rozeal.%20artist)
+- Notes: Matched — the museum's canonical entry for the artist Wikipedia titles 'Iona Rozeal Brown' (b. 1966); the museum's separate 'Iona Rozeal Brown' entry is the duplicate, listed above. The trailing period in 'Rozeal.' defeated the matcher. Found during the docket Wikipedia-mentions pass.
+
+## Curtis "Talwst" Santiago
+
+- Dates: b. 1979
+- [Wikipedia](https://en.wikipedia.org/wiki/Curtis_Santiago)
+- [Search Google](https://www.google.com/search?q=Curtis%20%22Talwst%22%20Santiago%20artist)
+- Notes: Matched — Wikipedia titles the article 'Curtis Santiago' without the 'Talwst' nickname the museum carries; born 1979 in Edmonton, Canada, visual artist shown at the New Museum and Ludwig Múzeum, birth year matches. Found during the docket Wikipedia-mentions pass.
 
 ## Michel Sinvil
 
