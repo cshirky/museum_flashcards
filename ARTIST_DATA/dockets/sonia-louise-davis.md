@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/sonia-louise-davis
 - Identity anchor: b. 1988, New York; visual artist/writer/performer working in improvisation, weaving, sound (name styled lowercase); 2023–24 Studio Museum artist in residence; 1 work(s) in the flashcards data: Textile (1)
 - Status: draft
+- Docket quality: 2/5 (galleries 5 + press 1 + wiki 1, ÷3)
 
 ## Own site
 
@@ -32,6 +33,10 @@
 - [Studio Museum magazine — "sonia louise davis Is Immersed in the Sound"](https://www.studiomuseum.org/magazine/sonia-louise-davis-is-immersed-in-the-sound)
 - Artnet News — named her one of five artists redefining New York's art scene (Feb 2024); direct URL not yet located
 - Artforum — "must see" listing for the 2022 HESSE FLATOW show; direct URL not yet located
+
+## Wikipedia mentions (up to 5)
+
+- [Studio Museum in Harlem](https://en.wikipedia.org/wiki/Studio_Museum_in_Harlem) — listed in the museum's artist-in-residence table: "Sonia Louise Davis | 2023–24", between William Cordova (2004–05) and Louis Delsarte (1979–80).
 
 ## Notes
 

@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/tunji-adeniyi-jones
 - Identity anchor: b. 1992, London; lives/works Brooklyn; painter (Ruskin BFA 2014, Yale MFA 2017); Studio Museum in Harlem artist list; 1 work(s) in the flashcards data: Work on Paper (1)
 - Status: draft
+- Docket quality: 4/5 (galleries 5 + press 3 + wiki 3, ÷3)
 
 ## Own site
 
@@ -33,6 +34,12 @@
 - [Art UK — "Seven questions with Tunji Adeniyi-Jones"](https://artuk.org/discover/stories/seven-questions-with-tunji-adeniyi-jones)
 - Artforum — Kaelen Wilson-Goldie review of "Flash of the Spirit" (2017) and Critics' Pick (Dec 2017); cited in the JSMA research guide above, direct URL not yet located
 - Hyperallergic — Seph Rodney, "When Beauty Is a Draw and a Diversion" (Dec 2017); cited in the JSMA research guide, direct URL not yet located
+
+## Wikipedia mentions (up to 5)
+
+- [List of national pavilions at the 60th Venice Biennale](https://en.wikipedia.org/wiki/List_of_national_pavilions_at_the_60th_Venice_Biennale) — listed first among the Nigeria pavilion artists: "Tunji Adeniyi-Jones, Ndidi Dike, Onyeka Igwe, Toyin Ojih Odutola, Abraham Oghobase, Precious Okoyomon, Yinka Shonibare CBE RA, and Fatimah Tuggar".
+- [National pavilions at the Venice Biennale](https://en.wikipedia.org/wiki/National_pavilions_at_the_Venice_Biennale) — in Nigeria's pavilion history: "2024 — Tunji Adeniyi-Jones, Ndidi Dike, Onyeka Igwe, Toyin Ojih Odutola, ... (Curator: Aindrea Emelife)".
+- [Onyeka Igwe](https://en.wikipedia.org/wiki/Onyeka_Igwe) — "Onyeka participated alongside Yinka Shonibare, Tunji Adeniyi-Jones, Ndidi Dike, Fatimah Tuggar, Toyin Ojih Odutola, Precious Okoyomon" in the Nigeria Pavilion at the 2024 Venice Biennale.
 
 ## Notes
 

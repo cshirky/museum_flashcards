@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/turiya-adkins
 - Identity anchor: multidisciplinary artist, b. 1998 New York, works in Brooklyn (Dartmouth BA 2020); Studio Museum in Harlem artist list; 1 work(s) in the flashcards data: Painting (1)
 - Status: draft
+- Docket quality: 3/5 (galleries 5 + press 2 + wiki 1, ÷3)
 
 ## Own site
 
@@ -30,6 +31,10 @@
 
 - [1202 Magazine — "Art as a Form of Resistance: In Conversation with Turiya Adkins"](https://www.1202magazine.com/art/art-as-a-form-of-resistance-in-conversation-with-turiya-adkins)
 - [Surface Magazine — "Turiya Adkins: More Than a Notion" (exhibition feature)](https://www.surfacemag.com/events/turiya-adkins-more-than-a-notion/)
+
+## Wikipedia mentions (up to 5)
+
+- [Terry Adkins](https://en.wikipedia.org/wiki/Terry_Adkins) — named as the sculptor's child in the article's closing line: "He was married to Merele Williams (Adkins) and had a son, Titus Hamilton Adkins, and a daughter, Turiya Hamlet Adkins." Identity is very likely but not certain: the name is rare, Terry Adkins was a Black artist who died in Brooklyn in 2014, and this docket's artist is a Brooklyn-based artist b. 1998 New York — but the article gives no dates or occupation for the daughter, so a human should confirm.
 
 ## Notes
 

@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/charles-abramson
 - Identity anchor: 1945–1988, born and raised on 126th St across from the Studio Museum; installation artist and Santería priest; 1980–81 Studio Museum artist in residence (cohort with David Hammons and Jorge Luis Rodriguez); no artworks in the museum's collection feed
 - Status: draft
+- Docket quality: 3/5 (galleries 2 + press 3 + wiki 3, ÷3)
 
 ## Own site
 
@@ -29,6 +30,12 @@
 - [The Latinx Project — "Revisiting the Afro-Cuban Syncretism of 'Orisha/Santos'"](https://www.latinxproject.nyu.edu/intervenxions/revisiting-the-afro-cuban-syncretism-of-orisha/santos)
 - ["Charles Abramson: A Dream of Life and Victory" (journal article, EBSCO index)](http://connection.ebscohost.com/c/articles/17142128/charles-abramson-dream-life-victory) — full text likely needs library access
 - [Jorge Luis Rodriguez — "Installation in Memory of Charles Abramson: The Bending of Osanyin (1989–94)"](https://jorgeluisatelier212.com/osanyin/) — memorial work by his collaborator, with context
+
+## Wikipedia mentions (up to 5)
+
+- [Jorge Luis Rodriguez](https://en.wikipedia.org/wiki/Jorge_Luis_Rodriguez) — "Rodriguez collaborated with Harlem-born artist Charles Abramson on the exhibition 'Orisha/Santos: An Artistic Interpretation of the Seven African Powers,' exploring the iconographic syncretism between Yoruba deities and Catholic saints in the Santería religion." The piece was reinstalled at Ki Smith Gallery in 2025.
+- [Where We At](https://en.wikipedia.org/wiki/Where_We_At) — credited as co-curator of the Black women artists' collective's 1986 Muse Community Museum show: "*Joining Forces: 1 + 1 = 3*… was curated by Charles Abramson and Senga Nengudi-Fittz."
+- Rejected namesakes among the 6 hits: Atlantic Records co-founder Herb (Herbert Charles) Abramson, Louisiana legislator Neil Charles Abramson, the David Charles Abramson Memorial flight-instructor award, and a Broadway producer/agent Charles Abramson in the Charlotte Sweet article.
 
 ## Notes
 

@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/bill-caldwell
 - Identity anchor: AMBIGUOUS — no dates from the museum; printmaker active by 1973 ("Night Fisherman and the Flying Fish," etching, in the collection); common name with many unrelated namesakes
 - Status: draft
+- Docket quality: 0/5 (galleries 1 + press 0 + wiki 0, ÷3)
 
 ## Own site
 
@@ -27,6 +28,10 @@
 ## Press (up to 5)
 
 - None found.
+
+## Wikipedia mentions (up to 5)
+
+- None found. All 65 article hits for "Bill Caldwell" are namesakes in other fields: the Haskell Indians football coach (1910) and the many season/coach-list pages that repeat him, US Army general William B. "Bill" Caldwell IV, a New Zealand Brabham driver in the 1966 Tasman Series and NZ Grand Prix, a Clutha electoral candidate, a Virginia general store in the New Castle Historic District, and a 1966 Ontario band member. The [William Caldwell](https://en.wikipedia.org/wiki/William_Caldwell) disambiguation page carries no artist. Nothing matching the printmaker whose 1973 etching is in the museum's collection; consistent with the docket's existing note that identity is unresolved.
 
 ## Notes
 

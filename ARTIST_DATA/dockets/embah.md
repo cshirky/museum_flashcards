@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/embah
 - Identity anchor: Embah = Emheyo Bahabba (1937–2015), self-taught Trinidadian painter and poet; began making art 1980; Studio Museum holds "Jurisprudence" (2006); 1 work(s) in the flashcards data: Painting (1)
 - Status: draft
+- Docket quality: 2/5 (galleries 3 + press 2 + wiki 0, ÷3)
 
 ## Own site
 
@@ -28,6 +29,10 @@
 
 - [Trinidad and Tobago Newsday — "Embah: Art that seems artless"](https://newsday.co.tt/2024/10/20/embah-art-that-seems-artless/) (2024)
 - [Trinidad Guardian — "Embah shows off iconic works of art"](https://www.guardian.co.tt/article-6.2.440332.dff95821bf)
+
+## Wikipedia mentions (up to 5)
+
+- None found. Searched "Embah" and the artist's given name "Emheyo Bahabba" (0 hits). Every "Embah" hit is the Javanese/Sundanese honorific for an elder — Embah Dalem Arief Muhammad ([Cangkuang](https://en.wikipedia.org/wiki/Cangkuang)), Embah Said Areli Dato Kembang, Embah Kahir of Cimande ([Pencak silat](https://en.wikipedia.org/wiki/Pencak_silat)) — plus a Sarawak Ranger sergeant in the [1946 Birthday Honours](https://en.wikipedia.org/wiki/1946_Birthday_Honours). Nothing on the Trinidadian painter (1937–2015).
 
 ## Notes
 

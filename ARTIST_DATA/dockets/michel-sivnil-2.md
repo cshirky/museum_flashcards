@@ -4,6 +4,7 @@
 - Museum page: https://www.studiomuseum.org/artists/michel-sivnil-2
 - Identity anchor: "Michel Sivnil" is the museum's artwork-credit spelling of **Michel Sinvil**, Haitian papier-mâché sculptor, b. 1949 Jacmel; the flashcards work is a Sculpture, matching his medium; 1 work(s) in the flashcards data: Sculpture (1)
 - Status: draft
+- Docket quality: 1/5 (galleries 2 + press 0 + wiki 0, ÷3)
 
 ## Own site
 
@@ -26,6 +27,10 @@
 ## Press (up to 5)
 
 - None found in reputable press; coverage is gallery bios and auction listings (excluded per source rules). Candidate for Haitian art literature (books on Jacmel carnival/papier-mâché traditions).
+
+## Wikipedia mentions (up to 5)
+
+- None found under either spelling. Fulltext searches for "Michel Sivnil", "Michel Sinvil", the bare surname "Sinvil", and "Sinvil Jacmel" all return 0 article-namespace hits; Wikipedia has no article on the Jacmel papier-mâché tradition that names him. No namesake exists.
 
 ## Notes
 

@@ -2,6 +2,25 @@
 
 One docket per artist with no Wikipedia page (287 artists: 184 with images in the app, 103 museum-listed without). Status lives in each docket file's `Status:` line — unreviewed | draft (links gathered, unverified) | verified. This index is regenerated from the docket files; re-run the snippet in ARTIST_DATA/dockets/ conventions if statuses drift.
 
+## Docket quality score
+
+Each docket carries a `- Docket quality: N/5 (galleries G + press P + wiki W, ÷3)`
+line directly under `Status:`. It is a coverage measure — how much of a public
+footprint the research turned up — not a judgment of the artist.
+
+- **G** = bullets under `## Shown at` that carry a markdown link (unlinked
+  context lines don't count), capped at 5.
+- **P** = linked bullets under `## Press`, capped at 5.
+- **W** = confirmed bullets under `## Wikipedia mentions`, capped at 5. A
+  "None found" bullet counts 0.
+- **N** = round((G + P + W) / 3).
+
+`## Wikipedia mentions` lists *other* articles that mention the artist (they
+have no article of their own — that's why they have a docket). Each bullet
+links the host article and quotes the mention. When nothing is found, the
+bullet says so and names what was ruled out — namesakes, disambiguation
+pages, red-linked edit-a-thon lists — so the search isn't silently repeated.
+
 | Artist | Dates | Pool | Status |
 |---|---|---|---|
 | [Charles Abramson](dockets/charles-abramson.md) | 1945–1988 | no images | draft |
