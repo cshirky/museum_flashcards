@@ -220,54 +220,154 @@
   let quizBatch = [];
   let quizSubmitted = false;
 
-  // Per-field multiset of the batch's true values (e.g. 9 decades, possibly with
-  // duplicates) and the current selections, keyed by card index. Options already
-  // picked in one card's dropdown are removed from the others of the same field —
-  // computed fresh from these two each time, so re-selecting/clearing stays correct.
+  // Per-field pool of the batch's true values (e.g. 9 decades, possibly with
+  // duplicates), each tagged with a unique key so two identical values (say,
+  // two works from the same decade) are still distinct draggable chips.
+  // quizSelections maps card index -> the key currently placed in that
+  // card's slot for the field; a key not present in any slot is still
+  // sitting in its bank. dragState/quizPicked track an in-flight drag or
+  // click-to-place pick, respectively — the two input methods share the
+  // same moveChip/returnChipToBank logic below.
   let quizPools = { artist: [], title: [], decade: [] };
   let quizSelections = { artist: {}, title: {}, decade: {} };
+  let dragState = null;
+  let quizPicked = null;
 
   function buildQuizPool() {
     // decade is required per-card so the matching game has a full set of options
     return filterArtworksPool({ type: quizTypeFilter.value, decade: quizDecadeFilter.value, requireDecade: true });
   }
 
-  function availableOptions(field, forIdx) {
-    const remaining = quizPools[field].slice();
+  function keyToValue(field, key) {
+    const item = quizPools[field].find((it) => it.key === key);
+    return item ? item.value : "";
+  }
+
+  function slotHolding(field, key) {
+    let fromIdx = null;
     Object.keys(quizSelections[field]).forEach((idxStr) => {
-      const idx = Number(idxStr);
-      if (idx === forIdx) return;
-      const val = quizSelections[field][idx];
-      if (!val) return;
-      const pos = remaining.indexOf(val);
-      if (pos !== -1) remaining.splice(pos, 1);
+      if (quizSelections[field][idxStr] === key) fromIdx = Number(idxStr);
     });
-    return remaining;
+    return fromIdx;
   }
 
-  function refreshFieldSelects(field) {
-    quizBatch.forEach((card, idx) => {
-      const select = quizGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
-      if (!select) return;
-      const currentVal = select.value;
-      select.innerHTML = "";
-      select.appendChild(new Option("Choose…", ""));
-      availableOptions(field, idx).forEach((v) => select.appendChild(new Option(v, v)));
-      select.value = currentVal;
+  function moveChip(field, key, targetIdx) {
+    const fromIdx = slotHolding(field, key);
+    if (fromIdx !== targetIdx) {
+      const displaced = quizSelections[field][targetIdx];
+      if (fromIdx !== null) {
+        if (displaced !== undefined) quizSelections[field][fromIdx] = displaced;
+        else delete quizSelections[field][fromIdx];
+      }
+      quizSelections[field][targetIdx] = key;
+    }
+    quizPicked = null;
+    dragState = null;
+    renderQuizBank(field);
+    renderQuizSlots(field);
+  }
+
+  function returnChipToBank(field, key) {
+    const fromIdx = slotHolding(field, key);
+    if (fromIdx !== null) delete quizSelections[field][fromIdx];
+    quizPicked = null;
+    dragState = null;
+    renderQuizBank(field);
+    renderQuizSlots(field);
+  }
+
+  function makeChip(field, key, value) {
+    const chip = document.createElement("div");
+    chip.className = "quiz-chip";
+    chip.textContent = value;
+    chip.dataset.field = field;
+    chip.dataset.key = key;
+    if (quizSubmitted) {
+      chip.classList.add("locked");
+      return chip;
+    }
+    chip.draggable = true;
+    if (quizPicked && quizPicked.field === field && quizPicked.key === key) {
+      chip.classList.add("picked");
+    }
+    chip.addEventListener("dragstart", (e) => {
+      dragState = { field, key };
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", key);
+    });
+    chip.addEventListener("dragend", () => {
+      dragState = null;
+    });
+    chip.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (quizPicked && quizPicked.field === field && quizPicked.key === key) {
+        quizPicked = null;
+      } else {
+        quizPicked = { field, key };
+      }
+      renderQuizBank(field);
+      renderQuizSlots(field);
+    });
+    return chip;
+  }
+
+  function renderQuizBank(field) {
+    const bankEl = document.getElementById(`quiz-bank-${field}`);
+    bankEl.innerHTML = "";
+    const placedKeys = new Set(Object.values(quizSelections[field]));
+    quizPools[field].forEach((item) => {
+      if (placedKeys.has(item.key)) return;
+      bankEl.appendChild(makeChip(field, item.key, item.value));
     });
   }
 
-  function makeQuizField(container, label, field, idx) {
-    const wrap = document.createElement("label");
+  function renderQuizSlots(field) {
+    quizGrid.querySelectorAll(`.quiz-slot[data-field="${field}"]`).forEach((slot) => {
+      const idx = Number(slot.dataset.idx);
+      const key = quizSelections[field][idx];
+      slot.innerHTML = "";
+      slot.classList.remove("drag-over");
+      if (key !== undefined) {
+        slot.classList.remove("empty");
+        slot.appendChild(makeChip(field, key, keyToValue(field, key)));
+      } else {
+        slot.classList.add("empty");
+        slot.textContent = "Drop here";
+      }
+    });
+  }
+
+  function makeQuizField(container, labelText, field, idx) {
+    const wrap = document.createElement("div");
     wrap.className = "quiz-field";
-    wrap.append(label);
 
-    const select = document.createElement("select");
-    select.className = "quiz-select";
-    select.dataset.field = field;
-    select.dataset.idx = String(idx);
-    select.appendChild(new Option("Choose…", ""));
-    wrap.appendChild(select);
+    const lbl = document.createElement("span");
+    lbl.className = "quiz-field-label";
+    lbl.textContent = labelText;
+    wrap.appendChild(lbl);
+
+    const slot = document.createElement("div");
+    slot.className = "quiz-slot empty";
+    slot.dataset.field = field;
+    slot.dataset.idx = String(idx);
+    slot.textContent = "Drop here";
+    slot.addEventListener("dragover", (e) => {
+      if (quizSubmitted || !dragState || dragState.field !== field) return;
+      e.preventDefault();
+      slot.classList.add("drag-over");
+    });
+    slot.addEventListener("dragleave", () => slot.classList.remove("drag-over"));
+    slot.addEventListener("drop", (e) => {
+      e.preventDefault();
+      slot.classList.remove("drag-over");
+      if (quizSubmitted || !dragState || dragState.field !== field) return;
+      moveChip(field, dragState.key, idx);
+    });
+    slot.addEventListener("click", () => {
+      if (quizSubmitted || !quizPicked || quizPicked.field !== field) return;
+      moveChip(field, quizPicked.key, idx);
+    });
+    wrap.appendChild(slot);
 
     const result = document.createElement("span");
     result.className = "guess-result";
@@ -277,13 +377,35 @@
     container.appendChild(wrap);
   }
 
+  // Bank containers are static (one per field, in the HTML shell), so wire
+  // their drag/click handlers once — dropping/clicking on empty bank space
+  // returns whichever chip is currently dragged/picked to that field's bank.
+  ["artist", "title", "decade"].forEach((field) => {
+    const bankEl = document.getElementById(`quiz-bank-${field}`);
+    bankEl.addEventListener("dragover", (e) => {
+      if (quizSubmitted || !dragState || dragState.field !== field) return;
+      e.preventDefault();
+    });
+    bankEl.addEventListener("drop", (e) => {
+      e.preventDefault();
+      if (quizSubmitted || !dragState || dragState.field !== field) return;
+      returnChipToBank(field, dragState.key);
+    });
+    bankEl.addEventListener("click", () => {
+      if (quizSubmitted || !quizPicked || quizPicked.field !== field) return;
+      returnChipToBank(field, quizPicked.key);
+    });
+  });
+
   function renderQuizGrid() {
     quizPools = {
-      artist: shuffled(quizBatch.map((c) => c.artist)),
-      title: shuffled(quizBatch.map((c) => c.title)),
-      decade: quizBatch.map((c) => c.decade).sort(),
+      artist: shuffled(quizBatch.map((c, i) => ({ key: `artist-${i}`, value: c.artist }))),
+      title: shuffled(quizBatch.map((c, i) => ({ key: `title-${i}`, value: c.title }))),
+      decade: shuffled(quizBatch.map((c, i) => ({ key: `decade-${i}`, value: c.decade }))),
     };
     quizSelections = { artist: {}, title: {}, decade: {} };
+    quizPicked = null;
+    dragState = null;
 
     quizGrid.innerHTML = "";
     quizBatch.forEach((card, idx) => {
@@ -304,17 +426,11 @@
       quizGrid.appendChild(div);
     });
 
-    ["artist", "title", "decade"].forEach(refreshFieldSelects);
+    ["artist", "title", "decade"].forEach((field) => {
+      renderQuizBank(field);
+      renderQuizSlots(field);
+    });
   }
-
-  quizGrid.addEventListener("change", (e) => {
-    const select = e.target.closest(".quiz-select");
-    if (!select) return;
-    const field = select.dataset.field;
-    const idx = Number(select.dataset.idx);
-    quizSelections[field][idx] = select.value;
-    refreshFieldSelects(field);
-  });
 
   function loadQuizBatch(batch, sourceLabel) {
     quizBatch = batch;
@@ -353,23 +469,26 @@
   function submitQuiz() {
     if (quizSubmitted || quizBatch.length === 0) return;
 
-    const allSelects = Array.from(quizGrid.querySelectorAll(".quiz-select"));
-    const anySelected = allSelects.some((s) => s.value.length > 0);
-    if (!anySelected) {
-      quizScore.textContent = "Choose some answers first.";
+    const anyPlaced = ["artist", "title", "decade"].some(
+      (f) => Object.keys(quizSelections[f]).length > 0
+    );
+    if (!anyPlaced) {
+      quizScore.textContent = "Drag in some answers first.";
       return;
     }
 
     quizSubmitted = true;
+    quizPicked = null;
+    dragState = null;
     let rightTotal = 0;
     let gradedTotal = 0;
 
     quizBatch.forEach((card, idx) => {
       const result = {};
       ["artist", "title", "decade"].forEach((field) => {
-        const select = quizGrid.querySelector(`select[data-field="${field}"][data-idx="${idx}"]`);
-        const guess = select.value;
-        const graded = guess.length > 0;
+        const key = quizSelections[field][idx];
+        const graded = key !== undefined;
+        const guess = graded ? keyToValue(field, key) : "";
         const correct = graded && guess === card[field];
         result[field] = { guess, graded, correct };
         if (graded) {
@@ -385,9 +504,13 @@
           card[field],
           correctValueHtml
         );
-        select.disabled = true;
       });
       recordAttempt(card.id, result);
+    });
+
+    ["artist", "title", "decade"].forEach((field) => {
+      renderQuizBank(field);
+      renderQuizSlots(field);
     });
 
     quizScore.textContent = `${rightTotal} / ${gradedTotal} correct.`;
@@ -459,7 +582,7 @@
   studyDecadeFilter.addEventListener("change", newStudySet);
   studyToQuizBtn.addEventListener("click", () => {
     if (studyBatch.length === 0) return;
-    loadQuizBatch(studyBatch.slice(), `Showing the ${studyBatch.length} works from Study.`);
+    loadQuizBatch(shuffled(studyBatch), `Showing the ${studyBatch.length} works from Study.`);
     activateTab("quiz");
   });
   initHoverPreview(studyGrid);
