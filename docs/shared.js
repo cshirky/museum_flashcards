@@ -230,8 +230,11 @@ window.MuseumShared = (function () {
     }
   }
 
-  function initHoverPreview(container) {
+  // opts.hideCaption skips the title/artist caption below the enlarged
+  // image — used by Quiz, where showing it would give away the answer.
+  function initHoverPreview(container, opts) {
     if (!imagePreview || !imagePreviewImg) return;
+    const hideCaption = !!(opts && opts.hideCaption);
     let hoverTimer = null;
 
     function clearHoverTimer() {
@@ -249,7 +252,7 @@ window.MuseumShared = (function () {
         hoverTimer = null;
         imagePreviewImg.src = img.src;
         if (imagePreviewCaption) {
-          const art = artworksById.get(img.dataset.id);
+          const art = !hideCaption && artworksById.get(img.dataset.id);
           imagePreviewCaption.innerHTML = art
             ? `<h3>${titleLineHtml(art)}</h3><p>${artistLinksHtml(art.artist, art.artistSlugs)}</p>`
             : "";

@@ -209,7 +209,7 @@
 
   // ---------- Quiz tab ----------
 
-  const QUIZ_SET_SIZE = 9;
+  const QUIZ_SET_SIZE = 8;
 
   const quizPoolCount = document.getElementById("quiz-pool-count");
   const quizEmpty = document.getElementById("quiz-empty");
@@ -235,7 +235,7 @@
   let dragState = null;
   let quizPicked = null;
 
-  const QUIZ_DROP_LABEL = { artist: "Drop Artists here", title: "Drop Title here", decade: "Drop Decade here" };
+  const QUIZ_DROP_LABEL = { artist: "Drop Artist here", title: "Drop Title here", decade: "Drop Decade here" };
 
   function buildQuizPool() {
     // decade is required per-card so the matching game has a full set of options
@@ -400,7 +400,11 @@
     quizPools = {
       artist: shuffled(quizBatch.map((c, i) => ({ key: `artist-${i}`, value: c.artist }))),
       title: shuffled(quizBatch.map((c, i) => ({ key: `title-${i}`, value: c.title }))),
-      decade: shuffled(quizBatch.map((c, i) => ({ key: `decade-${i}`, value: c.decade }))),
+      // Decades sort reverse-chronologically (newest first) rather than
+      // shuffling — unlike artist/title, there's a natural order to show them in.
+      decade: quizBatch
+        .map((c, i) => ({ key: `decade-${i}`, value: c.decade }))
+        .sort((a, b) => b.value.localeCompare(a.value)),
     };
     quizSelections = { artist: {}, title: {}, decade: {} };
     quizPicked = null;
@@ -525,11 +529,11 @@
     loadStudyBatch(quizBatch.slice(), `Showing the ${quizBatch.length} works from Quiz.`);
     activateTab("study");
   });
-  initHoverPreview(quizGrid);
+  initHoverPreview(quizGrid, { hideCaption: true });
 
   // ---------- Study tab ----------
 
-  const STUDY_SET_SIZE = 9;
+  const STUDY_SET_SIZE = 8;
 
   const studyPoolCount = document.getElementById("study-pool-count");
   const studyEmpty = document.getElementById("study-empty");

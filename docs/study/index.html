@@ -24,8 +24,10 @@
 <div class="app-shell">
   <nav class="side-nav">
     <button class="nav-btn active" data-tab="study">Study</button>
-    <button class="nav-btn" data-tab="quiz">Quiz</button>
-    <button class="nav-btn" data-tab="stats">(Stats)</button>
+    <div class="nav-row">
+      <button class="nav-btn" data-tab="quiz">Quiz</button>
+      <button class="nav-btn" data-tab="stats">(Stats)</button>
+    </div>
     <button class="nav-btn" data-tab="artists">All Artists</button>
     <button class="nav-btn" data-tab="favorites">Favorites</button>
 
@@ -94,7 +96,7 @@
       <p class="pool-count" id="quiz-pool-count"></p>
 
       <div id="quiz-empty" class="empty-state hidden">
-        Not enough matching works for a set of 9 — try a broader medium or decade filter.
+        Not enough matching works for a set of 8 — try a broader medium or decade filter.
       </div>
 
       <div id="quiz-grid" class="quiz-grid"></div>

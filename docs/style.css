@@ -74,6 +74,23 @@ a:visited {
   cursor: pointer;
 }
 
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-row .nav-btn:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-row .nav-btn:last-child {
+  flex: 0 0 auto;
+  padding: 10px 6px;
+  font-size: 0.85rem;
+}
+
 .nav-btn:hover {
   background: var(--panel-2);
   color: var(--text);
@@ -291,7 +308,7 @@ main {
 
 .quiz-grid, .work-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   width: 85%;
   margin-left: auto;
@@ -314,7 +331,7 @@ main {
 .quiz-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .quiz-card img, .work-card img {
@@ -467,7 +484,7 @@ main {
 
 .fav-btn {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 10px;
   z-index: 5;
   width: 30px;
