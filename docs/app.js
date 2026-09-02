@@ -134,11 +134,13 @@
     stats: document.getElementById("stats-tab"),
     artists: document.getElementById("artists-tab"),
   };
+  const quizBanksNav = document.getElementById("quiz-banks-nav");
 
   function activateTab(name, opts) {
     opts = opts || {};
     navButtons.forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
     Object.entries(tabPanels).forEach(([key, panel]) => panel.classList.toggle("active", key === name));
+    quizBanksNav.classList.toggle("active", name === "quiz");
     if (name === "stats") renderStats();
     if (name === "favorites") renderFavorites();
     if (name === "artists") renderAllArtists();
@@ -232,6 +234,8 @@
   let quizSelections = { artist: {}, title: {}, decade: {} };
   let dragState = null;
   let quizPicked = null;
+
+  const QUIZ_DROP_LABEL = { artist: "Drop Artists here", title: "Drop Title here", decade: "Drop Decade here" };
 
   function buildQuizPool() {
     // decade is required per-card so the matching game has a full set of options
@@ -332,25 +336,20 @@
         slot.appendChild(makeChip(field, key, keyToValue(field, key)));
       } else {
         slot.classList.add("empty");
-        slot.textContent = "Drop here";
+        slot.textContent = QUIZ_DROP_LABEL[field];
       }
     });
   }
 
-  function makeQuizField(container, labelText, field, idx) {
+  function makeQuizField(container, field, idx) {
     const wrap = document.createElement("div");
     wrap.className = "quiz-field";
-
-    const lbl = document.createElement("span");
-    lbl.className = "quiz-field-label";
-    lbl.textContent = labelText;
-    wrap.appendChild(lbl);
 
     const slot = document.createElement("div");
     slot.className = "quiz-slot empty";
     slot.dataset.field = field;
     slot.dataset.idx = String(idx);
-    slot.textContent = "Drop here";
+    slot.textContent = QUIZ_DROP_LABEL[field];
     slot.addEventListener("dragover", (e) => {
       if (quizSubmitted || !dragState || dragState.field !== field) return;
       e.preventDefault();
@@ -419,9 +418,9 @@
       div.appendChild(img);
       div.appendChild(makeFavButton(card.id));
 
-      makeQuizField(div, "Artist", "artist", idx);
-      makeQuizField(div, "Title", "title", idx);
-      makeQuizField(div, "Decade", "decade", idx);
+      makeQuizField(div, "artist", idx);
+      makeQuizField(div, "title", idx);
+      makeQuizField(div, "decade", idx);
 
       quizGrid.appendChild(div);
     });

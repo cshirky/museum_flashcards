@@ -25,9 +25,24 @@
   <nav class="side-nav">
     <button class="nav-btn active" data-tab="study">Study</button>
     <button class="nav-btn" data-tab="quiz">Quiz</button>
+    <button class="nav-btn" data-tab="stats">(Stats)</button>
     <button class="nav-btn" data-tab="artists">All Artists</button>
     <button class="nav-btn" data-tab="favorites">Favorites</button>
-    <button class="nav-btn" data-tab="stats">Stats</button>
+
+    <div class="quiz-banks-nav" id="quiz-banks-nav">
+      <div class="quiz-bank">
+        <h3>Artists</h3>
+        <div class="quiz-bank-list" id="quiz-bank-artist"></div>
+      </div>
+      <div class="quiz-bank">
+        <h3>Titles</h3>
+        <div class="quiz-bank-list" id="quiz-bank-title"></div>
+      </div>
+      <div class="quiz-bank">
+        <h3>Decades</h3>
+        <div class="quiz-bank-list" id="quiz-bank-decade"></div>
+      </div>
+    </div>
   </nav>
 
   <main>
@@ -83,21 +98,6 @@
       </div>
 
       <div id="quiz-grid" class="quiz-grid"></div>
-
-      <div class="quiz-banks">
-        <div class="quiz-bank">
-          <h3>Artists</h3>
-          <div class="quiz-bank-list" id="quiz-bank-artist"></div>
-        </div>
-        <div class="quiz-bank">
-          <h3>Titles</h3>
-          <div class="quiz-bank-list" id="quiz-bank-title"></div>
-        </div>
-        <div class="quiz-bank">
-          <h3>Decades</h3>
-          <div class="quiz-bank-list" id="quiz-bank-decade"></div>
-        </div>
-      </div>
 
       <div class="actions">
         <button id="quiz-submit-btn" class="btn-primary">Check answers</button>

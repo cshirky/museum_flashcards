@@ -108,6 +108,11 @@ main {
     border-bottom: 1px solid var(--border);
     position: static;
   }
+
+  .side-nav:has(.quiz-banks-nav.active) {
+    flex-direction: column;
+    overflow-x: visible;
+  }
 }
 
 .controls {
@@ -334,12 +339,6 @@ main {
   color: var(--text-dim);
 }
 
-.quiz-field-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
 .quiz-slot {
   min-height: 32px;
   display: flex;
@@ -385,12 +384,17 @@ main {
   opacity: 0.7;
 }
 
-.quiz-banks {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.quiz-banks-nav {
+  display: none;
+  flex-direction: column;
   gap: 16px;
-  width: 85%;
-  margin: 0 auto 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.quiz-banks-nav.active {
+  display: flex;
 }
 
 .quiz-bank h3 {
@@ -565,7 +569,6 @@ main {
 
 @media (max-width: 900px) {
   .quiz-grid,
-  .quiz-banks,
   .work-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -573,7 +576,6 @@ main {
 
 @media (max-width: 560px) {
   .quiz-grid,
-  .quiz-banks,
   .work-grid {
     grid-template-columns: 1fr;
   }
