@@ -4,6 +4,19 @@ A static flashcard/quiz app for studying the Studio Museum in Harlem's
 collection (artist, title, decade), served via GitHub Pages directly from
 `docs/`. No build step — plain `<script>` tags load everything.
 
+## Local layout
+
+Sibling directory on disk, split off from this repo on 2026-09-02:
+
+    studio_museum/
+    ├── museum_flashcards/   — this project (the web app)
+    └── artist_wiki/         — Wikipedia research dockets (separate repo)
+
+`artist_wiki/` took a copy of `ARTIST_DATA/`, `wiki_match.py`, and a
+JSON-only trim of `fetch_data.py`/`dedupe_artworks.py` at split time — it
+has no web-output code and is not kept in sync with this repo. If a docket
+or a Wikipedia match gets updated in one, it isn't reflected in the other.
+
 ## Working across machines
 
 This project is used from multiple machines. Conversation history and
