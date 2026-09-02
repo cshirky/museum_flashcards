@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Wikipedia artist matcher — shared by fetch_data.py (the flashcards data
-pipeline) and the missing-Wikipedia-pages research project in ARTIST_DATA/.
+Wikipedia artist matcher — used by fetch_data.py (the flashcards data
+pipeline). A copy of this file also lives in the sibling ../artist_wiki
+project, which does the missing-Wikipedia-pages research (dockets etc.)
+that used to live in this repo's ARTIST_DATA/; the two copies are not kept
+in sync.
 
 Strategy per artist name, cheapest/most-confident first:
   0. MANUAL_WIKI_MATCHES — hand-verified name -> article title overrides.
@@ -19,12 +22,13 @@ art-related keyword.
 
 Usage:
     python3 wiki_match.py "Artist Name" [--dates "b. 1950"]
-    python3 wiki_match.py --recheck ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md
+    python3 wiki_match.py --recheck ../artist_wiki/ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md
 
 --recheck parses "## N. Artist Name" headings (numbered or not) and their
-"- Dates:" lines from a markdown file in the ARTIST_DATA conventions and
-reports any names the matcher can now resolve — artists gain Wikipedia
-pages over time, so this is meant to be re-run occasionally.
+"- Dates:" lines from a markdown file in the artist_wiki project's
+ARTIST_DATA conventions and reports any names the matcher can now resolve
+— artists gain Wikipedia pages over time, so this is meant to be re-run
+occasionally.
 """
 
 import argparse
@@ -183,7 +187,7 @@ def looks_art_related(summary: dict) -> bool:
 # Hand-verified matches for names the automatic tiers get wrong or miss —
 # Wikipedia titles the page differently, the museum's spelling differs, or
 # the plain name lands on a namesake/disambiguation page. Checked against
-# the museum's artist dates; see ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md history.
+# the museum's artist dates; see ../artist_wiki/ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md history.
 MANUAL_WIKI_MATCHES = {
     "Al Loving": "Alvin D. Loving",
     "Antony Charles Robert Armstrong-Jones": "Antony Armstrong-Jones, 1st Earl of Snowdon",
@@ -314,7 +318,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Match artist names to Wikipedia articles.")
     parser.add_argument("name", nargs="?", help="artist name to look up")
     parser.add_argument("--dates", help='museum dates string, e.g. "b. 1950" or "1920–2003"')
-    parser.add_argument("--recheck", metavar="FILE", help="re-run the matcher over an ARTIST_DATA markdown list")
+    parser.add_argument("--recheck", metavar="FILE", help="re-run the matcher over an ARTIST_DATA-style markdown list")
     args = parser.parse_args()
 
     if args.recheck:

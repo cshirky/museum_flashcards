@@ -12,10 +12,14 @@ Sibling directory on disk, split off from this repo on 2026-09-02:
     ├── museum_flashcards/   — this project (the web app)
     └── artist_wiki/         — Wikipedia research dockets (separate repo)
 
-`artist_wiki/` took a copy of `ARTIST_DATA/`, `wiki_match.py`, and a
-JSON-only trim of `fetch_data.py`/`dedupe_artworks.py` at split time — it
-has no web-output code and is not kept in sync with this repo. If a docket
-or a Wikipedia match gets updated in one, it isn't reflected in the other.
+`artist_wiki/` took a copy of `wiki_match.py` and a JSON-only trim of
+`fetch_data.py`/`dedupe_artworks.py` at split time — it has no web-output
+code. `ARTIST_DATA/` (the research dockets) was copied there too and then
+**removed from this repo** on 2026-09-02, since the docket-research
+project lives entirely in `artist_wiki/` now — see its `ARTIST_DATA/` for
+the current dockets. `wiki_match.py`'s `MANUAL_WIKI_MATCHES` still exists
+independently in both repos and is not kept in sync — a match found in one
+doesn't automatically propagate to the other.
 
 ## Working across machines
 
@@ -75,16 +79,8 @@ minute or two. There is no separate build/deploy command.
   gates, `MANUAL_WIKI_MATCHES` hand-verified overrides), imported by
   `fetch_data.py` and usable standalone: `python3 wiki_match.py "Name"
   --dates "b. 1950"` for one-off checks, `--recheck
-  ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md` to spot artists who have since gained a
-  Wikipedia page. Hand-verified matches go in `MANUAL_WIKI_MATCHES` here.
-- `ARTIST_DATA/` — user-maintained artist research notes, not app-facing:
-  `ARTIST_IMAGE_NOWIKI.md` (in-app artists with no confident Wikipedia
-  match, with the manual review workflow documented in its intro),
-  `ARTISTS_NOIMAGE_NOWIKI.md` (museum-listed artists with no artwork
-  entries/images and no Wikipedia match — the background-docket pool),
-  `ARTIST_NOIMAGE_WIKI.md` (no-image artists whose Wikipedia pages the
-  matcher found; proposals pending review), `ARTIST_ERRATA.md`
-  (hand-resolved matches and museum-side duplicate/alternate entries),
-  and `dockets/` + `DOCKETS.md` — one background-research docket per
-  no-Wikipedia artist (own site, social, bio, venues, press; status
-  unreviewed/draft/verified lives in each docket's `Status:` line).
+  ../artist_wiki/ARTIST_DATA/ARTIST_IMAGE_NOWIKI.md` to spot artists who
+  have since gained a Wikipedia page. Hand-verified matches go in
+  `MANUAL_WIKI_MATCHES` here. The background-docket research project this
+  once fed (`ARTIST_DATA/`) now lives in the sibling `../artist_wiki`
+  repo — see its own CLAUDE.md for that workflow.

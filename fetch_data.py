@@ -200,10 +200,9 @@ def normalize(entry: dict) -> dict | None:
 
 # ---------- Wikipedia artist lookup ----------
 #
-# The matching logic lives in wiki_match.py (shared with the ARTIST_DATA/
-# research project); see its docstring for the tiered strategy. Artists
-# with no confident match get a Wikipedia search-results link instead of
-# an article link, and no hover extract.
+# The matching logic lives in wiki_match.py; see its docstring for the
+# tiered strategy. Artists with no confident match get a Wikipedia
+# search-results link instead of an article link, and no hover extract.
 
 
 def collect_artist_names(raw_entries: list[dict]) -> set[str]:
