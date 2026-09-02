@@ -52,7 +52,10 @@
 
   function recordAttempt(id, result) {
     const s = statFor(id);
-    ["artist", "title", "decade"].forEach((field) => {
+    // "decade" commented out along with the rest of the Quiz decade UI (see
+    // app.js's quiz-tab section) — result.decade isn't populated while that's
+    // disabled, so grading it here would throw.
+    ["artist", "title" /* , "decade" */].forEach((field) => {
       if (result[field].graded) {
         if (result[field].correct) s[field].right += 1;
         else s[field].wrong += 1;
@@ -61,7 +64,7 @@
     s.lastAttempt = {
       artistGuess: result.artist.guess,
       titleGuess: result.title.guess,
-      decadeGuess: result.decade.guess,
+      // decadeGuess: result.decade.guess,
     };
     s.lastSeen = new Date().toISOString();
     saveStats(stats);
@@ -230,8 +233,11 @@
   // sitting in its bank. dragState/quizPicked track an in-flight drag or
   // click-to-place pick, respectively — the two input methods share the
   // same moveChip/returnChipToBank logic below.
-  let quizPools = { artist: [], title: [], decade: [] };
-  let quizSelections = { artist: {}, title: {}, decade: {} };
+  // "decade" temporarily commented out of the field lists below (drag-and-drop
+  // UI disabled — see the HTML shells and the makeQuizField/field-loop calls
+  // further down) rather than removed, so it's a quick uncomment to restore.
+  let quizPools = { artist: [], title: [] /* , decade: [] */ };
+  let quizSelections = { artist: {}, title: {} /* , decade: {} */ };
   let dragState = null;
   let quizPicked = null;
 
@@ -379,7 +385,7 @@
   // Bank containers are static (one per field, in the HTML shell), so wire
   // their drag/click handlers once — dropping/clicking on empty bank space
   // returns whichever chip is currently dragged/picked to that field's bank.
-  ["artist", "title", "decade"].forEach((field) => {
+  ["artist", "title" /* , "decade" */].forEach((field) => {
     const bankEl = document.getElementById(`quiz-bank-${field}`);
     bankEl.addEventListener("dragover", (e) => {
       if (quizSubmitted || !dragState || dragState.field !== field) return;
@@ -402,11 +408,11 @@
       title: shuffled(quizBatch.map((c, i) => ({ key: `title-${i}`, value: c.title }))),
       // Decades sort reverse-chronologically (newest first) rather than
       // shuffling — unlike artist/title, there's a natural order to show them in.
-      decade: quizBatch
-        .map((c, i) => ({ key: `decade-${i}`, value: c.decade }))
-        .sort((a, b) => b.value.localeCompare(a.value)),
+      // decade: quizBatch
+      //   .map((c, i) => ({ key: `decade-${i}`, value: c.decade }))
+      //   .sort((a, b) => b.value.localeCompare(a.value)),
     };
-    quizSelections = { artist: {}, title: {}, decade: {} };
+    quizSelections = { artist: {}, title: {} /* , decade: {} */ };
     quizPicked = null;
     dragState = null;
 
@@ -424,12 +430,12 @@
 
       makeQuizField(div, "artist", idx);
       makeQuizField(div, "title", idx);
-      makeQuizField(div, "decade", idx);
+      // makeQuizField(div, "decade", idx);
 
       quizGrid.appendChild(div);
     });
 
-    ["artist", "title", "decade"].forEach((field) => {
+    ["artist", "title" /* , "decade" */].forEach((field) => {
       renderQuizBank(field);
       renderQuizSlots(field);
     });
@@ -472,7 +478,7 @@
   function submitQuiz() {
     if (quizSubmitted || quizBatch.length === 0) return;
 
-    const anyPlaced = ["artist", "title", "decade"].some(
+    const anyPlaced = ["artist", "title" /* , "decade" */].some(
       (f) => Object.keys(quizSelections[f]).length > 0
     );
     if (!anyPlaced) {
@@ -488,7 +494,7 @@
 
     quizBatch.forEach((card, idx) => {
       const result = {};
-      ["artist", "title", "decade"].forEach((field) => {
+      ["artist", "title" /* , "decade" */].forEach((field) => {
         const key = quizSelections[field][idx];
         const graded = key !== undefined;
         const guess = graded ? keyToValue(field, key) : "";
@@ -511,7 +517,7 @@
       recordAttempt(card.id, result);
     });
 
-    ["artist", "title", "decade"].forEach((field) => {
+    ["artist", "title" /* , "decade" */].forEach((field) => {
       renderQuizBank(field);
       renderQuizSlots(field);
     });
