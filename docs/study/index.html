@@ -150,7 +150,10 @@
             <th data-sort="decade">Decade</th>
             <th data-sort="artistAcc">Artist %</th>
             <th data-sort="titleAcc">Title %</th>
-            <th data-sort="decadeAcc">Decade %</th>
+            <!-- Decade % column disabled along with the rest of the Quiz
+                 decade UI (see app.js) — recordAttempt no longer grades
+                 decade, so this would always show "-" for new attempts. -->
+            <!-- <th data-sort="decadeAcc">Decade %</th> -->
             <th data-sort="overallAcc">Overall %</th>
           </tr>
         </thead>

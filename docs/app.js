@@ -713,8 +713,12 @@
     statsBody.innerHTML = "";
     rows.forEach((r) => {
       const tr = document.createElement("tr");
+      // decade clause left out of the tooltip along with the rest of the Quiz
+      // decade UI (see app.js's quiz-tab section) — recordAttempt no longer
+      // sets lastAttempt.decadeGuess, so this would always read "(blank)".
+      // Restore by adding back: , decade: "${r.lastAttempt.decadeGuess || "(blank)"}"
       const guessTitle = r.lastAttempt
-        ? `Last guess — artist: "${r.lastAttempt.artistGuess || "(blank)"}", title: "${r.lastAttempt.titleGuess || "(blank)"}", decade: "${r.lastAttempt.decadeGuess || "(blank)"}"`
+        ? `Last guess — artist: "${r.lastAttempt.artistGuess || "(blank)"}", title: "${r.lastAttempt.titleGuess || "(blank)"}"`
         : "";
       tr.title = guessTitle;
       tr.innerHTML = `
@@ -725,7 +729,11 @@
         <td>${r.decade}</td>
         <td>${formatAccuracy(r.artistAcc)}</td>
         <td>${formatAccuracy(r.titleAcc)}</td>
-        <td>${formatAccuracy(r.decadeAcc)}</td>
+        <!-- Decade % column disabled along with the rest of the Quiz decade UI
+             — recordAttempt no longer grades decade, so this would always
+             show "—" for new attempts. Restore alongside the "Decade %" <th>
+             in the HTML shells (search decadeAcc). -->
+        <!-- <td>${formatAccuracy(r.decadeAcc)}</td> -->
         <td>${formatAccuracy(r.overallAcc)}</td>
       `;
       statsBody.appendChild(tr);
